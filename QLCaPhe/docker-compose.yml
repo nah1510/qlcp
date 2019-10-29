@@ -45,12 +45,25 @@ services:
       - "3307:3306"
     environment:
       MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: 511998asd
+      MYSQL_ROOT_PASSWORD: 1
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+     - MYSQL_ROOT_PASSWORD=1
+     - MYSQL_DATABASE=laravel
+     - MYSQL_USER=root
+     - MYSQL_PASSWORD=1
     networks:
       - app-network
 
