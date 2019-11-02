@@ -25,3 +25,8 @@ Route::get('test','CaPheController@test');
 Route::get('/dashboard', function () {
     return view('admin.index');
 });
+Route::group(['prefix'=>'sanpham'],function(){
+    Route::get('list','SanPhamController@getList');
+    Route::get('edit','SanPhamController@Edit');
+    Route::get('add','SanPhamController@Add');
+});
