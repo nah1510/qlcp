@@ -5,6 +5,7 @@
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
                         <h4 class="card-title">Sản phẩm</h4>
+                        <a href="add">Thêm sản phẩm</a>
                         <p class="card-category">Danh sách sản phẩm</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -14,7 +15,7 @@
                                 <th>Tên</th>
                                 <th>Giá</th>
                                 <th>Tình Trạng</th>
-                                <th>City</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
 
@@ -23,8 +24,9 @@
                                     <td>{{$list->id}}</td>
                                     <td>{{$list->name}}</td>
                                     <td>{{$list->price}} VND</td>
-                                    <td>Chile</td>
-                                    <td>Gloucester</td>
+                                    <td>{{$list->status}}</td>
+                                    <td><a href="edit?id={{$list->id}}">Edit</a></td>
+                                    <td><a href="delete?id={{$list->id}}">Edit</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
