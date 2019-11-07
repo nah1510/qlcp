@@ -34,4 +34,5 @@ Route::group(['prefix'=>'sanpham'],function(){
     Route::post('edit','SanPhamController@postEdit');
     Route::get('add','SanPhamController@Add');
     Route::post('add','SanPhamController@postAdd');
+    Route::get('delete/{id}','SanPhamController@Delete');
 });

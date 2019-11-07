@@ -53,4 +53,12 @@ class SanPhamController extends Controller
         $url = "sanpham/edit?id=".$request->id;
         return redirect($url)->with('message','Sửa thành công!');
     }
+
+    public function Delete($id)
+    {   
+
+        $sanpham = SanPham::find($id);
+        $sanpham->delete();
+        return redirect("sanpham")->with('message','Xóa thành công!');
+    }
 }
