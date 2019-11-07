@@ -12,30 +12,32 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <form action="{{url('sanpham-edit')}}" method="POST" role="form">
+        <form action="edit?id={{$sanpham->id}}" method="POST" role="form">
           <legend>San Pham</legend>
-          @if($errors->has('errorlogin'))
-            <div class="alert alert-danger">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              {{$errors->first('errorlogin')}}
+          @if(session('message'))
+            <div class="alert alert-success">
+              {{session('message')}}
             </div>
           @endif
           <div class="form-group">
-            <label for="">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="{{old('email')}}">
-            @if($errors->has('email'))
-              <p style="color:red">{{$errors->first('email')}}</p>
-            @endif
+            <label for="">Tên món:</label>
+            <input type="text" class="form-control" placeholder="Tên món" name="name" value="{{$sanpham->name}}">   
           </div>
           <div class="form-group">
-            <label for="">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-            @if($errors->has('password'))
-              <p style="color:red">{{$errors->first('password')}}</p>
-            @endif
+            <label for="">Giá tiền</label>
+            <input type="text" class="form-control" placeholder="Giá tiền" name="price" value="{{$sanpham->price}}">
           </div>
-        
+          <div class="form-group">
+            <label for="">Giá tiền</label>
+            <div class="radio">
+              <label><input type="radio" name="status" value="1" {{ $sanpham->status == '1' ? 'checked' : '' }}>Sẵn sàng</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="status" value="0" {{ $sanpham->status == '0' ? 'checked' : '' }}>Hết</label>
+            </div>
+          </div>
           
+          <input type="hidden" name="id" value="{{$sanpham->id}}">
           {!! csrf_field() !!}
           <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
