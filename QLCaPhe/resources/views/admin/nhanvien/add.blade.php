@@ -29,7 +29,7 @@
           </div>
           <div class="form-group">
             <label for="">CMND:</label>
-            <input type="number" class="form-control" placeholder="Chứng minh nhân dân" name="identity_card_number" value="">
+            <input type="number " class="form-control" placeholder="Chứng minh nhân dân" name="identity_card_number" value="">
           </div>
           
           {!! csrf_field() !!}
