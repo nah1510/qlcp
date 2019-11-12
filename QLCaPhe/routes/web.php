@@ -25,3 +25,13 @@ Route::get('test','CaPheController@test');
 Route::get('/dashboard', function () {
     return view('admin.index');
 });
+Route::get('/sanpham', function () {
+    return redirect('sanpham/list');
+});
+Route::group(['prefix'=>'sanpham'],function(){
+    Route::get('list','SanPhamController@getList');
+    Route::get('edit','SanPhamController@Edit');
+    Route::post('edit','SanPhamController@postEdit');
+    Route::get('add','SanPhamController@Add');
+    Route::post('add','SanPhamController@postAdd');
+});

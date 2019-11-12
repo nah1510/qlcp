@@ -55220,7 +55220,11 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+<<<<<<< HEAD
 var Myheader = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].h1(_templateObject());
+=======
+var MyHeader = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].h1(_templateObject());
+>>>>>>> 5de66a32f36e572b13eea7ca03b14f8b7ea60bfe
 
 var Example =
 /*#__PURE__*/
@@ -55246,7 +55250,11 @@ function (_Component) {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
+<<<<<<< HEAD
       }, "Example Component"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Myheader, null, "styled-components + react are adding in this website"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "hi"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+=======
+      }, "Example Component"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyHeader, null, "styled-components have accessed to this website !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+>>>>>>> 5de66a32f36e572b13eea7ca03b14f8b7ea60bfe
         className: "card-body"
       }, "I'm an example component!")))));
     }
