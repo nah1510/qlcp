@@ -17,19 +17,19 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <th>ID</th>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th>Tình Trạng</th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>Chứng minh nhân dân</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
 
-                            @foreach($sanpham as $list)
+                            @foreach($nhanvien as $list)
                                 <tr>
                                     <td>{{$list->id}}</td>
                                     <td>{{$list->name}}</td>
-                                    <td>{{$list->price}} VND</td>
-                                    <td>{{$list->status == '1' ? 'Sãn sàng' : 'Hết'}}</td>
+                                    <td>{{$list->email}}</td>
+                                    <td>{{$list->identity_card_number }}</td>
                                     <td><a href="edit?id={{$list->id}}">Edit</a></td>
                                     <td><a href="delete/{{$list->id}}">Delete</a></td>
                                 </tr>

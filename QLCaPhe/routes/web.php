@@ -36,3 +36,14 @@ Route::group(['prefix'=>'sanpham'],function(){
     Route::post('add','SanPhamController@postAdd');
     Route::get('delete/{id}','SanPhamController@Delete');
 });
+Route::get('/nhanvien', function () {
+    return redirect('nhanvien/list');
+});
+Route::group(['prefix'=>'nhanvien'],function(){
+    Route::get('list','NhanVienController@getList');
+    Route::get('edit','NhanVienController@Edit');
+    Route::post('edit','NhanVienController@postEdit');
+    Route::get('add','NhanVienController@Add');
+    Route::post('add','NhanVienController@postAdd');
+    Route::get('delete/{id}','NhanVienController@Delete');
+});
