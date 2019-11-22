@@ -29,7 +29,7 @@
                                     <td>{{$list->id}}</td>
                                     <td>{{$list->name}}</td>
                                     <td>{{$list->price}} VND</td>
-                                    <td>{{$list->status == '1' ? 'Sãn sàng' : 'Hết'}}</td>
+                                    <td>{{$list->status == '1' ? 'Sẵn sàng' : 'Hết'}}</td>
                                     <td><a href="edit?id={{$list->id}}">Edit</a></td>
                                     <td><a href="delete/{{$list->id}}">Delete</a></td>
                                 </tr>
