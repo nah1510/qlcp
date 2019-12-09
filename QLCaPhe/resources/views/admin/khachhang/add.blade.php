@@ -17,20 +17,16 @@
                 <form action="add" method="POST" role="form">
           <legend>Sản phẩm</legend>
           <div class="form-group">
-            <label for="">Tên món:</label>
-            <input type="text" class="form-control" placeholder="Tên món" name="name" value="">   
+            <label for="">Tên khách hàng:</label>
+            <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="">   
           </div>
           <div class="form-group">
-            <label for="=Select">Loại sản phẩm</label>
-            <select name="loaisanpham" class="form-control" id="Select">
-              @foreach($loaisanpham as $list)
-              <option value="{{$list->id}}">{{$list->name}}</option>
-              @endforeach
-            </select>
+            <label for="">Số điện thoại khách hàng:</label>
+            <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="">   
           </div>
           <div class="form-group">
-            <label for="">Giá tiền</label>
-            <input type="text" class="form-control" placeholder="Giá tiền" name="price" value="">
+            <label for="">Email khách hàng</label>
+            <input type="text" class="form-control" placeholder="Email" name="email" value="">
           </div>
         
           

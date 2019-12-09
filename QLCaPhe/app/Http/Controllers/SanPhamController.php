@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SanPham;
+use App\LoaiSanPham;
 
 class SanPhamController extends Controller
 {
     public function getList()
     {
         $sanpham = SanPham::all();
-        return view('admin.sanpham.list',['sanpham'=>$sanpham]);
+        $loaisanpham = LoaiSanPham::all();
+        return view('admin.sanpham.list',['sanpham'=>$sanpham] );
     }
     
     public function Edit()
@@ -18,7 +20,8 @@ class SanPhamController extends Controller
         if (isset($_GET["id"]))
         {
             $sanpham = SanPham::find($_GET["id"]);
-            return view('admin.sanpham.edit',['sanpham'=>$sanpham]);
+            $loaisanpham = LoaiSanPham::all();
+            return view('admin.sanpham.edit',['sanpham'=>$sanpham, 'loaisanpham'=>$loaisanpham]);
         }
         else
         {
@@ -29,7 +32,8 @@ class SanPhamController extends Controller
 
     public function Add()
     {
-        return view('admin.sanpham.add');
+        $loaisanpham = LoaiSanPham::all();
+        return view('admin.sanpham.add',['loaisanpham'=>$loaisanpham]);
     }
 
     public function postAdd(Request $request)
@@ -38,6 +42,7 @@ class SanPhamController extends Controller
         $sanpham->name = $request->name;
         $sanpham->price = $request->price;
         $sanpham->status = 1;
+        $sanpham->loaisanpham = $request->loaisanpham;
         $sanpham->save();
         return redirect('sanpham/add')->with('message','Thêm thành công!');
     }
@@ -49,6 +54,7 @@ class SanPhamController extends Controller
         $sanpham->name = $request->name;
         $sanpham->price = $request->price;
         $sanpham->status = $request->status;
+        $sanpham->loaisanpham = $request->loaisanpham;
         $sanpham->save();
         $url = "sanpham/edit?id=".$request->id;
         return redirect($url)->with('message','Sửa thành công!');

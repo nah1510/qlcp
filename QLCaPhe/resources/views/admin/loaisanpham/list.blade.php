@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 @include('header')
 
@@ -17,26 +16,30 @@
                                 {{session('message')}}
                             </div>
                             @endif
-                            <h4 class="card-title">Sản phẩm</h4>
-                            <a class="btn btn-primary" href="add">Thêm sản phẩm</a>
-                            <p class="card-category">Danh sách sản phẩm</p>
+                            <form action="add" method="POST" role="form">
+                                <legend>Sản phẩm</legend>
+                                <div class="form-group">
+                                    <label for="">Loại Sản Phẩm</label>
+                                    <input type="text" class="form-control" placeholder="" name="name" value="">
+                                </div>
+
+                                {!! csrf_field() !!}
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </form>
+
                             <table class="table table-hover table-striped">
                                 <thead>
                                     <th>ID</th>
-                                    <th>Tên</th>
-                                    <th>Giá</th>
-                                    <th>Tình Trạng</th>
+                                    <th>Loại Sản Phẩm</th>
                                     <th>Action</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
 
-                                    @foreach($sanpham as $list)
+                                    @foreach($loaisanpham as $list)
                                     <tr>
                                         <td>{{$list->id}}</td>
                                         <td>{{$list->name}}</td>
-                                        <td>{{$list->price}} VND</td>
-                                        <td>{{$list->status == '1' ? 'Sẵn sàng' : 'Hết'}}</td>
                                         <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                         </td>
                                         <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
@@ -45,18 +48,16 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    <footer class="footer">
-        <div class="container-fluid">
-        </div>
-    </footer>
+        <footer class="footer">
+            <div class="container-fluid">
+            </div>
+        </footer>
+    </div>
     </div>
 </body>
-
 </html>

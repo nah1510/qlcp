@@ -10,7 +10,7 @@ use Mail;
 class DangNhapController extends Controller
 {
         public function postLogin(Request $request) {
-        Mail::send( "welcome",array('email'=>$request["email"]),function($message){
+        Mail::send( "dashboard",array('email'=>$request["email"]),function($message){
 	        $message->to('nah1510@mailinator.com', 'Visitor')->subject('Visitor Feedback!');
 	    });    
         $rules = [

@@ -18,25 +18,25 @@
                             </div>
                             @endif
                             <h4 class="card-title">Sản phẩm</h4>
-                            <a class="btn btn-primary" href="add">Thêm sản phẩm</a>
+                            <a class="btn btn-primary" href="add">Thêm Khách Hàng</a>
                             <p class="card-category">Danh sách sản phẩm</p>
                             <table class="table table-hover table-striped">
                                 <thead>
                                     <th>ID</th>
                                     <th>Tên</th>
-                                    <th>Giá</th>
-                                    <th>Tình Trạng</th>
+                                    <th>Điện thoai</th>
+                                    <th>Email</th>
                                     <th>Action</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
 
-                                    @foreach($sanpham as $list)
+                                    @foreach($khachhang as $list)
                                     <tr>
                                         <td>{{$list->id}}</td>
                                         <td>{{$list->name}}</td>
-                                        <td>{{$list->price}} VND</td>
-                                        <td>{{$list->status == '1' ? 'Sẵn sàng' : 'Hết'}}</td>
+                                        <td>{{$list->phone}} VND</td>
+                                        <td>{{$list->email}}</td>
                                         <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                         </td>
                                         <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
