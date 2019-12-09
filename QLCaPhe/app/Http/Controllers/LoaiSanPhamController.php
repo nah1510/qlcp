@@ -38,7 +38,7 @@ class LoaiSanPhamController extends Controller
         $loaisanpham = new LoaiSanPham;
         $loaisanpham->name = $request->name;
         $loaisanpham->save();
-        return redirect('loaisanpham')->with('message','Thêm thành công!');
+        return redirect('loaisanpham/list')->with('message','Thêm thành công!');
     }
 
     public function postEdit(Request $request)
@@ -55,9 +55,12 @@ class LoaiSanPhamController extends Controller
     {   
 
         $loaisanpham = LoaiSanPham::find($id);
-        $sp=SanPham::where('loaisanpham', $id)->exists();
-        if($sp)
-        return redirect("sanpham")->with('message','Xóa thành công!');
-        else  redirect("loaisanpham")->with('message','Xóa thất bại!');
+        $sp=SanPham::where('loaisanpham', $id)->count();
+        if($sp!=0)
+        return redirect("loaisanpham/list")->with('error','Không thể xóa! Đã có sản phẩm có loại sản phẩm này.');
+        else  {
+            $loaisanpham->delete();
+            return redirect("loaisanpham/list")->with('message','Xóa thành công!');
+        }
     }
 }

@@ -65,6 +65,6 @@ class SanPhamController extends Controller
 
         $sanpham = SanPham::find($id);
         $sanpham->delete();
-        return redirect("sanpham")->with('message','Xóa thành công!');
+        return redirect("sanpham/list")->with('message','Xóa thành công!');
     }
 }
