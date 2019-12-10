@@ -69,3 +69,4 @@ Route::group(['prefix'=>'khachhang'],function(){
     Route::post('add','KhachHangController@postAdd');
     Route::get('delete/{id}','KhachHangController@Delete');
 });
+Route::get('oder','OderController@getIndex');
