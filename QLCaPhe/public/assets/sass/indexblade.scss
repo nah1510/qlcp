@@ -28,7 +28,7 @@
         padding: 10px;
         background-color: #f0f0f0; 
         &-header{
-
+            white-space: nowrap;
         }
         &-price {
             font-weight: 500;
@@ -40,25 +40,51 @@
 .size{
     
 }
-.wrapper {
-    max-width: 1150px;
+.wrapItem {
+    position: relative;
+    padding: 5% 10px;
+    max-width: 900px;
+    max-height: 300px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: min-content; 
     grid-gap: 1em;
+    overflow-y: scroll;
+}
+.content {
+    display: flex;
+    &-left{
+        flex: 4;
+    }
+    &-right{
+        flex: 3;
+    }
+}
+.navlist{
+    display: flex;
+    & > div:not(:first-child) {
+        margin-left: 20px;
+    }
+    &-item {
+        padding: 6px 12px;
+        color: white;
+        background-color: #337ab7;
+        border-radius: 5px;
+    }
 }
 @media only screen and (max-width: 950px) {
-    .wrapper {
+    .wrapItem {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 @media only screen and (max-width: 650px) {
-    .wrapper {
+    .wrapItem {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 @media only screen and (max-width: 500px) {
-    .wrapper {
+    .wrapItem {
         grid-template-columns: repeat(1, 1fr);
     }
     .card{

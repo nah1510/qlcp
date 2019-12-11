@@ -4,26 +4,27 @@
 <head>
     <link href="{{asset('assets/sass/indexblade.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/globalstyle.css')}}" rel="stylesheet" />
+    <script src="{{asset('js/jquery-3.4.1.js')}}"></script>
 </head>
 <style>
     
 </style>
-@include('header')
 <body>
-  
+  <section class="content">
+  <div class="content-leftside">
     <nav>
         <div class="container">
-            <ul class="nav-list">
-                <li><a href="#">Tất cả</a></li>
+            <ul class="navlist">
+                <div class="navlist-item"><li><a href="#">Tất cả</a></li></div>
                 @foreach($loaisanpham as $list)
-                <li><a href="#">{{$list->name}}</a></li>  
+                <div class="navlist-item"><li><a href="#">{{$list->name}}</a></li></div>
                 @endforeach
             </ul>
         </div>
     </nav>
 
 
-    <div class="wrapper">
+    <div class="wrapItem">
     @foreach($sanpham as $list)
         <article class="card menu-cafe">
             <div class= "card-media " value="{{$list->id}}">
@@ -36,7 +37,8 @@
         </article>
     @endforeach
     </div>
-
+  </div>
+  <div class="content-rightside">
 
     <div class="col-sm-6">
     <table class="table">
@@ -56,6 +58,8 @@
 		  </tbody>
 		</table>
     </div>
+    </div>
+    </section>
 </body>
 
 </html>

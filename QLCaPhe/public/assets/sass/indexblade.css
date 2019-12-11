@@ -38,38 +38,84 @@
   background-color: #f0f0f0;
 }
 
+.card-content-header {
+  white-space: nowrap;
+}
+
 .card-content-price {
   font-weight: 500;
   font-size: 1em;
   margin-top: 0.3em;
 }
 
-.wrapper {
-  max-width: 1150px;
+.wrapItem {
+  position: relative;
+  padding: 5% 10px;
+  max-width: 900px;
+  max-height: 300px;
   margin: auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
   grid-gap: 1em;
+  overflow-y: scroll;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content-left {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+.content-right {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+}
+
+.navlist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.navlist > div:not(:first-child) {
+  margin-left: 20px;
+}
+
+.navlist-item {
+  padding: 6px 12px;
+  color: white;
+  background-color: #337ab7;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 950px) {
-  .wrapper {
+  .wrapItem {
     -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media only screen and (max-width: 650px) {
-  .wrapper {
+  .wrapItem {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .wrapper {
+  .wrapItem {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
   }
