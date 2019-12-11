@@ -7,6 +7,7 @@ use App\SanPham;
 use App\LoaiSanPham;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class SanPhamController extends Controller
 {
@@ -53,7 +54,7 @@ class SanPhamController extends Controller
             while(file_exists("upload/".$file_name)){
                 $file_name = Str::random(4)."_".$request->name.".".$file->getClientOriginalExtension();
             }
-            $file->move('upload', $file_name);
+            $request->file('image')->move('upload', $file_name);
             $sanpham->image=$file_name;
         }
         else
