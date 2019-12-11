@@ -73,12 +73,14 @@ class SanPhamController extends Controller
         if($request->hasFile('image'))
         {
             $file=$request->file('image');
+            
             $file_name = Str::random(4)."_".$request->name.".".$file->getClientOriginalExtension();
             while(file_exists("upload/".$file_name)){
                 $file_name = Str::random(4)."_".$request->name.".".$file->getClientOriginalExtension();
             }
-            $file->move('upload', $file_name);
             $sanpham->image=$file_name;
+            $file->move('upload', $file_name);
+
         }
         $sanpham->save();
         $url = "sanpham/edit?id=".$request->id;
