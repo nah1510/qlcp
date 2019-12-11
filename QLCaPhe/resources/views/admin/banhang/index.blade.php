@@ -27,12 +27,13 @@
     <div class="wrapItem">
     @foreach($sanpham as $list)
         <article class="card menu-cafe">
-            <div class= "card-media " value="{{$list->id}}">
+            <input type="hidden" value="{{$list->id}}">
+            <div class= "card-media">
                 <img src="/upload/{{$list->image}}" class="size" >
             </div>
             <div class="card-content">
                 <h2 class="card-content-header">{{$list->name}}</h2>
-                <p class="card-content-price">{{$list->price}}</p>
+                <p class="card-content-price" value="{{$list->price}}">{{$list->price}}</p>
             </div>
         </article>
     @endforeach
@@ -40,45 +41,75 @@
   </div>
   <div class="content-rightside">
 
-    <div class="col-sm-6">
+    
     <table class="table">
 		  <thead class="black">
 			<tr>
 			  <th scope="col">Món</th>
 			  <th scope="col">Số lượng</th>
+              <th scope="col">Giá</th>
 			  <th scope="col">Hành Động</th>
 			</tr>
 		  </thead>
 		  <tbody class="table-body">
-			<tr>
-			  <td></td>
-			  <td><input onKeyPress="return isNumberKey(event)" class="number-input" type="text" min="1" max="99" maxlength="2"></td>
-			  <td><button class="btn-delete">Hủy</button></td>
-			</tr>
+
 		  </tbody>
 		</table>
+        <input type="text" id="total_bill" name="total_bill" value ="0" readonly>
     </div>
-    </div>
-    </section>
-</body>
 
+    </section>
+<button onclick="save_db()">Save DB</button></td>
+</body>
 </html>
 <script language='javascript'>
   
   $(".menu-cafe").click(function(){
-    var html = '<tr><td>'+$(this).find("h2").text()+'</td>'+
-                '<td><input value="1" onKeyPress="return isNumberKey(event)" class="number-input" type="text" min="1" max="99" maxlength="2"></td>'+
+    var id = $(this).find("input").val();
+    var row = $(".table").find("#"+id);
+    if(row.length)
+    {
+        row.find(".number-input").val(Number(row.find(".number-input").val())+1);
+        total_bill();
+        return;
+    }
+    var html = '<tr class="tr" id="'+$(this).find("input").val()+'"><td>'+$(this).find("h2").text()+'</td>'+
+                '<td><input value="1" onchange="change0('+$(this).find("input").val()+')" onKeyPress="return isNumberKey(event)" class="number-input" type="text" min="1" max="99" maxlength="2"></td>'+
+                '<td>'+$(this).find("p").text()+'<input type="hidden" class="price" value="'+$(this).find("p").text()+'"></td>'+
                 '<td><button class="btn-delete">Hủy</button></td></tr>';
     $(".table-body").append(html);
     $(".btn-delete").on("click", function() { 
-    $(this).parent().parent().remove();
-  }); 
+        $(this).parent().parent().remove();
+        total_bill();
+    }); 
+    total_bill();
   });
  function isNumberKey(evt)
  {
- var charCode = (evt.which) ? evt.which : event.keyCode
- if (charCode > 31 && (charCode < 48 || charCode > 57))
- return false;
- return true;
+     var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+     return false;
+     return true;
+     total_bill();
+ }
+ function change0(id)
+ { 
+    var row = $(".table").find("#"+id);
+    if (Number(row.find(".number-input").val()) == 0) {
+        row.remove();
+    };
+    total_bill();
+ }
+  function total_bill()
+ { 
+    var total_bill = 0;
+    $('.tr').each(function() {
+        total_bill += Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
+        
+    });
+    $("#total_bill").val(total_bill);
+ }
+ function save_db(){
+    
  }
  </script>
