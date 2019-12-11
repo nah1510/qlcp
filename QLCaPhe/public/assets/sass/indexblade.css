@@ -1,0 +1,80 @@
+.card {
+  position: relative;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.card:hover {
+  z-index: 1;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-box-shadow: 5px 20px 25px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 20px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card-media {
+  height: 150px;
+  width: 100%;
+}
+
+.card-media img {
+  width: 100%;
+  height: inherit;
+}
+
+.card-content {
+  color: white;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.card-content-price {
+  font-weight: 500;
+  font-size: 1em;
+  margin-top: 0.3em;
+}
+
+.wrapper {
+  max-width: 1150px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+}
+
+@media only screen and (max-width: 950px) {
+  .wrapper {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .wrapper {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .wrapper {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+  .card {
+    margin: auto;
+  }
+}
+/*# sourceMappingURL=indexblade.css.map */
