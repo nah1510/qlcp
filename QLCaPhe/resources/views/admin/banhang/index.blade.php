@@ -15,9 +15,9 @@
     <nav>
         <div class="container">
             <ul class="navlist">
-                <div class="navlist-item"><li><a href="#">Tất cả</a></li></div>
+                <div onclick="list_san_pham(0)" class="navlist-item"><li>Tất cả</li></div>
                 @foreach($loaisanpham as $list)
-                <div class="navlist-item"><li><a href="#">{{$list->name}}</a></li></div>
+                <div onclick="list_san_pham({{$list->id}})" class="navlist-item"><li>{{$list->name}}</li></div>
                 @endforeach
             </ul>
         </div>
@@ -64,74 +64,105 @@
 </body>
 </html>
 <script language='javascript'>
-  
-  $(".menu-cafe").click(function(){
-    var id = $(this).find("input").val();
-    var row = $(".table").find("#"+id);
-    if(row.length)
-    {
-        row.find(".number-input").val(Number(row.find(".number-input").val())+1);
+    $(".menu-cafe").click(function() {
+        var id = $(this).find("input").val();
+        var row = $(".table").find("#" + id);
+        if (row.length) {
+            row.find(".number-input").val(Number(row.find(".number-input").val()) + 1);
+            total_bill();
+            return;
+        }
+        var html = '<tr class="tr" id="' + $(this).find("input").val() + '"><td>' + $(this).find("h2").text() + '</td>' +
+            '<td><input value="1" onchange="change0(' + $(this).find("input").val() + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"><button class="plus">+</button><button class="sub">-</button></td>' +
+            '<td>' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
+            '<td><button class="btn-delete">Hủy</button></td></tr>';
+        $(".table-body").append(html);
+        $(".btn-delete").on("click", function() {
+            $(this).parent().parent().remove();
+            total_bill();
+        });
+        $(".plus").on("click", function() {
+            var number = $(this).parent().find('.number-input');
+            if (Number(number.val()) == 99)
+                return;
+            number.val(Number(number.val()) + 1);
+            total_bill();
+        });
+        $(".sub").on("click", function() {
+            var number = $(this).parent().find('.number-input');
+            if (Number(number.val()) == 1) {
+                $(this).parent().parent().remove();
+                return;
+            }
+            number.val(Number(number.val()) - 1);
+            total_bill();
+        });
         total_bill();
-        return;
-    }
-    var html = '<tr class="tr" id="'+$(this).find("input").val()+'"><td>'+$(this).find("h2").text()+'</td>'+
-                '<td><input value="1" onchange="change0('+$(this).find("input").val()+')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></td>'+
-                '<td>'+$(this).find("p").text()+'<input type="hidden" class="price" value="'+$(this).find("p").text()+'"></td>'+
-                '<td><button class="btn-delete">Hủy</button></td></tr>';
-    $(".table-body").append(html);
-    $(".btn-delete").on("click", function() { 
-        $(this).parent().parent().remove();
+    });
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
         total_bill();
-    }); 
-    total_bill();
-  });
- function isNumberKey(evt)
- {
-     var charCode = (evt.which) ? evt.which : event.keyCode
-     if (charCode > 31 && (charCode < 48 || charCode > 57))
-     return false;
-     return true;
-     total_bill();
- }
- function change0(id)
- { 
-    var row = $(".table-body").find("#"+id);
-    if (Number(row.find(".number-input").val()) == 0) {
-        row.remove();
-    };
-    total_bill();
- }
-  function total_bill()
- { 
-    var total_bill = 0;
-    $('.tr').each(function() {
-        total_bill += Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
-        
-    });
-    $("#total_bill").val(total_bill);
- }
- function save_db(){
-    if($("#total_bill").val()==0){
-        alert("Not create bill");
-        return;
     }
-    var HoaDon=[];
-    $('.tr').each(function() {       
-        var total = Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
-        var CT_HoaDon =[$(this).attr('id'),$(this).find('.price').val(),$(this).find('.number-input').val(),total];
-        HoaDon.push(CT_HoaDon);
-    });
-    $.ajax({
-                type:'POST',
-                url:'ajax_save_bill',
-                data:{
-                    _token: "{{ csrf_token() }}",
-                    total_bill: $("#total_bill").val(),
-                    bill:HoaDon,
-                },
-                success: function( msg ) {
-                    
-                }
-            });
- }
- </script>
+
+    function change0(id) {
+        var row = $(".table-body").find("#" + id);
+        if (Number(row.find(".number-input").val()) == 0) {
+            row.remove();
+        };
+        total_bill();
+    }
+
+    function total_bill() {
+        var total_bill = 0;
+        $('.tr').each(function() {
+            total_bill += Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
+
+        });
+        $("#total_bill").val(total_bill);
+    }
+
+    function save_db() {
+        if ($("#total_bill").val() == 0) {
+            alert("Not create bill");
+            return;
+        }
+        var HoaDon = [];
+        $('.tr').each(function() {
+            var total = Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
+            var CT_HoaDon = [$(this).attr('id'), $(this).find('.price').val(), $(this).find('.number-input').val(), total];
+            HoaDon.push(CT_HoaDon);
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'ajax_save_bill',
+            data: {
+                _token: "{{ csrf_token() }}",
+                total_bill: $("#total_bill").val(),
+                bill: HoaDon,
+            },
+            success: function(msg) {
+                alert("Đã thêm thành công " + msg);
+                $(".table-body").remove();
+                total_bill();
+            }
+        });
+    }
+    function list_san_pham(id){
+        $.ajax({
+            type: 'POST',
+            url: 'ajax_list_san_pham',
+            data: {
+                _token: "{{ csrf_token() }}",
+                id:id,
+            },
+            success: function(msg) {
+                alert("Đã thêm thành công " + msg);
+                $(".table-body").remove();
+            }
+        });
+    }
+</script>
