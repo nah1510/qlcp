@@ -1,3 +1,14 @@
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 .card {
     position: relative;
     background-color: white;
@@ -34,9 +45,10 @@
             height: 60px;
         }
         &-price {
-            font-weight: 500;
+            font-weight: bold;
             font-size: 1em;
             margin-top: 0.3em;
+            color: #337ab7;
         }
     }
 }
@@ -56,18 +68,55 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+.wrapBackground {
+    margin-bottom: 50px;
+    position: relative;
+    // padding: 10px;
+    margin-left: 10px;
+    --borderWidt: 5px;
+    border-radius: var(--borderWidt);
+    &:after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: calc(100% + var(--borderWidt) * 2);
+        height: calc(100% + var(--borderWidt) * 2);
+        // z-index: -1;
+        // border-radius: calc(2 * var(--borderWidth));
+        border-radius: 5px;
+        background: linear-gradient(
+            60deg,
+            #f79533,
+            #f37055,
+            #d9534f,
+            #9368e9,
+            #286090,
+            #5bc0de,
+            #3c763d,
+            #dff0d8
+        );
+        background-size: 300% 300%;
+        animation: animatedgradient 5s ease-in-out infinite;
+    }
+}
 .wrapItem {
     position: relative;
-    padding: 0 10px;
+    padding: 10px;
+    border-radius: 5px;
+    // border: 5px solid black;
     // max-width: 700px;
+    z-index: 1;
+    background-color: #f1f1f4;
     max-height: 300px;
     // margin: auto;
-    margin-bottom: 50px;
+
     align-items: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: min-content;
     grid-gap: 1em;
+    // background-color: #f1f1f4;
     overflow-y: scroll;
 }
 .tb {
@@ -75,9 +124,9 @@
 }
 .content {
     display: flex;
-    background-color: rgba(203, 203, 210, 0.15);
+    background-color: #f1f1f4;
     &-leftside {
-        flex: 2;
+        flex: 1;
     }
     &-rightside {
         flex: 1;
@@ -101,7 +150,7 @@
 }
 
 .numberInput {
-    width: 50px;
+    max-width: 60px;
 }
 .head {
     width: 25%;
