@@ -101,8 +101,9 @@ list_san_pham(0);
             },
             success: function(msg) {
                 alert("Đã thêm thành công " + msg);
-                $(".table-body").remove();
+                $(".table-body >tr").remove();
                 total_bill();
+                list_san_pham(0);
             }
         });
     }
@@ -130,7 +131,7 @@ list_san_pham(0);
             '</article>';
             $(".wrapItem").append(html); 
                     });
-                    $(".menu-cafe").on("click", function(){
+    $(".menu-cafe").on("click", function(){
         var id = $(this).find("input").val();
         var row = $(".table").find("#" + id);
         if (row.length) {
