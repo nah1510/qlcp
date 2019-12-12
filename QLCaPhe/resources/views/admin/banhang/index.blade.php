@@ -41,8 +41,7 @@
   </div>
 </div>
   <div class="content-rightside">
-
-    
+    <div class="wrapTable">
     <table class="table tb">
 		  <thead class="black">
 			<tr class="row">
@@ -55,12 +54,16 @@
 		  <tbody class="table-body">
 
 		  </tbody>
-		</table>
-        <input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly>
+    </table>
+  </div>
+    <div class="wrapSum">
+    <div class="Sum"><span>Tổng tiền:</span><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly></div>
+        <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div>
+    </div>
     </div>
 
     </section>
-<button onclick="save_db()">Save DB</button></td>
+</td>
 </body>
 </html>
 <script language='javascript'>
@@ -74,8 +77,8 @@
         }
         var html = '<tr class="tr" id="' + $(this).find("input").val() + '"><td>' + $(this).find("h2").text() + '</td>' +
             '<td class="dataInput"><div><input value="1" onchange="change0(' + $(this).find("input").val() + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
-            '<td>' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
-            '<td><button class="btn-delete">Hủy</button></td></tr>';
+            '<td class="price">' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
+            '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
         $(".table-body").append(html);
         $(".btn-delete").on("click", function() {
             $(this).parent().parent().remove();
