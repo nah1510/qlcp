@@ -114,13 +114,19 @@
         alert("Not create bill");
         return;
     }
-    var info = 
+    var HoaDon=[];
+    $('.tr').each(function() {       
+        var total = Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
+        var CT_HoaDon =[$(this).attr('id'),$(this).find('.price').val(),$(this).find('.number-input').val(),total];
+        HoaDon.push(CT_HoaDon);
+    });
     $.ajax({
                 type:'POST',
                 url:'ajax_save_bill',
                 data:{
                     _token: "{{ csrf_token() }}",
                     total_bill: $("#total_bill").val(),
+                    bill:HoaDon,
                 },
                 success: function( msg ) {
                     

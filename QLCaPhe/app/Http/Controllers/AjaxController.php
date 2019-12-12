@@ -8,22 +8,26 @@ use App\HoaDon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate \ Foundation \ Application;
 
 class AjaxController extends Controller
 {
-    /*public function save_bill(Request $request)
-    {
+
+    public function save_bill(Request $request) {
         $hoadon = new HoaDon;
         $hoadon->price = $request->total_bill;
-        if ($hoadon->save()) {
-            return Response::json(array('success' => true));
+        $hoadon->save();
+        foreach ($request->bill as $key => $value) {
+            $CT_HoaDon = new CT_HoaDon;
+            $CT_HoaDon->hoadon= $hoadon->id;
+            $CT_HoaDon->sanpham = $value[0];
+            $CT_HoaDon->unit_price = $value[1];
+            $CT_HoaDon->amount = $value[2];
+            $CT_HoaDon->price = $value[3];
+            $CT_HoaDon->save();
         }
-        else
-            return Response::json(array('success' => false));
-    }*/
-    public function save_bill() {
-        // Getting all post data
-        print_r(Request::all());
+        echo json_encode($hoadon->id);
     
-        }
+    }
+
 }
