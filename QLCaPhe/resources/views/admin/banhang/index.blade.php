@@ -95,7 +95,7 @@
  }
  function change0(id)
  { 
-    var row = $(".table").find("#"+id);
+    var row = $(".table-body").find("#"+id);
     if (Number(row.find(".number-input").val()) == 0) {
         row.remove();
     };
@@ -111,6 +111,27 @@
     $("#total_bill").val(total_bill);
  }
  function save_db(){
-    
+    if($("#total_bill").val()==0){
+        alert("Not create bill");
+        return;
+    }
+    var HoaDon=[];
+    $('.tr').each(function() {       
+        var total = Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
+        var CT_HoaDon =[$(this).attr('id'),$(this).find('.price').val(),$(this).find('.number-input').val(),total];
+        HoaDon.push(CT_HoaDon);
+    });
+    $.ajax({
+                type:'POST',
+                url:'ajax_save_bill',
+                data:{
+                    _token: "{{ csrf_token() }}",
+                    total_bill: $("#total_bill").val(),
+                    bill:HoaDon,
+                },
+                success: function( msg ) {
+                    
+                }
+            });
  }
  </script>
