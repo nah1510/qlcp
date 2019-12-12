@@ -23,7 +23,7 @@
         </div>
     </nav>
 
-
+  <div class="wrapBackground">
     <div class="wrapItem" id="style-1">
     @foreach($sanpham as $list)
         <article class="card menu-cafe">
@@ -39,6 +39,7 @@
     @endforeach
     </div>
   </div>
+</div>
   <div class="content-rightside">
 
     

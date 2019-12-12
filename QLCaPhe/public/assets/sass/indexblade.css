@@ -1,3 +1,27 @@
+@-webkit-keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .card {
   position: relative;
   background-color: white;
@@ -48,9 +72,10 @@
 }
 
 .card-content-price {
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1em;
   margin-top: 0.3em;
+  color: #337ab7;
 }
 
 .form-controll {
@@ -72,11 +97,35 @@
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
 }
 
+.wrapBackground {
+  margin-bottom: 50px;
+  position: relative;
+  margin-left: 10px;
+  --borderWidt: 5px;
+  border-radius: var(--borderWidt);
+}
+
+.wrapBackground:after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + var(--borderWidt) * 2);
+  height: calc(100% + var(--borderWidt) * 2);
+  border-radius: 5px;
+  background: linear-gradient(60deg, #f79533, #f37055, #d9534f, #9368e9, #286090, #5bc0de, #3c763d, #dff0d8);
+  background-size: 300% 300%;
+  -webkit-animation: animatedgradient 5s ease-in-out infinite;
+          animation: animatedgradient 5s ease-in-out infinite;
+}
+
 .wrapItem {
   position: relative;
-  padding: 0 10px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  background-color: #f1f1f4;
   max-height: 300px;
-  margin-bottom: 50px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -99,13 +148,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: rgba(203, 203, 210, 0.15);
+  background-color: #f1f1f4;
 }
 
 .content-leftside {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .content-rightside {
@@ -132,7 +181,7 @@
 }
 
 .numberInput {
-  width: 50px;
+  max-width: 60px;
 }
 
 .head {
