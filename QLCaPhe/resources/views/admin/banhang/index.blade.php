@@ -45,11 +45,14 @@
 
           </tbody>
         </table>
-        <input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly>
+            <div class="wrapSum">
+    <div class="Sum"><span>Tổng tiền:</span><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly></div>
+        <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div>
+    </div>
+    </div>
     </div>
 
     </section>
-<button onclick="save_db()">Save DB</button></td>
 </body>
 </html>
 <script language='javascript'>
