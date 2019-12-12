@@ -25,18 +25,7 @@
 
   <div class="wrapBackground">
     <div class="wrapItem" id="style-1">
-    @foreach($sanpham as $list)
-        <article class="card menu-cafe">
-            <input type="hidden" value="{{$list->id}}">
-            <div class= "card-media">
-                <img src="/upload/{{$list->image}}" class="size" >
-            </div>
-            <div class="card-content">
-                <h2 class="card-content-header">{{$list->name}}</h2>
-                <p class="card-content-price" value="{{$list->price}}">{{$list->price}}</p>
-            </div>
-        </article>
-    @endforeach
+
     </div>
   </div>
 </div>
@@ -64,6 +53,7 @@
 </body>
 </html>
 <script language='javascript'>
+list_san_pham(0);
     $(".menu-cafe").click(function() {
         var id = $(this).find("input").val();
         var row = $(".table").find("#" + id);
@@ -152,6 +142,7 @@
         });
     }
     function list_san_pham(id){
+        $(".wrapItem >article").remove();
         $.ajax({
             type: 'POST',
             url: 'ajax_list_san_pham',
@@ -159,9 +150,21 @@
                 _token: "{{ csrf_token() }}",
                 id:id,
             },
-            success: function(msg) {
-                alert("Đã thêm thành công " + msg);
-                $(".table-body").remove();
+            success: function(data) {
+                data = JSON.parse(data);
+                $.each(data, function(key, value) {
+                        var html='<article class="card menu-cafe">'+
+                        '<input type="hidden" value="'+value['id']+'">'+
+            '<div class= "card-media">'+
+            '<img src="/upload/'+value['image']+'" class="size" >'+
+                '</div>'+
+            '<div class="card-content">'+
+            '<h2 class="card-content-header">'+value['name']+'</h2>'+
+                '<p class="card-content-price" value="'+value['price']+'">'+value['price']+'</p>'+
+                '</div>'+
+            '</article>';
+            $(".wrapItem").append(html); 
+                    });
             }
         });
     }

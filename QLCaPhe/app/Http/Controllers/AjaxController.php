@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CT_HoaDon;
 use App\HoaDon;
+use App\SanPham;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -27,6 +28,24 @@ class AjaxController extends Controller
             $CT_HoaDon->save();
         }
         echo json_encode($hoadon->id);
+    
+    }
+
+    public function list_san_pham(Request $request) {
+        $array=array();
+        if($request->id==0)
+            $sanpham = SanPham::all();
+        else
+            $sanpham = SanPham::where('loaisanpham','=',$request->id )->get();      
+        foreach ($sanpham as $key => $value) {
+            $array_onece=array(
+                "id"=>$value['id'],
+                "image"=>$value['image'], 
+                "name"=>$value['name'], 
+                "price"=>$value['price']);
+            array_push($array,$array_onece);
+        }
+        echo json_encode($array);
     
     }
 
