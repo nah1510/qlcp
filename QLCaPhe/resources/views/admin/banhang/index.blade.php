@@ -54,41 +54,6 @@
 </html>
 <script language='javascript'>
 list_san_pham(0);
-    $(".menu-cafe").click(function() {
-        var id = $(this).find("input").val();
-        var row = $(".table").find("#" + id);
-        if (row.length) {
-            row.find(".number-input").val(Number(row.find(".number-input").val()) + 1);
-            total_bill();
-            return;
-        }
-        var html = '<tr class="tr" id="' + $(this).find("input").val() + '"><td>' + $(this).find("h2").text() + '</td>' +
-            '<td class="dataInput"><div><input value="1" onchange="change0(' + $(this).find("input").val() + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
-            '<td>' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
-            '<td><button class="btn-delete">Hủy</button></td></tr>';
-        $(".table-body").append(html);
-        $(".btn-delete").on("click", function() {
-            $(this).parent().parent().remove();
-            total_bill();
-        });
-        $(".plus").on("click", function() {
-            var number = $(this).parent().parent().find('.number-input');
-            if (Number(number.val()) == 99)
-                return;
-            number.val(Number(number.val()) + 1);
-            total_bill();
-        });
-        $(".sub").on("click", function() {
-            var number = $(this).parent().parent().find('.number-input');
-            if (Number(number.val()) == 1) {
-                $(this).parent().parent().parent().remove();
-                return;
-            }
-            number.val(Number(number.val()) - 1);
-            total_bill();
-        });
-        total_bill();
-    });
 
     function isNumberKey(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode
@@ -165,6 +130,41 @@ list_san_pham(0);
             '</article>';
             $(".wrapItem").append(html); 
                     });
+                    $(".menu-cafe").on("click", function(){
+        var id = $(this).find("input").val();
+        var row = $(".table").find("#" + id);
+        if (row.length) {
+            row.find(".number-input").val(Number(row.find(".number-input").val()) + 1);
+            total_bill();
+            return;
+        }
+        var html = '<tr class="tr" id="' + $(this).find("input").val() + '"><td>' + $(this).find("h2").text() + '</td>' +
+            '<td class="dataInput"><div><input value="1" onchange="change0(' + $(this).find("input").val() + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
+            '<td>' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
+            '<td><button class="btn-delete">Hủy</button></td></tr>';
+        $(".table-body").append(html);
+        $(".btn-delete").on("click", function() {
+            $(this).parent().parent().remove();
+            total_bill();
+        });
+        $(".plus").on("click", function() {
+            var number = $(this).parent().parent().find('.number-input');
+            if (Number(number.val()) == 99)
+                return;
+            number.val(Number(number.val()) + 1);
+            total_bill();
+        });
+        $(".sub").on("click", function() {
+            var number = $(this).parent().parent().find('.number-input');
+            if (Number(number.val()) == 1) {
+                $(this).parent().parent().parent().remove();
+                return;
+            }
+            number.val(Number(number.val()) - 1);
+            total_bill();
+        });
+        total_bill();
+    });
             }
         });
     }
