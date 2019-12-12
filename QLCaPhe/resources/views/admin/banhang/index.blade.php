@@ -24,7 +24,7 @@
     </nav>
 
 
-    <div class="wrapItem">
+    <div class="wrapItem" id="style-1">
     @foreach($sanpham as $list)
         <article class="card menu-cafe">
             <input type="hidden" value="{{$list->id}}">
@@ -55,7 +55,7 @@
 
 		  </tbody>
 		</table>
-        <input type="text" id="total_bill" name="total_bill" value ="0" readonly>
+        <input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly>
     </div>
 
     </section>
@@ -74,7 +74,7 @@
         return;
     }
     var html = '<tr class="tr" id="'+$(this).find("input").val()+'"><td>'+$(this).find("h2").text()+'</td>'+
-                '<td><input value="1" onchange="change0('+$(this).find("input").val()+')" onKeyPress="return isNumberKey(event)" class="number-input numberInput" type="text" min="1" max="99" maxlength="2"></td>'+
+                '<td><input value="1" onchange="change0('+$(this).find("input").val()+')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></td>'+
                 '<td>'+$(this).find("p").text()+'<input type="hidden" class="price" value="'+$(this).find("p").text()+'"></td>'+
                 '<td><button class="btn-delete">Hủy</button></td></tr>';
     $(".table-body").append(html);
