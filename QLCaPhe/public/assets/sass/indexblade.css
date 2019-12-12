@@ -78,6 +78,42 @@
   color: #337ab7;
 }
 
+.btn {
+  outline: none;
+  color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 15px;
+  height: 15px;
+  line-height: 0.5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn-Plus {
+  background-color: #337ab7;
+}
+
+.btn-Sub {
+  background-color: #d9534f;
+}
+
+.dataInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dataInput > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 .form-controll {
   display: block;
   height: 15px;

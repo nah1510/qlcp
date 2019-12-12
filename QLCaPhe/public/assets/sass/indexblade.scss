@@ -54,6 +54,30 @@
 }
 .size {
 }
+// button plus and minor:
+.btn {
+    outline: none;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+    width: 15px;
+    height: 15px;
+    line-height: 0.5;
+    display: flex;
+    justify-content: center;
+    &-Plus {
+        background-color: #337ab7;
+    }
+    &-Sub {
+        background-color: #d9534f;
+    }
+}
+.dataInput {
+    display: flex;
+    & > div {
+        flex: 1;
+    }
+}
 .form-controll {
     display: block;
     height: 15px;

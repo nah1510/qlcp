@@ -10,7 +10,8 @@ h5,
 h6,
 p,
 ul,
-body {
+body,
+button {
     padding: 0;
     margin: 0;
 }
