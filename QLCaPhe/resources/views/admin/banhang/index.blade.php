@@ -94,7 +94,7 @@
  }
  function change0(id)
  { 
-    var row = $(".table").find("#"+id);
+    var row = $(".table-body").find("#"+id);
     if (Number(row.find(".number-input").val()) == 0) {
         row.remove();
     };
@@ -110,6 +110,21 @@
     $("#total_bill").val(total_bill);
  }
  function save_db(){
-    
+    if($("#total_bill").val()==0){
+        alert("Not create bill");
+        return;
+    }
+    var info = 
+    $.ajax({
+                type:'POST',
+                url:'ajax_save_bill',
+                data:{
+                    _token: "{{ csrf_token() }}",
+                    total_bill: $("#total_bill").val(),
+                },
+                success: function( msg ) {
+                    
+                }
+            });
  }
  </script>
