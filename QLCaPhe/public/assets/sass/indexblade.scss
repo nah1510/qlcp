@@ -1,9 +1,12 @@
-.card{
+.card {
     position: relative;
-    background-color: #d9d9d9; 
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    // margin: auto;
+    justify-self: center;
+    align-self: center;
     transform: scale(1);
     transition: 0.5s ease-in-out;
     cursor: pointer;
@@ -12,9 +15,9 @@
     &:hover {
         z-index: 1;
         transform: scale(1.05);
-        box-shadow: 5px 20px 25px rgba(0,0,0,0.3);
+        box-shadow: 5px 20px 25px rgba(0, 0, 0, 0.3);
     }
-    &-media { 
+    &-media {
         // width: 100%;
         height: 150px;
         width: 100%;
@@ -24,11 +27,11 @@
         }
     }
     &-content {
-        color: white;
+        color: black;
         padding: 10px;
-        background-color: #f0f0f0; 
-        &-header{
-            white-space: nowrap;
+        background-color: #ffffff;
+        &-header {
+            height: 60px;
         }
         &-price {
             font-weight: 500;
@@ -37,34 +40,51 @@
         }
     }
 }
-.size{
-    
+.size {
 }
 .wrapItem {
     position: relative;
     padding: 5% 10px;
-    max-width: 900px;
+    // max-width: 700px;
     max-height: 300px;
-    margin: auto;
+    // margin: auto;
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: min-content; 
+    grid-template-rows: min-content;
     grid-gap: 1em;
     overflow-y: scroll;
 }
+.tb {
+    width: 100%;
+}
 .content {
     display: flex;
-    &-left{
-        flex: 4;
+    background-color: rgba(203, 203, 210, 0.15);
+    &-leftside {
+        flex: 2;
     }
-    &-right{
-        flex: 3;
+    &-rightside {
+        flex: 1;
     }
 }
-.navlist{
+.numberInput {
+    width: 50px;
+}
+.head {
+    width: 25%;
+    white-space: nowrap;
+}
+.navlist {
     display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    padding: 10px;
+    & > div {
+        margin: 10px;
+    }
     & > div:not(:first-child) {
-        margin-left: 20px;
+        // margin-left: 20px;
     }
     &-item {
         padding: 6px 12px;
@@ -73,21 +93,18 @@
         border-radius: 5px;
     }
 }
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1280px) {
     .wrapItem {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 1120px) {
     .wrapItem {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 900px) {
     .wrapItem {
         grid-template-columns: repeat(1, 1fr);
-    }
-    .card{
-        margin:auto;
     }
 }

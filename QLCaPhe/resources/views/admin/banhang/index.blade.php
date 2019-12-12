@@ -42,13 +42,13 @@
   <div class="content-rightside">
 
     
-    <table class="table">
+    <table class="table tb">
 		  <thead class="black">
-			<tr>
-			  <th scope="col">Món</th>
-			  <th scope="col">Số lượng</th>
-              <th scope="col">Giá</th>
-			  <th scope="col">Hành Động</th>
+			<tr class="row">
+			  <th scope="col" class="head">Món</th>
+			  <th scope="col" class="head">Số lượng</th>
+              <th scope="col" class="head">Giá</th>
+			  <th scope="col" class="head">Hành Động</th>
 			</tr>
 		  </thead>
 		  <tbody class="table-body">
@@ -74,7 +74,7 @@
         return;
     }
     var html = '<tr class="tr" id="'+$(this).find("input").val()+'"><td>'+$(this).find("h2").text()+'</td>'+
-                '<td><input value="1" onchange="change0('+$(this).find("input").val()+')" onKeyPress="return isNumberKey(event)" class="number-input" type="text" min="1" max="99" maxlength="2"></td>'+
+                '<td><input value="1" onchange="change0('+$(this).find("input").val()+')" onKeyPress="return isNumberKey(event)" class="number-input numberInput" type="text" min="1" max="99" maxlength="2"></td>'+
                 '<td>'+$(this).find("p").text()+'<input type="hidden" class="price" value="'+$(this).find("p").text()+'"></td>'+
                 '<td><button class="btn-delete">Hủy</button></td></tr>';
     $(".table-body").append(html);

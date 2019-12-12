@@ -1,10 +1,15 @@
 .card {
   position: relative;
-  background-color: #d9d9d9;
+  background-color: white;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   -webkit-transform: scale(1);
           transform: scale(1);
   -webkit-transition: 0.5s ease-in-out;
@@ -33,13 +38,13 @@
 }
 
 .card-content {
-  color: white;
+  color: black;
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 
 .card-content-header {
-  white-space: nowrap;
+  height: 60px;
 }
 
 .card-content-price {
@@ -51,9 +56,10 @@
 .wrapItem {
   position: relative;
   padding: 5% 10px;
-  max-width: 900px;
   max-height: 300px;
-  margin: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
@@ -65,32 +71,51 @@
   overflow-y: scroll;
 }
 
+.tb {
+  width: 100%;
+}
+
 .content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background-color: rgba(203, 203, 210, 0.15);
 }
 
-.content-left {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+.content-leftside {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
-.content-right {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+.content-rightside {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.numberInput {
+  width: 50px;
+}
+
+.head {
+  width: 25%;
+  white-space: nowrap;
 }
 
 .navlist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  padding: 10px;
 }
 
-.navlist > div:not(:first-child) {
-  margin-left: 20px;
+.navlist > div {
+  margin: 10px;
 }
 
 .navlist-item {
@@ -100,27 +125,24 @@
   border-radius: 5px;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1280px) {
   .wrapItem {
     -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 1120px) {
   .wrapItem {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 900px) {
   .wrapItem {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
-  }
-  .card {
-    margin: auto;
   }
 }
 /*# sourceMappingURL=indexblade.css.map */
