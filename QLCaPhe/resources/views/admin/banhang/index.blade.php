@@ -34,7 +34,7 @@
         <div class="client-leftside">Hân</div>
         <div class="client-rightside">Ăn lồn</div>
       </div>
-<div class="wrapTable">
+<div class="wrapTable left">
     <table class="table tb">
           <thead class="black">
             <tr class="row">
@@ -48,6 +48,13 @@
           </tbody>
         </table>
     </div>
+    <div class="wrapTable right" style="display:none;">
+        <input type="text" id="info-customer" placeholder="Nhập thông tin khách">
+        <button onclick="khachhang()">Tìm kiếm</button>
+        <div id="show-info-customer">
+            
+        </div>
+    </div>
             <div class="wrapSum">
     <div class="Sum"><span>Tổng tiền:</span><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly></div>
         <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div>
@@ -56,6 +63,7 @@
     </div>
 
     </section>
+    <input type="hidden" id="customer_id">
 </body>
 </html>
 <script language='javascript'>
@@ -97,6 +105,7 @@ list_san_pham(0);
             var CT_HoaDon = [$(this).attr('id'), $(this).find('.price').val(), $(this).find('.number-input').val(), total];
             HoaDon.push(CT_HoaDon);
         });
+        alert($("#customer_id").val());
         $.ajax({
             type: 'POST',
             url: 'ajax_save_bill',
@@ -104,6 +113,7 @@ list_san_pham(0);
                 _token: "{{ csrf_token() }}",
                 total_bill: $("#total_bill").val(),
                 bill: HoaDon,
+                customer_id: $("#customer_id").val(),
             },
             success: function(msg) {
                 alert("Đã thêm thành công " + msg);
@@ -126,10 +136,11 @@ list_san_pham(0);
                 data = JSON.parse(data);
                 $.each(data, function(key, value) {
                         var html='<article class="card menu-cafe">'+
-                        '<input type="hidden" value="'+value['id']+'">'+
+                        '<input class="id-product" type="hidden" value="'+value['id']+'">'+
+                        '<input class="price-product" type="hidden" value="'+value['price']+'">'+
             '<div class= "card-media">'+
             '<img src="/upload/'+value['image']+'" class="size" >'+
-            '<p class="card-media-price" value="'+value['price']+'">'+value['price']+'</p>'
+            '<p class="card-media-price">'+value['price'].toLocaleString().replace(/\d(?=(\d{3})+\.)/g, '$&,')+' VND</p>'
                 +'</div >'+
             '<div class="card-content">'+
             '<h2 class="card-content-header">'+value['name']+'</h2>'+
@@ -138,16 +149,16 @@ list_san_pham(0);
             $(".wrapItem").append(html); 
                     });
     $(".menu-cafe").on("click", function(){
-        var id = $(this).find("input").val();
+        var id = $(this).find(".id-product").val();
         var row = $(".table").find("#" + id);
         if (row.length) {
             row.find(".number-input").val(Number(row.find(".number-input").val()) + 1);
             total_bill();
             return;
         }
-        var html = '<tr class="tr" id="' + $(this).find("input").val() + '"><td>' + $(this).find("h2").text() + '</td>' +
-            '<td class="dataInput"><div><input value="1" onchange="change0(' + $(this).find("input").val() + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
-            '<td class="center">' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
+        var html = '<tr class="tr" id="' + id + '"><td>' + $(this).find("h2").text() + '</td>' +
+            '<td class="dataInput"><div><input value="1" onchange="change0(' + id + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
+            '<td class="center">' + $(this).find(".price-product").val() + '<input type="hidden" class="price" value="' + $(this).find(".price-product").val() + '"></td>' +
             '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
         $(".table-body").append(html);
         $(".btn-delete").on("click", function() {
@@ -172,6 +183,44 @@ list_san_pham(0);
         });
         total_bill();
     });
+            }
+        });
+    }
+    $(".client-leftside").click(function(){
+        $(".left").show();
+        $(".right").hide();
+    });
+    $(".client-rightside").click(function(){
+        $(".right").show();
+        $(".left").hide();
+    });
+    function khachhang(){
+        if($('#info-customer').val()=="")
+            return;
+        $.ajax({
+            type: 'POST',
+            url: 'ajax_find_customer',
+            data: {
+                _token: "{{ csrf_token() }}",
+                phone: $("#info-customer").val(),
+            },
+            success: function(data) {
+                $("#show-info-customer >h6").remove(); 
+                //$("#show-info-customer >div").remove();  nếu là div
+                if(data=="false")
+                    {   
+                        var html = '<h6>Đéo tìm ra</h6>';
+                        $("#customer_id").val(""); 
+                        $("#show-info-customer").append(html); 
+                    }
+                    
+                else
+                    {
+                        data = JSON.parse(data);
+                            var html = '<h6>'+data["name"]+'</h6>';
+                            $("#show-info-customer").append(html); 
+                            $("#customer_id").val(data["id"]); 
+                    }
             }
         });
     }

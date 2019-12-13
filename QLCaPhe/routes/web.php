@@ -72,4 +72,5 @@ Route::group(['prefix'=>'khachhang'],function(){
 Route::get('oder','OderController@getIndex');
 Route::post('ajax_save_bill','AjaxController@save_bill');
 Route::post('ajax_list_san_pham','AjaxController@list_san_pham');
+Route::post('ajax_find_customer','AjaxController@find_customer');
 Route::get('thongke','CaPheController@ThongKeIndex');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CT_HoaDon;
 use App\HoaDon;
 use App\SanPham;
+use App\KhachHang;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,7 @@ class AjaxController extends Controller
     public function save_bill(Request $request) {
         $hoadon = new HoaDon;
         $hoadon->price = $request->total_bill;
+        $hoadon->khachhang = $request->customer_id;
         $hoadon->save();
         foreach ($request->bill as $key => $value) {
             $CT_HoaDon = new CT_HoaDon;
@@ -49,4 +51,26 @@ class AjaxController extends Controller
     
     }
 
+    public function find_customer(Request $request) {
+
+
+        $khachang = KhachHang::where('phone','=',$request->phone )->get();  
+        if(count($khachang)==0)    
+        {
+            echo "false";
+            exit;
+        }
+        foreach ($khachang as $key => $value) {
+            $array_onece=array(
+                "id"=>$value['id'],
+                "phone"=>$value['phone'], 
+                "name"=>$value['name'], 
+                "email"=>$value['email'],
+                "updated_at"=>$value['updated_at'],  
+                "created_at"=>$value['created_at'],
+            );
+        }
+        echo json_encode($array_onece);
+    
+    }
 }
