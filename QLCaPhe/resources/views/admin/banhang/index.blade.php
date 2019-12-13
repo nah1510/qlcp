@@ -23,15 +23,14 @@
         </div>
     </nav>
 
-  <div class="wrapBackground">
-    <div class="wrapItem" id="style-1">
+  <div class="wrapBackground" id="style-1">
+    <div class="wrapItem" >
 
     </div>
   </div>
 </div>
   <div class="content-rightside">
-
-    
+<div class="wrapTable">
     <table class="table tb">
           <thead class="black">
             <tr class="row">
@@ -42,9 +41,9 @@
             </tr>
           </thead>
           <tbody class="table-body">
-
           </tbody>
         </table>
+    </div>
             <div class="wrapSum">
     <div class="Sum"><span>Tổng tiền:</span><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly></div>
         <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div>
@@ -126,10 +125,10 @@ list_san_pham(0);
                         '<input type="hidden" value="'+value['id']+'">'+
             '<div class= "card-media">'+
             '<img src="/upload/'+value['image']+'" class="size" >'+
-                '</div>'+
+            '<p class="card-media-price" value="'+value['price']+'">'+value['price']+'</p>'
+                +'</div >'+
             '<div class="card-content">'+
             '<h2 class="card-content-header">'+value['name']+'</h2>'+
-                '<p class="card-content-price" value="'+value['price']+'">'+value['price']+'</p>'+
                 '</div>'+
             '</article>';
             $(".wrapItem").append(html); 
@@ -144,8 +143,8 @@ list_san_pham(0);
         }
         var html = '<tr class="tr" id="' + $(this).find("input").val() + '"><td>' + $(this).find("h2").text() + '</td>' +
             '<td class="dataInput"><div><input value="1" onchange="change0(' + $(this).find("input").val() + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
-            '<td>' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
-            '<td><button class="btn-delete">Hủy</button></td></tr>';
+            '<td class="center">' + $(this).find("p").text() + '<input type="hidden" class="price" value="' + $(this).find("p").text() + '"></td>' +
+            '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
         $(".table-body").append(html);
         $(".btn-delete").on("click", function() {
             $(this).parent().parent().remove();
@@ -161,7 +160,7 @@ list_san_pham(0);
         $(".sub").on("click", function() {
             var number = $(this).parent().parent().find('.number-input');
             if (Number(number.val()) == 1) {
-                $(this).parent().parent().parent().remove();
+                // $(this).parent().parent().parent().remove();
                 return;
             }
             number.val(Number(number.val()) - 1);
