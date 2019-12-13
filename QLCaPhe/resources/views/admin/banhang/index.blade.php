@@ -30,6 +30,10 @@
   </div>
 </div>
   <div class="content-rightside">
+      <div class="client">
+        <div class="client-leftside">Hân</div>
+        <div class="client-rightside">Ăn lồn</div>
+      </div>
 <div class="wrapTable">
     <table class="table tb">
           <thead class="black">

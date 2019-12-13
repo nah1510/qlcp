@@ -153,9 +153,10 @@
     border-radius: 5px;
     // border: 5px solid black;
     // max-width: 700px;
+    width: fit-content;
     z-index: 1;
     background-color: #f1f1f4;
-
+    margin: auto;
     overflow: hidden;
     align-items: center;
     display: grid;
@@ -257,6 +258,16 @@
         }
     }
 }
+.client {
+    width: 100%;
+    display: flex;
+    &-leftside {
+        flex: 1;
+    }
+    &-rightside {
+        flex: 1;
+    }
+}
 @media only screen and (max-width: 1200px) {
     .wrapItem {
         grid-template-columns: repeat(3, 200px);
@@ -267,8 +278,13 @@
         grid-template-columns: repeat(2, 200px);
     }
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 750px) {
     .wrapItem {
         grid-template-columns: repeat(1, 200px);
+    }
+}
+@media only screen and (max-width: 500px) {
+    .content {
+        flex-direction: column;
     }
 }
