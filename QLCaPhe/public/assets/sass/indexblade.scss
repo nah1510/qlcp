@@ -1,3 +1,7 @@
+:root {
+    --padding-card-price: 10px 20px;
+}
+
 @keyframes animatedgradient {
     0% {
         background-position: 0% 50%;
@@ -27,6 +31,9 @@
         z-index: 1;
         transform: scale(1.05);
         box-shadow: 5px 20px 25px rgba(0, 0, 0, 0.3);
+        & .card-media-price {
+            opacity: 1;
+        }
     }
     &-media {
         // width: 100%;
@@ -42,13 +49,19 @@
             color: white;
             bottom: 0;
             left: 0;
+            padding: var(--padding-card-price);
+            background: #4091e2;
+            transition: opacity 1s ease-in-out;
+            opacity: 0.8;
+            border-radius: 0 999px 999px 0;
         }
     }
     &-content {
         color: black;
         padding: 10px;
-        background-color: #ffffff;
+        background-color: #f3f7fc;
         &-header {
+            text-align: center;
             height: 60px;
         }
     }
@@ -285,6 +298,6 @@
 }
 @media only screen and (max-width: 500px) {
     .content {
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 }
