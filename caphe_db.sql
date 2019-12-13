@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 12, 2019 lúc 12:57 PM
+-- Thời gian đã tạo: Th12 13, 2019 lúc 10:59 AM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.16
 
@@ -39,6 +39,11 @@ CREATE TABLE `ct_hoadon` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Đang đổ dữ liệu cho bảng `ct_hoadon`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -47,12 +52,17 @@ CREATE TABLE `ct_hoadon` (
 
 CREATE TABLE `hoadon` (
   `id` int(11) NOT NULL,
+  `khachhang` int(11) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+
 
 --
 -- Cấu trúc bảng cho bảng `khachhang`
@@ -71,6 +81,8 @@ CREATE TABLE `khachhang` (
 -- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
+INSERT INTO `khachhang` (`id`, `name`, `phone`, `email`, `updated_at`, `created_at`) VALUES
+(1, 'Phạm Bảo Hân', '1', 'test@gmail.com', '2019-12-13 09:32:20', '2019-12-09 02:07:26');
 
 -- --------------------------------------------------------
 
@@ -89,11 +101,7 @@ CREATE TABLE `loaisanpham` (
 -- Đang đổ dữ liệu cho bảng `loaisanpham`
 --
 
-INSERT INTO `loaisanpham` (`id`, `name`, `updated_at`, `created_at`) VALUES
-(1, 'Cà phê ', '2019-12-10 12:05:46', '2019-12-08 14:27:45'),
-(2, 'Sinh tố', '2019-12-08 23:10:24', '2019-12-08 14:35:02'),
-(5, 'Nước ép', '2019-12-10 12:05:53', '2019-12-09 02:36:31'),
-(6, 'Nước Giải Khát', '2019-12-10 12:06:03', '2019-12-09 02:38:02');
+
 
 -- --------------------------------------------------------
 
@@ -214,13 +222,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `ct_hoadon`
 --
 ALTER TABLE `ct_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
