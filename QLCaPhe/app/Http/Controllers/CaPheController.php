@@ -21,5 +21,11 @@ class CaPheController extends Controller
         return view('test',$user);
     }
 
+    public function ThongKeIndex(){
+        
 
+        return view('admin.thongke.index');
+    }
+
+    
 }
