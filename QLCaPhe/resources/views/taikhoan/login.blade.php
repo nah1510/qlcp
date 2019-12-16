@@ -9,6 +9,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
+
+@if (Auth::check())
+<div>
+Bạn đang đăng nhập với quyền 
+@if( Auth::user()->role == 1 )
+	{{ "Admin" }}
+@elseif( Auth::user()->level == 2)
+	{{ "Admin" }}
+@elseif( Auth::user()->level == 3)
+	{{ "Thành viên" }}
+@endif
+</div>
+<div class="pull-right" style="margin-top: 3px;">Hello {{Auth::user()->name}} <a class="btn btn-primary" href="{{ url('/logout') }}">Đăng xuất</a></div>
+@endif
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
@@ -20,6 +34,12 @@
               {{$errors->first('errorlogin')}}
             </div>
           @endif
+          @if(session('logout'))
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              {{session('logout')}}
+            </div>
+                @endif
           <div class="form-group">
             <label for="">Email</label>
             <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="{{old('email')}}">
@@ -38,6 +58,7 @@
           
           {!! csrf_field() !!}
           <button type="submit" class="btn btn-primary">Đăng nhập</button>
+          <a href="lost-pass"  class="btn btn-primary">Quên mật khẩu</a>
         </form>
       </div>
     </div>

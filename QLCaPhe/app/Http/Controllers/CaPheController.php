@@ -13,7 +13,7 @@ class CaPheController extends Controller
     }
     public function login(){
     	
-    	return view('user.login');
+    	return view('taikhoan.login');
     }
 
      public function test(){

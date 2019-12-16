@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
 use Illuminate\Support\MessageBag;
 use Mail;
+use App\User;
 class DangNhapController extends Controller
 {
         public function postLogin(Request $request) {
@@ -27,15 +28,31 @@ class DangNhapController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $email = $request->input('email');
-            $password = $request->input('password');
-
-            if( Auth::attempt(['email' => $email, 'password' =>$password])) {
-                return redirect()->intended('/dashboard');
+            if( Auth::attempt(['email' => $request->email, 'password' =>$request->password])) {
+                return redirect()->intended('/login');
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
                 return redirect()->back()->withInput()->withErrors($errors);
             }
         }
+    }
+
+    public function getLogout() {
+		Auth::logout();
+		return redirect('login')->with('logout','Đăng xuất thành công!');
+    }
+    
+    public function CheckEmail(Request $request) {
+        $nhanvien = User::where('email','=',$request->email )->get();  
+        if(count($nhanvien)==0)    
+        {
+            echo 0;
+            exit;
+        }
+        echo 1;
+    }
+
+    public function getLostPass() {
+		return view('taikhoan.lost');
     }
 }

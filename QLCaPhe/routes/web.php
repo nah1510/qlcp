@@ -19,6 +19,7 @@ Route::get('index','CaPheController@getIndex');
 Route::get('login','CaPheController@login');
 
 Route::post('login-form', 'DangNhapController@postLogin');
+Route::post('set-pass', 'DangNhapController@postSetPassWord');
 
 
 Route::get('test','CaPheController@test');
@@ -73,4 +74,7 @@ Route::get('oder','OderController@getIndex');
 Route::post('ajax_save_bill','AjaxController@save_bill');
 Route::post('ajax_list_san_pham','AjaxController@list_san_pham');
 Route::post('ajax_find_customer','AjaxController@find_customer');
+Route::post('ajax_check_email','DangNhapController@CheckEmail');
 Route::get('thongke','CaPheController@ThongKeIndex');
+Route::get('logout','DangNhapController@getLogout');
+Route::get('lost-pass','DangNhapController@getLostPass');
