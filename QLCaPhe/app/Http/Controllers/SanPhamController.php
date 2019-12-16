@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SanPham;
 use App\LoaiSanPham;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class SanPhamController extends Controller
 {
@@ -43,6 +46,19 @@ class SanPhamController extends Controller
         $sanpham->price = $request->price;
         $sanpham->status = 1;
         $sanpham->loaisanpham = $request->loaisanpham;
+
+        if($request->hasFile('image'))
+        {
+            $file=$request->file('image');
+            $file_name = Str::random(1)."_".$request->name.".".$file->getClientOriginalExtension();
+            while(file_exists("upload/".$file_name)){
+                $file_name = Str::random(1).$file_name;
+            }
+            $file->move('upload', $file_name);
+            $sanpham->image=$file_name;
+        }
+        else
+            $sanpham->image="";
         $sanpham->save();
         return redirect('sanpham/add')->with('message','Thêm thành công!');
     }
@@ -55,6 +71,18 @@ class SanPhamController extends Controller
         $sanpham->price = $request->price;
         $sanpham->status = $request->status;
         $sanpham->loaisanpham = $request->loaisanpham;
+        if($request->hasFile('image'))
+        {
+            $file=$request->file('image');
+            
+            $file_name = Str::random(4)."_".$request->name.".".$file->getClientOriginalExtension();
+            while(file_exists("upload/".$file_name)){
+                $file_name = Str::random(4)."_".$request->name.".".$file->getClientOriginalExtension();
+            }
+            $sanpham->image=$file_name;
+            $file->move('upload', $file_name);
+
+        }
         $sanpham->save();
         $url = "sanpham/edit?id=".$request->id;
         return redirect($url)->with('message','Sửa thành công!');
@@ -65,6 +93,6 @@ class SanPhamController extends Controller
 
         $sanpham = SanPham::find($id);
         $sanpham->delete();
-        return redirect("sanpham")->with('message','Xóa thành công!');
+        return redirect("sanpham/list")->with('message','Xóa thành công!');
     }
 }

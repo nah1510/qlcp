@@ -11,12 +11,18 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
+
+                            <form action="add" method="POST" role="form">
+                            @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{session('error')}}
+                            </div>
+                            @endif
                             @if(session('message'))
                             <div class="alert alert-success">
                                 {{session('message')}}
                             </div>
                             @endif
-                            <form action="add" method="POST" role="form">
                                 <legend>Sản phẩm</legend>
                                 <div class="form-group">
                                     <label for="">Loại Sản Phẩm</label>

@@ -14,11 +14,11 @@
                     {{session('message')}}
                 </div>
                 @endif
-                <form action="add" method="POST" role="form">
+                <form action="add" method="POST" role="form" enctype="multipart/form-data">
           <legend>Sản phẩm</legend>
           <div class="form-group">
             <label for="">Tên món:</label>
-            <input type="text" class="form-control" placeholder="Tên món" name="name" value="">   
+            <input type="text" class="form-control" placeholder="Tên món" name="name" value="" required>   
           </div>
           <div class="form-group">
             <label for="=Select">Loại sản phẩm</label>
@@ -30,9 +30,13 @@
           </div>
           <div class="form-group">
             <label for="">Giá tiền</label>
-            <input type="text" class="form-control" placeholder="Giá tiền" name="price" value="">
+            <input type="text" class="form-control" placeholder="Giá tiền" name="price" value="" required>
           </div>
-        
+          <div class="form-group">
+            <label for="">Hình ảnh:</label>
+            <input type="file" class="form-control" name="image">
+            
+          </div>
           
           {!! csrf_field() !!}
           <button type="submit" class="btn btn-primary">Lưu</button>

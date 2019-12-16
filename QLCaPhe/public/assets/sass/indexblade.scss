@@ -1,0 +1,303 @@
+:root {
+    --padding-card-price: 10px 20px;
+}
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.card {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    // margin: auto;
+    justify-self: center;
+    align-self: center;
+    transform: scale(1);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    max-width: 150px;
+    min-width: 200px;
+    &:hover {
+        z-index: 1;
+        transform: scale(1.05);
+        box-shadow: 5px 20px 25px rgba(0, 0, 0, 0.3);
+        & .card-media-price {
+            opacity: 1;
+        }
+    }
+    &-media {
+        // width: 100%;
+        height: 150px;
+        width: 100%;
+        position: relative;
+        img {
+            width: 100%;
+            height: inherit;
+        }
+        &-price {
+            position: absolute;
+            color: white;
+            bottom: 0;
+            left: 0;
+            padding: var(--padding-card-price);
+            background: #4091e2;
+            transition: opacity 1s ease-in-out;
+            opacity: 0.8;
+            border-radius: 0 999px 999px 0;
+        }
+    }
+    &-content {
+        color: black;
+        padding: 10px;
+        background-color: #f3f7fc;
+        &-header {
+            text-align: center;
+            height: 60px;
+        }
+    }
+}
+.center {
+    text-align: center;
+}
+.size {
+}
+// button plus and minor:
+.btnD {
+    padding: 6px 12px;
+    color: white;
+    background-color: #d9534f;
+    border-radius: 5px;
+    &:hover {
+        background-color: #ac2925;
+    }
+}
+.btn {
+    outline: none;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+    width: 15px;
+    height: 15px;
+    line-height: 0.5;
+    display: flex;
+    justify-content: center;
+    &-Plus {
+        background-color: #337ab7;
+        &:hover {
+            background-color: #2e6da4;
+        }
+    }
+    &-Sub {
+        background-color: #d9534f;
+        &:hover {
+            background-color: #ac2925;
+        }
+    }
+}
+.dataInput {
+    display: flex;
+    & > div {
+        flex: 1;
+    }
+}
+.form-controll {
+    display: block;
+    height: 15px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.wrapBackground {
+    margin-bottom: 50px;
+    position: relative;
+    // padding: 10px;
+    height: 320px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    margin-left: 10px;
+    --borderWidt: 5px;
+    border-radius: var(--borderWidt);
+    // :after {
+    //     content: "";
+    //     position: absolute;
+    //     top: -5px;
+    //     left: -5px;
+    //     width: calc(100% + var(--borderWidt) * 2);
+    //     height: calc(100% + var(--borderWidt) * 2);
+    //     // z-index: -1;
+    //     // border-radius: calc(2 * var(--borderWidth));
+    //     border-radius: 5px;
+    //     background: linear-gradient(
+    //         60deg,
+    //         #f79533,
+    //         #f37055,
+    //         #d9534f,
+    //         #9368e9,
+    //         #286090,
+    //         #5bc0de,
+    //         #3c763d,
+    //         #dff0d8
+    //     );
+    //     background-size: 300% 300%;
+    //     animation: animatedgradient 5s ease-in-out infinite;
+    // }
+}
+.wrapItem {
+    position: relative;
+    padding: 30px 10px;
+    border-radius: 5px;
+    // border: 5px solid black;
+    // max-width: 700px;
+    width: fit-content;
+    z-index: 1;
+    background-color: #f1f1f4;
+    margin: auto;
+    overflow: hidden;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    grid-template-rows: auto;
+    grid-gap: 1.25em;
+    // background-color: #f1f1f4;
+}
+.tb {
+    width: 100%;
+    position: relative;
+}
+.table-body {
+    position: relative;
+    width: 100%;
+}
+.wrapTable {
+    overflow-y: scroll;
+    height: 300px;
+    position: relative;
+}
+.content {
+    display: flex;
+    background-color: #f1f1f4;
+    padding: 15px 0;
+    &-leftside {
+        flex: 2;
+    }
+    &-rightside {
+        flex: 1;
+        margin-left: 10px;
+    }
+}
+// tổng tiền + xuất hóa đơn:
+.wrapSum {
+    margin-top: 20px;
+    display: flex;
+    & > div:not(:first-child) {
+        margin-left: 10px;
+    }
+}
+// btn xuat hoa don
+.Invoice {
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    background-color: #ffa534;
+    border-radius: 999px;
+    &:hover {
+        background-color: #e2963a;
+    }
+}
+//  in hoa don:
+.Print {
+    align-self: center;
+}
+#style-1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+#style-1::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
+}
+
+.numberInput {
+    max-width: 60px;
+}
+.head {
+    width: 25%;
+    white-space: nowrap;
+}
+.navlist {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    padding: 10px;
+    & > div {
+        margin: 10px;
+    }
+    & > div:not(:first-child) {
+        // margin-left: 20px;
+    }
+    &-item {
+        padding: 6px 12px;
+        background-color: white;
+        border-radius: 5px;
+        &:hover {
+            color: white;
+            background-color: #337ab7;
+        }
+    }
+}
+.client {
+    width: 100%;
+    display: flex;
+    &-leftside {
+        flex: 1;
+    }
+    &-rightside {
+        flex: 1;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .wrapItem {
+        grid-template-columns: repeat(3, 200px);
+    }
+}
+@media only screen and (max-width: 1120px) {
+    .wrapItem {
+        grid-template-columns: repeat(2, 200px);
+    }
+}
+@media only screen and (max-width: 750px) {
+    .wrapItem {
+        grid-template-columns: repeat(1, 200px);
+    }
+}
+@media only screen and (max-width: 500px) {
+    .content {
+        flex-direction: column;
+    }
+}

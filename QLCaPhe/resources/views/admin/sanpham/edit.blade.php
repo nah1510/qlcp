@@ -9,7 +9,7 @@
         <div class="main-panel">
             @include('navbar')
             <div class="container">
-          <form action="edit?id={{$sanpham->id}}" method="POST" role="form">
+          <form action="edit?id={{$sanpham->id}}" method="POST" role="form" enctype="multipart/form-data">
           <legend>San Pham</legend>
           @if(session('message'))
             <div class="alert alert-success">
@@ -42,6 +42,11 @@
             <div class="radio">
               <label><input type="radio" name="status" value="0" {{ $sanpham->status == '0' ? 'checked' : '' }}>Hết</label>
             </div>
+          </div>
+          <div class="form-group">
+            <label for="">Hình ảnh:</label>
+            <input type="file" class="form-control" name="image" value="{{ $sanpham->image}}">
+            <img src="/upload/{{ $sanpham->image}}" class="rounded" alt="Cinque Terre" height="300px" > 
           </div>
           
           <input type="hidden" name="id" value="{{$sanpham->id}}">
