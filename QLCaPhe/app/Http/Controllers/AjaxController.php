@@ -73,4 +73,11 @@ class AjaxController extends Controller
         echo json_encode($array_onece);
     
     }
+
+    public function thong_ke(Request $request) {
+        $from = $request->from;
+        $to = $request->to;
+        $hoadon = HoaDon::whereBetween('created_at',[$from, $to] )->get();  
+        echo json_encode($hoadon);
+    }
 }

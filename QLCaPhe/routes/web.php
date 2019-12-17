@@ -78,3 +78,4 @@ Route::post('ajax_check_email','DangNhapController@CheckEmail');
 Route::get('thongke','CaPheController@ThongKeIndex');
 Route::get('logout','DangNhapController@getLogout');
 Route::get('lost-pass','DangNhapController@getLostPass');
+Route::post('ajax_thong_ke','AjaxController@thong_ke');
