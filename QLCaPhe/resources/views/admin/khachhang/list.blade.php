@@ -38,7 +38,7 @@
                                     <tr>
                                         <td>{{$list->id}}</td>
                                         <td>{{$list->name}}</td>
-                                        <td>{{$list->phone}} VND</td>
+                                        <td>{{$list->phone}}</td>
                                         <td>{{$list->email}}</td>
                                         <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                         </td>
