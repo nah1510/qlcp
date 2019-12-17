@@ -50,14 +50,18 @@
         </table>
     </div>
     <div class="wrapTable right" style="display:none;">
-        <input type="text" id="info-customer" placeholder="Nhập thông tin khách">
-        <button onclick="khachhang()">Tìm kiếm</button>
+    <div class="wrapTag-right">
+        <div class="searchClient">
+        <div class="searchClient-input"><input type="text" id="info-customer"  placeholder="Nhập thông tin khách" class='form-controll'></div>
+        <div class="searchClient-icon"><button onclick="khachhang()"><img src="/upload/icon/searching-data-in-database.svg" class='iconSearch' /></button></div>
+        </div>
         <div id="show-info-customer">
             
         </div>
+        </div>
     </div>
             <div class="wrapSum">
-    <div class="Sum"><div class="Sum-item"><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly><img src='/upload/icon/coins.svg' alt='icon' class="moneyIcon" ></div></div>
+    <div class="Sum"><div class="Sum-item"><input type="text" id="total_bill" class="form-controll form-controll-sum " name="total_bill" value ="0" readonly><img src='/upload/icon/coins.svg' alt='icon' class="moneyIcon" ></div></div>
         <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div>
     </div>
     </div>

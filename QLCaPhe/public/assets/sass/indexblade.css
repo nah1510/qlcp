@@ -162,7 +162,7 @@
 .form-controll {
   position: relative;
   display: block;
-  padding: 6px 0 6px 48px;
+  padding: 6px 10px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
@@ -177,6 +177,10 @@
   transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+}
+
+.form-controll-sum {
+  padding: 6px 0 6px 48px;
 }
 
 .form-controll:focus {
@@ -218,26 +222,14 @@
   grid-gap: 1.25em;
 }
 
-.tb {
-  width: 100%;
-  position: relative;
-  border-collapse: collapse;
-}
-
-.tb tbody tr {
-  padding: 10px 0;
-  border-bottom: 1px;
-  border-style: solid;
-  border-color: black;
-}
-
 .table-body {
   position: relative;
   width: 100%;
 }
 
 .wrapTable {
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 300px;
   position: relative;
 }
@@ -408,6 +400,36 @@
   background-size: 300% 300%;
   -webkit-animation: animatedgradient 5s ease-in-out infinite;
           animation: animatedgradient 5s ease-in-out infinite;
+}
+
+.searchClient {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 16px 0;
+}
+
+.searchClient > div:not(:first-child) {
+  margin-left: 10px;
+}
+
+.searchClient-icon button {
+  background-color: transparent;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+
+.searchClient-icon button:hover {
+  background-color: #c4c4c4;
+}
+
+.searchClient .iconSearch {
+  height: 30px;
+  width: 30px;
+  background-color: none;
 }
 
 .client {
