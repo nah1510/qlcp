@@ -1,0 +1,144 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px 20px;
+  -webkit-box-shadow: 0 7px 4px #777;
+          box-shadow: 0 7px 4px #777;
+  z-index: 1;
+}
+
+.header-left {
+  margin-left: 30px;
+}
+
+.header-left .applogo {
+  height: 70px;
+  width: 70px;
+}
+
+.header-right .User {
+  cursor: pointer;
+  position: relative;
+  top: 50%;
+  padding: 5px 16px;
+  border: 1.5px solid #337ab7;
+  border-radius: 15px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.header-right .User:hover {
+  background-color: #337ab7;
+}
+
+.header-right .User:hover .User-name {
+  color: #ffffff;
+}
+
+.header-right .User:hover .User-name:after {
+  display: none;
+}
+
+.header-right .User-logo {
+  padding: 8px;
+  border: 1.5px solid #337ab7;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.header-right .User-logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.header-right .User-name {
+  margin-left: 10px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #337ab7;
+  font-weight: bold;
+  font-size: 1.8em;
+  -webkit-transition: color 0.3 ease;
+  transition: color 0.3 ease;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.header-right .User-name:after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid #337ab7;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+
+.header-right .User .menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header-right .User .menu-item {
+  padding: 15px;
+  font-weight: bold;
+  border: 1.5px solid #337ab7;
+  border-collapse: collapse;
+  z-index: 1;
+  color: #337ab7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 0 0 5px 5px;
+}
+
+.header-right .User .menu-item:first-child {
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+}
+
+.header-right .User .menu:before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  -webkit-transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease;
+  border-bottom: 8px solid #337ab7;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+/*# sourceMappingURL=header.css.map */

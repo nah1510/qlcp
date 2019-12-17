@@ -1,0 +1,106 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    box-shadow: 0 7px 4px #777;
+    z-index: 1;
+    &-left {
+        margin-left: 30px;
+        .applogo {
+            height: 70px;
+            width: 70px;
+        }
+    }
+    &-right {
+        .User {
+            cursor: pointer;
+            position: relative;
+            top: 50%;
+            padding: 5px 16px;
+            border: 1.5px solid #337ab7;
+            border-radius: 15px;
+            transform: translateY(-50%);
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            &:hover {
+                background-color: #337ab7;
+                .User-name {
+                    color: #ffffff;
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+            &-logo {
+                padding: 8px;
+                border: 1.5px solid #337ab7;
+                background-color: #ffffff;
+                border-radius: 50%;
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            &-name {
+                margin-left: 10px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                color: #337ab7;
+                font-weight: bold;
+                font-size: 1.8em;
+                transition: color 0.3 ease;
+                height: fit-content;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: -5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 0;
+                    height: 0;
+                    border-top: 8px solid #337ab7;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                }
+            }
+            .menu {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                width: 100%;
+                height: 100%;
+                &-item {
+                    padding: 15px;
+                    font-weight: bold;
+                    border: 1.5px solid #337ab7;
+                    border-collapse: collapse;
+                    z-index: 1;
+                    color: #337ab7;
+                    display: flex;
+                    border-radius: 0 0 5px 5px;
+                    &:first-child {
+                        border-bottom: none;
+                        border-radius: 5px 5px 0 0;
+                    }
+                }
+                &:before {
+                    content: "";
+                    position: absolute;
+                    bottom: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 0;
+                    height: 0;
+                    transition: border-color 0.3s ease;
+                    border-bottom: 8px solid #337ab7;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                }
+            }
+        }
+    }
+}

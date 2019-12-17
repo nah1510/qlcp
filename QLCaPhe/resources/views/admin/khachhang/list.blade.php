@@ -2,12 +2,15 @@
 
 <html lang="en">
 @include('header')
-
+<link href="{{asset('assets/sass/header.css')}}" rel="stylesheet" />
 <body>
+    @include('masterhead')
     <div class="wrapper">
+    
         @include('sidebar')
+
         <div class="main-panel">
-            @include('navbar')
+            <!-- @include('navbar') -->
             <div class="container">
                 <div class="container-fluid">
                     <div class="row">
@@ -52,10 +55,6 @@
             </div>
 
         </div>
-    <footer class="footer">
-        <div class="container-fluid">
-        </div>
-    </footer>
     </div>
 </body>
 

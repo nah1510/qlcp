@@ -8,6 +8,7 @@
   <script src="//code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
+<<<<<<< HEAD
 <body>
 
 @if (Auth::check())
@@ -24,6 +25,9 @@ Bạn đang đăng nhập với quyền
 <div>image: <img src='/upload/logo/coffeeLogo.png' alt="logo"></div>
 <div class="pull-right" style="margin-top: 3px;">chào {{Auth::user()->name}} <a class="btn btn-primary" href="{{ url('/logout') }}">Đăng xuất</a></div>
 @endif
+=======
+<bod>
+>>>>>>> origin/duy-dev
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">

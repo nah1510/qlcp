@@ -1,23 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
-</head>
+@include('header')
+
 <body>
- 
-<p>Date from: <input type="text" id="datepicker"></p>
- 
-<p>Date to: <input type="text" id="datepicker"></p>
+    <div class="wrapper">
+        @include('sidebar')
+        <div class="main-panel">
+            @include('navbar')
+            <div class="container">
+                @if(session('message'))
+                <div class="alert alert-success">
+                    {{session('message')}}
+                </div>
+                @endif
+                <legend>Sản phẩm</legend>
+                <div class="form-group">
+                    <label for="">Tên món:</label>
+                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                </div>
+                <div class="form-group">
+                    <label for="">Tên món:</label>
+                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+            </div>
+        </footer>
+    </div>
+    </div>
 </body>
+
 </html>
