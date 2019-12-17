@@ -339,17 +339,22 @@
     }
     &-icon {
         button {
+            border-radius: 10px;
+            border: 1px solid #f3f7fc
             background-color: transparent;
             transition: background-color 0.2s ease;
-            &:hover {
-                background-color: #c4c4c4;
-            }
         }
     }
     & .iconSearch {
         height: 30px;
         width: 30px;
-        background-color: none;
+        background-image: url("/upload/icon/searching-data-in-database.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        &:hover {
+            background-image: url("/upload/icon/searching-data-in-database-active.svg");
+        }
     }
 }
 //

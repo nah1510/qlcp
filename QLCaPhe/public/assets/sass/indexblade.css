@@ -417,19 +417,23 @@
 }
 
 .searchClient-icon button {
+  border-radius: 1;
   background-color: transparent;
   -webkit-transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
 }
 
-.searchClient-icon button:hover {
-  background-color: #c4c4c4;
-}
-
 .searchClient .iconSearch {
   height: 30px;
   width: 30px;
-  background-color: none;
+  background-image: url("/upload/icon/searching-data-in-database.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.searchClient .iconSearch:hover {
+  background-image: url("/upload/icon/searching-data-in-database-active.svg");
 }
 
 .client {

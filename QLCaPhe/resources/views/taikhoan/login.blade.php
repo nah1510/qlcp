@@ -21,7 +21,8 @@ Bạn đang đăng nhập với quyền
 	{{ "Thành viên" }}
 @endif
 </div>
-<div class="pull-right" style="margin-top: 3px;">Hello {{Auth::user()->name}} <a class="btn btn-primary" href="{{ url('/logout') }}">Đăng xuất</a></div>
+<div>image: <img src='/upload/logo/coffeeLogo.png' alt="logo"></div>
+<div class="pull-right" style="margin-top: 3px;">chào {{Auth::user()->name}} <a class="btn btn-primary" href="/{{ url('/logout') }}">Đăng xuất</a></div>
 @endif
   <div class="container">
     <div class="row">

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Route::get('index','CaPheController@getIndex');
@@ -70,7 +70,7 @@ Route::group(['prefix'=>'khachhang'],function(){
     Route::post('add','KhachHangController@postAdd');
     Route::get('delete/{id}','KhachHangController@Delete');
 });
-Route::get('oder','OderController@getIndex');
+Route::get('banhang','OderController@getIndex');
 Route::post('ajax_save_bill','AjaxController@save_bill');
 Route::post('ajax_list_san_pham','AjaxController@list_san_pham');
 Route::post('ajax_find_customer','AjaxController@find_customer');

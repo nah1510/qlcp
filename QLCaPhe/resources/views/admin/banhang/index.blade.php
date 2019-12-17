@@ -53,7 +53,7 @@
     <div class="wrapTag-right">
         <div class="searchClient">
         <div class="searchClient-input"><input type="text" id="info-customer"  placeholder="Nhập thông tin khách" class='form-controll'></div>
-        <div class="searchClient-icon"><button onclick="khachhang()"><img src="/upload/icon/searching-data-in-database.svg" class='iconSearch' /></button></div>
+        <div class="searchClient-icon"><button onclick="khachhang()"><div src="/upload/icon/searching-data-in-database.svg" class='iconSearch' ></div></button></div>
         </div>
         <div id="show-info-customer">
             
