@@ -5,22 +5,29 @@
   <span class="User-name">Chào {{Auth::user()->name}} !</span> 
   <!-- <a class="btn btn-primary" href="/{{ url('/logout') }}">Đăng xuất</a> -->
   <div class="menu">
-  <div class="menu-item">
+  <a>
+  <div class="menu-item firstchild">
+      
     <div class="menu-item-icon">
-        <img src="" alt="thông tin">
+        <img src="/upload/icon/target.svg" alt="thông tin">
     </div> 
     <div class="menu-item-content">
         Thông tin
-    </div> 
+    </div>
+        
 </div>
+</a>
+<a href="/logout" style="color: inherit; text-decoration: none;">
     <div class="menu-item">
+        
     <div class="menu-item-icon">
-        <img src="" alt="Đăng xuất">
+        <img src="/upload/icon/logout.svg" alt="Đăng xuất">
     </div> 
     <div class="menu-item-content">
         Đăng xuất
     </div> 
     </div>
+</a>
   </div>
   </div></div>
 </div>
