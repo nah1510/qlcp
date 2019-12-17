@@ -16,14 +16,27 @@
           <legend>Quên mật khẩu</legend>
           <div class="form-group">
             <label for="">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="Email" name="email" id="email" value="{{old('email')}}">
-            @if($errors->has('email'))
-              <p style="color:red">{{$errors->first('email')}}</p>
-            @endif
+            <input type="text" class="form-control" id="email" placeholder="Email" name="email" id="email" value="{{old('email')}}" required>
+          </div>
+          <img id="ajax_loader"  src="/upload/gif/giphy.gif" class="rounded" height="50px" > 
+          <div id="step-next" >
+            <div class="form-group">
+              <label for="">Mã code</label>
+              <input type="text" class="form-control" id="code" placeholder="Code" name="code"  value="{{old('code')}}" required> 
+            </div>
+            <div class="form-group">
+              <label for="">Mật Khẩu</label>
+              <input type="text" class="form-control" id="pass" placeholder="Mật Khẩu" name="pass"  value="{{old('pass')}}" required> 
+            </div>
+            <div class="form-group">
+              <label for="">Nhập lại mật khẩu</label>
+              <input type="text" class="form-control" id="re_pass" placeholder="Nhập lại mật khẩu" name="re_pass"  value="{{old('re_pass')}}" required> 
+            </div>
           </div>
           {!! csrf_field() !!}
-          <button type="submit" disabled class="btn btn-primary">Đăng nhập</button>
-          <a href="dang-ky"  class="btn btn-primary">Đăng Ký</a>
+          <div class="row" style="text-align: center;"> 
+            <button type="submit" disabled class="btn btn-primary">Đặt lại mật khẩu</button>
+          </div>
         </form>
       </div>
     </div>
@@ -32,6 +45,8 @@
 </html>
 <script>
 $(document).ready(function(){
+  $('#step-next').hide();
+  $('#ajax_loader').hide();
   $("#email").change(function(){
     $("#email").next().remove();
     $.ajax({
@@ -41,11 +56,18 @@ $(document).ready(function(){
                 _token: "{{ csrf_token() }}",
                 email: $("#email").val(),
             },
+            beforeSend: function(){
+              $('#ajax_loader').show();
+            },
             success: function(data) {
+              $('#ajax_loader').hide();
                 if(data==0)
                     $("#email").parent().append('<p style="color:red">Địa chỉ email không chính xác</p>');
                 else {
-                    
+                  $("#email").parent().append('<p style="color:green">Mã code đã được gửi tới email của bạn</p>');
+                  $('#email').prop('readonly', true); 
+                  $('#step-next').css( 'display', 'block' );
+                  $('button').removeAttr("disabled");
                 }
             }
         });

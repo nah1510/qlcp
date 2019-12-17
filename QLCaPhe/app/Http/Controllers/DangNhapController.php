@@ -62,5 +62,16 @@ class DangNhapController extends Controller
     public function getLostPass() {
 		return view('taikhoan.lost');
     }
+
+    public function postSetPassWord(Request $request) {
+        $nhanvien = NhanVien::where('email','=',$request->email )->first();  
+        if($nhanvien->code_reset == $request->code){
+            if($request->pass == $request->re_pass){
+                $nhanvien->password = bcrypt($request->re_pass);
+                $nhanvien->save();
+                return redirect("login");
+            }
+        }
+    }
     
 }
