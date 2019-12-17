@@ -1,5 +1,6 @@
 :root {
   --padding-card-price: 10px 20px;
+  --borderWidth: 5px;
 }
 
 @-webkit-keyframes animatedgradient {
@@ -81,6 +82,7 @@
   transition: opacity 1s ease-in-out;
   opacity: 0.8;
   border-radius: 0 999px 999px 0;
+  font-weight: bold;
 }
 
 .card-content {
@@ -106,7 +108,7 @@
 }
 
 .btnD:hover {
-  background-color: #ac2925;
+  background-color: #f5454e;
 }
 
 .btn {
@@ -153,23 +155,33 @@
           flex: 1;
 }
 
+.dataInput > div:not(:first-child) {
+  margin-left: 5px;
+}
+
 .form-controll {
+  position: relative;
   display: block;
-  height: 15px;
-  padding: 6px 12px;
+  padding: 6px 0 6px 48px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
   background-image: none;
+  outline: none;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 999px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+}
+
+.form-controll:focus {
+  border: 1.5px solid #4091e2;
+  border-radius: 999px;
 }
 
 .wrapBackground {
@@ -185,7 +197,7 @@
 
 .wrapItem {
   position: relative;
-  padding: 30px 10px;
+  padding: 30px 15px;
   border-radius: 5px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -209,6 +221,14 @@
 .tb {
   width: 100%;
   position: relative;
+  border-collapse: collapse;
+}
+
+.tb tbody tr {
+  padding: 10px 0;
+  border-bottom: 1px;
+  border-style: solid;
+  border-color: black;
 }
 
 .table-body {
@@ -240,7 +260,7 @@
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  margin-left: 10px;
+  margin: 0 10px;
 }
 
 .wrapSum {
@@ -251,11 +271,48 @@
 }
 
 .wrapSum > div:not(:first-child) {
-  margin-left: 10px;
+  margin-left: 5px;
+}
+
+.Sum {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Sum > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Sum-item {
+  position: relative;
+}
+
+.moneyIcon {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  -webkit-transform: translatey(-50%);
+          transform: translatey(-50%);
+  left: 15px;
+  width: 25px;
+  height: 80%;
 }
 
 .Invoice {
-  padding: 5px 10px;
+  padding: 10px;
   color: white;
   font-weight: bold;
   background-color: #ffa534;
@@ -272,18 +329,18 @@
       align-self: center;
 }
 
-#style-1::-webkit-scrollbar-track {
+.style-1::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background-color: #f5f5f5;
 }
 
-#style-1::-webkit-scrollbar {
+.style-1::-webkit-scrollbar {
   width: 12px;
   background-color: #f5f5f5;
 }
 
-#style-1::-webkit-scrollbar-thumb {
+.style-1::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #555;
@@ -299,14 +356,19 @@
 }
 
 .navlist {
+  z-index: 99;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  position: relative;
   -ms-flex-line-pack: justify;
       align-content: space-between;
-  padding: 10px;
+  border-radius: var(--borderWidth);
+  background-color: #f1f1f4;
 }
 
 .navlist > div {
@@ -314,14 +376,38 @@
 }
 
 .navlist-item {
+  cursor: pointer;
+  font-weight: bold;
   padding: 6px 12px;
   background-color: white;
   border-radius: 5px;
+  -webkit-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
 }
 
 .navlist-item:hover {
   color: white;
-  background-color: #337ab7;
+  background-color: #4091e2;
+}
+
+.wrapNavlist {
+  position: relative;
+  margin: 15px;
+}
+
+.wrapNavlist:after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + var(--borderWidth) * 2);
+  height: calc(100% + var(--borderWidth) * 2);
+  z-index: 1;
+  border-radius: var(--borderWidth);
+  background: linear-gradient(60deg, #f79533, #f37055, #d9534f, #9368e9, #286090, #5bc0de, #3c763d, #dff0d8);
+  background-size: 300% 300%;
+  -webkit-animation: animatedgradient 5s ease-in-out infinite;
+          animation: animatedgradient 5s ease-in-out infinite;
 }
 
 .client {
@@ -331,19 +417,46 @@
   display: flex;
 }
 
-.client-leftside {
+.client img {
+  width: 30px;
+  height: 100%;
+}
+
+.client > div {
+  padding: 12px 0;
+  cursor: pointer;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: background-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in;
+}
+
+.client-leftside {
+  border-radius: 10px 0 0 0;
+  background-color: #fc727a;
+}
+
+.client-leftside:hover {
+  background-color: #f5454e;
 }
 
 .client-rightside {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  border-radius: 0 10px 0 0;
+  background-color: #4091e2;
 }
 
-@media only screen and (max-width: 1200px) {
+.client-rightside:hover {
+  background-color: #2071c2;
+}
+
+@media only screen and (max-width: 1250px) {
   .wrapItem {
     -ms-grid-columns: (200px)[3];
         grid-template-columns: repeat(3, 200px);
@@ -357,10 +470,23 @@
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   .wrapItem {
     -ms-grid-columns: (200px)[1];
         grid-template-columns: repeat(1, 200px);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .wrapItem {
+    -ms-grid-columns: (200px)[2];
+        grid-template-columns: repeat(2, 200px);
   }
 }
 
@@ -370,6 +496,10 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  .wrapItem {
+    -ms-grid-columns: (200px)[1];
+        grid-template-columns: repeat(1, 200px);
   }
 }
 /*# sourceMappingURL=indexblade.css.map */

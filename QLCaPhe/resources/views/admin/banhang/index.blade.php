@@ -13,7 +13,7 @@
   <section class="content">
   <div class="content-leftside">
     <nav>
-        <div class="container">
+        <div class="wrapNavlist">
             <ul class="navlist">
                 <div onclick="list_san_pham(0)" class="navlist-item"><li>Tất cả</li></div>
                 @foreach($loaisanpham as $list)
@@ -21,9 +21,10 @@
                 @endforeach
             </ul>
         </div>
+        <div class="bg"></div>
     </nav>
 
-  <div class="wrapBackground" id="style-1">
+  <div class="wrapBackground style-1">
     <div class="wrapItem" >
 
     </div>
@@ -31,10 +32,10 @@
 </div>
   <div class="content-rightside">
       <div class="client">
-        <div class="client-leftside">Hân</div>
-        <div class="client-rightside">Ăn lồn</div>
+        <div class="client-leftside"><img src="/upload/icon/bill.svg" alt="Hóa Đơn" class ="Image"/></div>
+        <div class="client-rightside"><img src="/upload/icon/target.svg" alt="khách hàng" class ="Image"/></div>
       </div>
-<div class="wrapTable left">
+<div class="wrapTable left style-1">
     <table class="table tb">
           <thead class="black">
             <tr class="row">
@@ -56,7 +57,7 @@
         </div>
     </div>
             <div class="wrapSum">
-    <div class="Sum"><span>Tổng tiền:</span><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly></div>
+    <div class="Sum"><div class="Sum-item"><input type="text" id="total_bill" class="form-controll" name="total_bill" value ="0" readonly><img src='/upload/icon/coins.svg' alt='icon' class="moneyIcon" ></div></div>
         <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div>
     </div>
     </div>
@@ -156,8 +157,8 @@ list_san_pham(0);
             total_bill();
             return;
         }
-        var html = '<tr class="tr" id="' + id + '"><td>' + $(this).find("h2").text() + '</td>' +
-            '<td class="dataInput"><div><input value="1" onchange="change0(' + id + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></td>' +
+        var html = '<tr class="tr rowItem" id="' + id + '"><td>' + $(this).find("h2").text() + '</td>' +
+            '<td ><div class="dataInput"><div><input value="1" onchange="change0(' + id + ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></div></td>' +
             '<td class="center">' + $(this).find(".price-product").val() + '<input type="hidden" class="price" value="' + $(this).find(".price-product").val() + '"></td>' +
             '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
         $(".table-body").append(html);
