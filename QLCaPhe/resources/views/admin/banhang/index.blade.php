@@ -170,6 +170,7 @@ list_san_pham(0);
             $(this).parent().parent().remove();
             total_bill();
         });
+        $( ".plus,.sub" ).off( "click");
         $(".plus").on("click", function() {
             var number = $(this).parent().parent().find('.number-input');
             if (Number(number.val()) == 99)

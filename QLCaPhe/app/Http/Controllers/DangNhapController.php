@@ -8,12 +8,12 @@ use Auth;
 use Illuminate\Support\MessageBag;
 use Mail;
 use App\User;
+use App\NhanVien;
+use Illuminate\Support\Str;
 class DangNhapController extends Controller
 {
         public function postLogin(Request $request) {
-        Mail::send( "dashboard",array('email'=>$request["email"]),function($message){
-	        $message->to('nah1510@mailinator.com', 'Visitor')->subject('Visitor Feedback!');
-	    });    
+ 
         $rules = [
             'email' =>'required|email',
             'password' => 'required'
@@ -43,16 +43,24 @@ class DangNhapController extends Controller
     }
     
     public function CheckEmail(Request $request) {
-        $nhanvien = User::where('email','=',$request->email )->get();  
-        if(count($nhanvien)==0)    
+        $nhanvien = NhanVien::where('email','=',$request->email )->first();  
+        if(!isset($nhanvien))
         {
             echo 0;
             exit;
         }
+        $code = Str::random(20);
+        $nhanvien->code_reset = $code;
+        $nhanvien->save();
+        Mail::send( "taikhoan.mail",array('code'=>$code),function($message) use ($nhanvien){
+            $message->to($nhanvien->email)->subject('Đặt lại mật khẩu');
+        });  
         echo 1;
+
     }
 
     public function getLostPass() {
 		return view('taikhoan.lost');
     }
+    
 }
