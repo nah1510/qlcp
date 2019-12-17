@@ -3,6 +3,10 @@
     --borderWidth: 5px;
 }
 
+body,
+html {
+    min-height: 100vh;
+}
 @keyframes animatedgradient {
     0% {
         background-position: 0% 50%;
@@ -14,12 +18,14 @@
         background-position: 0% 50%;
     }
 }
+
 .card {
     position: relative;
     background-color: white;
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    max-height: 250px;
     // margin: auto;
     justify-self: center;
     align-self: center;
@@ -153,6 +159,7 @@
     position: relative;
     padding: 30px 15px;
     border-radius: 5px;
+    scroll-behavior: smooth;
     // border: 5px solid black;
     // max-width: 700px;
     width: fit-content;
@@ -179,26 +186,30 @@
     //     border-color: black;
     // }
 }
-.table-body {
+.table {
     position: relative;
     width: 100%;
 }
 .wrapTable {
     overflow-y: auto;
+    scroll-behavior: smooth;
     overflow-x: hidden;
     height: 300px;
     position: relative;
+    width: 100%;
 }
 .content {
     display: flex;
     background-color: #f1f1f4;
     padding: 15px 0;
+    height: 100%;
     &-leftside {
         flex: 2;
     }
     &-rightside {
         flex: 1;
         margin: 0 10px;
+        min-width: 400px;
     }
 }
 // tổng tiền + xuất hóa đơn:
@@ -388,7 +399,30 @@
         }
     }
 }
+// table inform:
+.result {
+    height: 100%;
+}
+.notFound {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    &-icon {
+       
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+    &-text {
+        margin-top: 20px;
+    }
+}
 
+// responsive:
 @media only screen and (max-width: 1250px) {
     .wrapItem {
         grid-template-columns: repeat(3, 200px);
@@ -399,7 +433,7 @@
         grid-template-columns: repeat(2, 200px);
     }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     .wrapItem {
         grid-template-columns: repeat(1, 200px);
     }
@@ -410,6 +444,9 @@
     }
     .wrapItem {
         grid-template-columns: repeat(2, 200px);
+    }
+    .wrapTable {
+        height: 200px;
     }
 }
 @media only screen and (max-width: 500px) {
