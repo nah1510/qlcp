@@ -1,13 +1,9 @@
 <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="" class="simple-text">
-                        Cà Phê
-                    </a>
-                </div>
+
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">
+                        <a class="nav-link" href="{{ url('/nhanvien')}}">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>User Profile</p>
                         </a>
@@ -25,7 +21,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./typography.html">
+                        <a class="nav-link" href="">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>Typography</p>
                         </a>
