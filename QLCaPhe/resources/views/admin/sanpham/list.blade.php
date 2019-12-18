@@ -4,6 +4,7 @@
 @include('header')
 
 <body>
+    @include('masterhead')
     <div class="wrapper">
         @include('sidebar')
         <div class="main-panel">
@@ -52,10 +53,10 @@
             </div>
 
         </div>
-    <footer class="footer">
-        <div class="container-fluid">
-        </div>
-    </footer>
+        <footer class="footer">
+            <div class="container-fluid">
+            </div>
+        </footer>
     </div>
 </body>
 

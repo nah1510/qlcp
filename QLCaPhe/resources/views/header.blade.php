@@ -8,7 +8,7 @@
         name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" /> -->
     <!-- CSS Files -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/sass/header.css')}}" rel="stylesheet" />
@@ -16,6 +16,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <script src="{{asset('js/jquery-3.4.1.js')}}"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="{{asset('assets/css/font-awesome.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/fontawesome-free-5.12.0-web/css/all.css')}}" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    </script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 </head>

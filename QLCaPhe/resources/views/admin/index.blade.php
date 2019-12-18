@@ -8,7 +8,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Cà phê</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -19,6 +20,7 @@
 </head>
 
 <body>
+    @include('masterhead')
     <div class="wrapper">
         <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
@@ -78,7 +80,8 @@
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#"> Dashboard </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
@@ -119,7 +122,9 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="http://example.com"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -223,17 +228,21 @@
                                                     <td>
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input" type="checkbox" value="">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="">
                                                                 <span class="form-check-sign"></span>
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                                    <td>Sign contract for "What are conference organizers afraid of?"
+                                                    </td>
                                                     <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Edit Task"
+                                                            class="btn btn-info btn-simple btn-link">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Remove"
+                                                            class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
@@ -242,17 +251,21 @@
                                                     <td>
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input" type="checkbox" value="" checked>
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                    checked>
                                                                 <span class="form-check-sign"></span>
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?
+                                                    </td>
                                                     <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Edit Task"
+                                                            class="btn btn-info btn-simple btn-link">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Remove"
+                                                            class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
@@ -261,18 +274,22 @@
                                                     <td>
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input" type="checkbox" value="" checked>
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                    checked>
                                                                 <span class="form-check-sign"></span>
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                                    <td>Flooded: One year later, assessing what was lost and what was
+                                                        found when a ravaging rain swept through metro Detroit
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Edit Task"
+                                                            class="btn btn-info btn-simple btn-link">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Remove"
+                                                            class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
@@ -288,10 +305,12 @@
                                                     </td>
                                                     <td>Create 4 Invisible User Experiences you Never Knew About</td>
                                                     <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Edit Task"
+                                                            class="btn btn-info btn-simple btn-link">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Remove"
+                                                            class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
@@ -300,17 +319,20 @@
                                                     <td>
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input" type="checkbox" value="">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="">
                                                                 <span class="form-check-sign"></span>
                                                             </label>
                                                         </div>
                                                     </td>
                                                     <td>Read "Following makes Medium better"</td>
                                                     <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Edit Task"
+                                                            class="btn btn-info btn-simple btn-link">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Remove"
+                                                            class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
@@ -319,17 +341,20 @@
                                                     <td>
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input" type="checkbox" value="" disabled>
+                                                                <input class="form-check-input" type="checkbox" value=""
+                                                                    disabled>
                                                                 <span class="form-check-sign"></span>
                                                             </label>
                                                         </div>
                                                     </td>
                                                     <td>Unfollow 5 enemies from twitter</td>
                                                     <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Edit Task"
+                                                            class="btn btn-info btn-simple btn-link">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
+                                                        <button type="button" rel="tooltip" title="Remove"
+                                                            class="btn btn-danger btn-simple btn-link">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
@@ -377,7 +402,7 @@
                         <p class="copyright text-center">
                             ©
                             <script>
-                                document.write(new Date().getFullYear())
+                            document.write(new Date().getFullYear())
                             </script>
                             <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
                         </p>
@@ -386,7 +411,7 @@
             </footer>
         </div>
     </div>
-  
+
 </body>
 <!--   Core JS Files   -->
 

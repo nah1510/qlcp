@@ -3,20 +3,22 @@
 @include('header')
 
 <body>
-        @include('sidebar')
-        
-        <div class="main-panel">
-            @include('navbar')
+    @include('masterhead')
+    <div class="wrapper">
+        @include('navbar')
+        <div class="main-panel wrapper">
+
+            @include('sidebar')
             <div class="container-fuild">
-                
+
                 @if(session('message'))
                 <div class="alert alert-success">
                     {{session('message')}}
                 </div>
                 @endif
                 <h4 class="card-title">Sản phẩm</h4>
-                    <a class="btn btn-primary" href="add">Thêm sản phẩm</a>
-                    <p class="card-category">Danh sách sản phẩm</p>
+                <a class="btn btn-primary" href="add">Thêm sản phẩm</a>
+                <p class="card-category">Danh sách sản phẩm</p>
 
                 <table id="example" class="table table-striped table-bordered table-sm" cellspacing="0">
                     <thead>
@@ -46,15 +48,12 @@
 
             </div>
         </div>
-        <footer class="footer">
-            <div class="container-fluid">
-            </div>
-        </footer>
+    </div>
 </body>
 
 </html>
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    });
+$(document).ready(function() {
+    $('#example').DataTable();
+});
 </script>
