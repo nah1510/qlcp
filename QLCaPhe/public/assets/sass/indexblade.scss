@@ -3,9 +3,13 @@
     --borderWidth: 5px;
 }
 
-body,
 html {
-    min-height: 100vh;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+body {
+    min-height: 100%;
 }
 @keyframes animatedgradient {
     0% {
@@ -164,7 +168,7 @@ html {
     // max-width: 700px;
     width: fit-content;
     z-index: 1;
-    background-color: #f1f1f4;
+    background-color: #ffffff;
     margin: auto;
     overflow: hidden;
     align-items: center;
@@ -200,16 +204,17 @@ html {
 }
 .content {
     display: flex;
-    background-color: #f1f1f4;
-    padding: 15px 0;
-    height: 100%;
+    // background-color: #f1f1f4;
+    background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
+    padding-top: 15px;
+    height: 100vh;
     &-leftside {
         flex: 2;
     }
     &-rightside {
         flex: 1;
         margin: 0 10px;
-        min-width: 400px;
+        min-width: 370px;
     }
 }
 // tổng tiền + xuất hóa đơn:
@@ -291,7 +296,7 @@ html {
     border-radius: var(--borderWidth);
     // margin: 10px;
     // z-index: 999;
-    background-color: #f1f1f4;
+    background-color: #ffffff;
     & > div {
         margin: 10px;
     }
@@ -313,7 +318,7 @@ html {
 }
 .wrapNavlist {
     position: relative;
-    margin: 15px;
+    margin: 0 15px 15px 15px;
     &:after {
         content: "";
         position: absolute;
@@ -411,7 +416,6 @@ html {
     text-align: center;
     flex-direction: column;
     &-icon {
-       
         img {
             width: 30px;
             height: 30px;
