@@ -7,6 +7,8 @@ use App\CT_HoaDon;
 use App\HoaDon;
 use App\SanPham;
 use App\KhachHang;
+use App\NhanVien;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +21,7 @@ class AjaxController extends Controller
         $hoadon = new HoaDon;
         $hoadon->price = $request->total_bill;
         $hoadon->khachhang = $request->customer_id;
+        $hoadon->nhanvien = Auth::user()->id;
         $hoadon->save();
         foreach ($request->bill as $key => $value) {
             $CT_HoaDon = new CT_HoaDon;
@@ -86,7 +89,8 @@ class AjaxController extends Controller
                 else $name="Chưa Đăng Ký";
             $array_onece=array(
                 "data"=>$value,
-                "khachhang"=>$name     
+                "khachhang"=>$name,    
+                "nhanvien"=>NhanVien::find($value['nhanvien'])->name,
             );
             array_push($array,$array_onece);
         }
