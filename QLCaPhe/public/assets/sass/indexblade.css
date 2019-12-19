@@ -1,12 +1,5 @@
-:root {
-  --padding-card-price: 10px 20px;
-  --borderWidth: 5px;
-}
-
 html {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
+  height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -89,7 +82,7 @@ body {
   color: white;
   bottom: 0;
   left: 0;
-  padding: var(--padding-card-price);
+  padding: 10px 20px;
   background: #4091e2;
   -webkit-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
@@ -266,6 +259,7 @@ body {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
+  margin-top: 5px;
 }
 
 .content-rightside {
@@ -380,7 +374,7 @@ body {
   position: relative;
   -ms-flex-line-pack: justify;
       align-content: space-between;
-  border-radius: var(--borderWidth);
+  border-radius: 5px;
   background-color: #ffffff;
 }
 
@@ -413,10 +407,10 @@ body {
   position: absolute;
   top: -5px;
   left: -5px;
-  width: calc(100% + var(--borderWidth) * 2);
-  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + 5px * 2);
+  height: calc(100% + 5px * 2);
   z-index: 1;
-  border-radius: var(--borderWidth);
+  border-radius: 5px;
   background: linear-gradient(60deg, #f79533, #f37055, #d9534f, #9368e9, #286090, #5bc0de, #3c763d, #dff0d8);
   background-size: 300% 300%;
   -webkit-animation: animatedgradient 5s ease-in-out infinite;

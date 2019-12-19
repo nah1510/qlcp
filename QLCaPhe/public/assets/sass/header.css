@@ -260,4 +260,13 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@media (max-width: 500px) {
+  .header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 /*# sourceMappingURL=header.css.map */

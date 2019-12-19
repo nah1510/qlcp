@@ -74,7 +74,7 @@ $gradient-background: #9368e9;
                         height: calc(#{$virtual-space} + 5px);
                     }
                     &-item {
-                        display:flex;
+                        display: flex;
                     }
                 }
             }
@@ -197,4 +197,10 @@ a:hover {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+@media (max-width: 500px) {
+    .header {
+        flex-direction: column;
+    }
 }
