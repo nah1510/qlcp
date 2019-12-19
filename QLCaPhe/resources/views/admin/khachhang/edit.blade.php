@@ -6,11 +6,10 @@
     @include('masterhead')
     <div class="wrapper">
         @include('sidebar')
-
         <div class="main-panel">
             @include('navbar')
             <div class="container">
-                <form action="edit?id={{$sanpham->id}}" method="POST" role="form">
+                <form action="edit?id={{$khachhang->id}}" method="POST" role="form">
                     <legend>San Pham</legend>
                     @if(session('message'))
                     <div class="alert alert-success">
@@ -18,40 +17,29 @@
                     </div>
                     @endif
                     <div class="form-group">
-                        <label for="">Tên món:</label>
-                        <input type="text" class="form-control" placeholder="Tên món" name="name"
-                            value="{{$sanpham->name}}">
+                        <label for="">Tên khách hàng:</label>
+                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name"
+                            value="{{$khachhang->name}}">
                     </div>
                     <div class="form-group">
-                        <label for="">Giá tiền</label>
-                        <input type="text" class="form-control" placeholder="Giá tiền" name="price"
-                            value="{{$sanpham->price}}">
+                        <label for="">Số điện thoại khách hàng:</label>
+                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone"
+                            value="{{$khachhang->phone}}">
                     </div>
                     <div class="form-group">
-                        <label for="=Select">Loại sản phẩm</label>
-                        <select name="loaisanpham" class="form-control" id="Select">
-                            @foreach($loaisanpham as $list)
-                            <option {{$list->id == $sanpham->loaisanpham ? 'Selected' : ''}} value="{{$list->id}}">
-                                {{$list->name}}</option>
-                            @endforeach
-                        </select>
+                        <label for="">Email khách hàng</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email"
+                            value="{{$khachhang->email}}">
                     </div>
                     <div class="form-group">
-                        <label for="">Tình Trạng</label>
-                        <div class="radio">
-                            <label><input type="radio" name="status" value="1"
-                                    {{ $sanpham->status == '1' ? 'checked' : '' }}>Sẵn sàng</label>
-                        </div>
-
-                        <div class="radio">
-                            <label><input type="radio" name="status" value="0"
-                                    {{ $sanpham->status == '0' ? 'checked' : '' }}>Hết</label>
-                        </div>
+                        <label for="">Điểm tích lũy</label>
+                        <input type="text" class="form-control" placeholder="Email" name="email"
+                            value="{{$khachhang->point}}" readonly>
                     </div>
-
-                    <input type="hidden" name="id" value="{{$sanpham->id}}">
+                    <input type="hidden" name="id" value="{{$khachhang->id}}">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary">Lưu</button>
+                    <a href="" class="btn "></a>
                 </form>
 
             </div>

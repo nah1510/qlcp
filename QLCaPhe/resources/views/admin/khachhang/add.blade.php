@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Email khách hàng</label>
-                        <input type="text" class="form-control" placeholder="Email" name="email" value="">
+                        <input type="email" class="form-control" placeholder="Email" name="email" value="">
                     </div>
 
 

@@ -38,14 +38,14 @@ class KhachHangController extends Controller
         $khachhang->name = $request->name;
         $khachhang->email = $request->email;
         $khachhang->phone = $request->phone;
+        $khachhang->point = 0;
         $khachhang->save();
         return redirect('khachhang/add')->with('message','Thêm thành công!');
     }
 
     public function postEdit(Request $request)
     {   
-
-        $khachhang = SanPham::find($request->id);
+        $khachhang = KhachHang::find($request->id);
         $khachhang->name = $request->name;
         $khachhang->email = $request->email;
         $khachhang->phone = $request->phone;
@@ -59,6 +59,6 @@ class KhachHangController extends Controller
 
         $sanpham = KhachHang::find($id);
         $sanpham->delete();
-        return redirect("khachhang")->with('message','Xóa thành công!');
+        return redirect("khachhang/list")->with('message','Xóa thành công!');
     }
 }
