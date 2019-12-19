@@ -77,7 +77,7 @@
 <script>
 $(function() {
 
-    var url = window.location.href;
+    var url = window.location.href.replace('#','');
 
     $("a").each(function() {
         if (url.indexOf(this.href) != -1 && url.lastIndexOf("#") == -1) {
