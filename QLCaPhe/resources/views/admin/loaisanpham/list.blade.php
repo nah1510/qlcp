@@ -7,7 +7,6 @@
     <div class="wrapper">
         @include('sidebar')
         <div class="main-panel">
-            @include('navbar')
             <div class="container">
                 <div class="container-fluid">
                     <div class="row">
@@ -24,7 +23,7 @@
                                     {{session('message')}}
                                 </div>
                                 @endif
-                                <legend>Sản phẩm</legend>
+                                <legend>Loại sản phẩm</legend>
                                 <div class="form-group">
                                     <label for="">Loại Sản Phẩm</label>
                                     <input type="text" class="form-control" placeholder="" name="name" value="">
@@ -60,10 +59,6 @@
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="container-fluid">
-            </div>
-        </footer>
     </div>
     </div>
 </body>

@@ -12,10 +12,12 @@
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
     </script>
 </head>
+@include('header')
 
 <body>
     @include('masterhead')
     <div class="container wrapper">
+    @include('sidebar')
         <div class="row">
             <div class="col-md-12">
                 <form action="edit?id={{$loaisanpham->id}}" method="POST" role="form">

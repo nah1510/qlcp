@@ -8,7 +8,6 @@
     <div class="wrapper">
         @include('sidebar')
         <div class="main-panel">
-            @include('navbar')
             <div class="container">
                 <div class="container-fluid">
                     <div class="row">

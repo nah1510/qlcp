@@ -5,10 +5,8 @@
 <body>
     @include('masterhead')
     <div class="wrapper">
-        @include('navbar')
-        <div class="main-panel wrapper">
-
-            @include('sidebar')
+    @include('sidebar')
+        <div class="main-panel">
             <div class="container-fuild">
 
                 @if(session('message'))

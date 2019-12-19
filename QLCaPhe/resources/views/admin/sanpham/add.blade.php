@@ -8,7 +8,6 @@
         @include('sidebar')
 
         <div class="main-panel">
-            @include('navbar')
             <div class="container">
 
                 @if(session('message'))
