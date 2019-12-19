@@ -10,10 +10,10 @@
                 <div style="display:none">
                     <a class="nav-link" href="{{ url('/nhanvien/list')}}">
                         <i class="far fa-copy"></i>
-                        <p>Danh sách nhân viên</p>
+                        <p>Danh sách</p>
                     </a><a class="nav-link" href="{{ url('/loaisanpham')}}">
                         <i class="far fa-copy"></i>
-                        <p>Thêm nhân viên</p>
+                        <p>Thêm</p>
                     </a>
                 </div>
             </li>
@@ -25,16 +25,16 @@
                 <div style="display:none">
                     <a class="nav-link" href="{{ url('/loaisanpham')}}">
                         <i class="far fa-copy"></i>
-                        <p>Danh sách khách hàng</p>
+                        <p>Danh sách</p>
                     </a><a class="nav-link" href="{{ url('/loaisanpham')}}">
                         <i class="far fa-copy"></i>
-                        <p>Thêm khách hàng</p>
+                        <p>Thêm</p>
                     </a>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/banhang')}}">
-                <i class="fas fa-file-invoice-dollar"></i>
+                    <i class="fas fa-file-invoice-dollar"></i>
                     <p>Bán hàng</p>
                 </a>
             </li>
@@ -52,10 +52,10 @@
                 <div style="display:none">
                     <a class="nav-link" href="{{ url('/loaisanpham')}}">
                         <i class="far fa-copy"></i>
-                        <p>Danh sách sản phẩm</p>
+                        <p>Danh sách</p>
                     </a><a class="nav-link" href="{{ url('/loaisanpham')}}">
                         <i class="far fa-copy"></i>
-                        <p>Thêm sản phẩm</p>
+                        <p>Thêm</p>
                     </a>
                 </div>
             </li>
@@ -65,7 +65,7 @@
                     <p>Loại sản phẩm</p>
                 </a>
             </li>
-            <li class="nav-item">          
+            <li class="nav-item">
                 <a class="nav-link" href="./notifications.html">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>Notifications</p>
@@ -80,15 +80,15 @@ $(function() {
     var url = window.location.href;
 
     $("a").each(function() {
-        if (url.indexOf(this.href)!=-1) {
+        if (url.indexOf(this.href) != -1) {
             $(this).parent().addClass("active");
         }
     });
-    $(".nav li").hover( function() {
+    $(".nav li").hover(function() {
         $(this).find("div").show();
-  }, function() {
-    $(this).find("div").hide();
-});
+    }, function() {
+        $(this).find("div").hide();
+    });
 
 });
 </script>

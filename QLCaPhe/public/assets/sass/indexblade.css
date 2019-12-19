@@ -204,7 +204,8 @@ body {
 .wrapBackground {
   margin-bottom: 50px;
   position: relative;
-  height: 320px;
+  height: 400px;
+  background-color: #ffffff;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-left: 10px;
@@ -255,7 +256,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
-  padding-top: 15px;
+  padding-top: 3em;
   height: 100vh;
 }
 

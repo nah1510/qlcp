@@ -244,7 +244,8 @@ function khachhang() {
                 $("#show-info-customer").append(html);
             } else {
                 data = JSON.parse(data);
-                var html = '<div class="inform"><h6>' + data["name"] + '</h6><h6>' + data["name"] +
+                var html = '<div class="inform"><h6>' + data["name"] + '</h6><h6>' + data["phone"] +
+                    '</h6><h6>' + data["email"] + '</h6><h6>' + data["created_at"] +
                     '</h6><div>';
                 $("#show-info-customer").append(html);
                 $("#customer_id").val(data["id"]);
