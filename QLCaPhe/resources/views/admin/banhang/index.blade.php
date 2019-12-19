@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <link href="{{asset('assets/sass/indexblade.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/globalstyle.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/sass/header.css')}}" rel="stylesheet" />
     <script src="{{asset('js/jquery-3.4.1.js')}}"></script>
+    <link href="{{asset('assets/css/fontawesome-free-5.12.0-web/css/all.css')}}" rel="stylesheet" />
 </head>
 <style>
 
@@ -56,7 +57,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="wrapTable right" style="display:none;">
+            <div class="wrapTable right style-1" style="display:none;">
                 <div class="wrapTag-right">
                     <div class="searchClient">
                         <div class="searchClient-input"><input type="text" id="info-customer"
@@ -66,7 +67,9 @@
                             </button></div>
                     </div>
                     <div id="show-info-customer" class="result">
-
+                        <span>
+                            <img src="/upload/icon/user-silhouette.svg" alt="User is Found" />
+                        </span>
                     </div>
                 </div>
             </div>
@@ -244,9 +247,21 @@ function khachhang() {
                 $("#show-info-customer").append(html);
             } else {
                 data = JSON.parse(data);
-                var html = '<div class="inform"><h6>' + data["name"] + '</h6><h6>' + data["phone"] +
+                var html1 = '<div class="inform"><h6>' + data["name"] + '</h6><h6>' + data["phone"] +
                     '</h6><h6>' + data["email"] + '</h6><h6>' + data["created_at"] +
                     '</h6><div>';
+                var html = '<div class="clientInfo"><div class="clientInfo-name"><h1>' + data["name"] +
+                    '</h1></div><div class="clientInfo-contact"><div class="clientInfo-contact-phone">' +
+                    data["phone"] +
+                    '<span><img src="/upload/icon/phone-contact.svg" alt="phone-icon" class="contact-icon" /></span></div><div class="clientInfo-contact-mail">' +
+                    data["email"] +
+                    '<span><img src="/upload/icon/gmail.svg" alt="phone-icon" class="contact-icon" /></span></div><span class="clientInfo-title clientInfo-title-contact">Liên hệ</span></div><div class="clientInfo-time"><div class="clientInfo-time-createAt"><i class="fas fa-user-plus" style="margin-right:5px"></i>' +
+                    data["created_at"] +
+                    '</div><div class="clientInfo-time-Age">' +
+                    21 +
+                    '<i class="fas fa-birthday-cake" style="margin-left:5px"></i></div><span class="clientInfo-title clientInfo-title-time ">Dòng thời gian</span></div><div class="clientInfo-points"><span class="clientInfo-points-icon"><img src="/upload/icon/gifts-1.svg" alt="icon gift" /></span><i style="margin-right: 10px" class="fas fa-coins"></i>' +
+                    6969 +
+                    '</div></div>'
                 $("#show-info-customer").append(html);
                 $("#customer_id").val(data["id"]);
             }
