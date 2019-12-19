@@ -458,10 +458,15 @@ body>.navbar-collapse .nav li .nav-link i {
     float: left;
 }
 
-.sidebar .nav li:hover .nav-link,
-body>.navbar-collapse .nav li:hover .nav-link {
-    background: rgba(255, 255, 255, 0.13);
-    opacity: 1;
+.sidebar .nav li:hover > .nav-link,
+body>.navbar-collapse .nav li:hover > .nav-link {
+    background: rgba(255, 255, 255, 0.13) ;
+    opacity: 1 ;
+}
+
+a.nav-link:hover {
+	background: rgba(255, 255, 255, 0.13) !important;
+    opacity: 1 !important;
 }
 
 .sidebar .nav li.active .nav-link,

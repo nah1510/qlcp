@@ -3,7 +3,7 @@
 
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/nhanvien')}}">
+                <a class="nav-link" href="#">
                     <i class="fas fa-users-cog"></i>
                     <p>Nhân viên</p>
                 </a>
@@ -80,15 +80,20 @@ $(function() {
     var url = window.location.href;
 
     $("a").each(function() {
-        if (url.indexOf(this.href) != -1) {
+        if (url.indexOf(this.href) != -1 && url.lastIndexOf("#") == -1) {
             $(this).parent().addClass("active");
         }
     });
-    $(".nav li").hover(function() {
-        $(this).find("div").show();
-    }, function() {
-        $(this).find("div").hide();
-    });
 
+    $(".nav li").click(function() {
+        if ($(this).hasClass("show")) {
+            $(this).find("div").hide();
+            $(this).removeClass("show");
+        } else {
+            $(this).find("div").show();
+            $(this).addClass("show");
+        }
+
+    });
 });
 </script>
