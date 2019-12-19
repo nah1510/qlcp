@@ -62,7 +62,7 @@ Route::group(['prefix'=>'loaisanpham'],function(){
 Route::get('/khachhang', function () {
     return redirect('khachhang/list');
 });
-Route::group(['prefix'=>'khachhang'],function(){
+Route::group(['prefix'=>'khachhang','middleware'=>'CaPheLogin'],function(){
     Route::get('list','KhachHangController@getList');
     Route::get('edit','KhachHangController@Edit');
     Route::post('edit','KhachHangController@postEdit');
@@ -70,12 +70,13 @@ Route::group(['prefix'=>'khachhang'],function(){
     Route::post('add','KhachHangController@postAdd');
     Route::get('delete/{id}','KhachHangController@Delete');
 });
-Route::get('banhang','OderController@getIndex');
+Route::get('banhang','OderController@getIndex')->middleware('CaPheLogin');
 Route::post('ajax_save_bill','AjaxController@save_bill');
 Route::post('ajax_list_san_pham','AjaxController@list_san_pham');
 Route::post('ajax_find_customer','AjaxController@find_customer');
 Route::post('ajax_check_email','DangNhapController@CheckEmail');
-Route::get('thongke','CaPheController@ThongKeIndex');
+Route::get('thongke','CaPheController@ThongKeIndex')->middleware('CaPheLogin');
 Route::get('logout','DangNhapController@getLogout');
 Route::get('lost-pass','DangNhapController@getLostPass');
 Route::post('ajax_thong_ke','AjaxController@thong_ke');
+Route::post('ajax_CT_hoa_don','AjaxController@CT_hoa_don');

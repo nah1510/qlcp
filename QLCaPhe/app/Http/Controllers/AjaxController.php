@@ -75,9 +75,35 @@ class AjaxController extends Controller
     }
 
     public function thong_ke(Request $request) {
+        $array=array();
         $from = $request->from;
         $to = $request->to;
         $hoadon = HoaDon::whereBetween('created_at',[$from, $to] )->get();  
-        echo json_encode($hoadon);
+        
+        foreach ($hoadon as $key => $value) {
+            if(KhachHang::find($value['khachhang']))
+                $name = KhachHang::find($value['khachhang'])->name;
+                else $name="Chưa Đăng Ký";
+            $array_onece=array(
+                "data"=>$value,
+                "khachhang"=>$name     
+            );
+            array_push($array,$array_onece);
+        }
+        echo json_encode($array);
+    }
+
+    public function CT_hoa_don(Request $request) {
+        $array=array();
+        $id = $request->id;
+        $ct_hoadon = CT_HoaDon::where('hoadon',$id )->get();  
+        foreach ($ct_hoadon as $key => $value) {
+            $array_onece=array(
+                "data"=>$value,
+                "sanpham"=>SanPham::find($value['sanpham'])->name     
+            );
+            array_push($array,$array_onece);
+        }
+        echo json_encode($array);
     }
 }
