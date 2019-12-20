@@ -2,11 +2,10 @@ $borderWidth: 5px;
 
 html {
     height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 body {
-    min-height: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 @keyframes animatedgradient {
     0% {
@@ -18,6 +17,16 @@ body {
     100% {
         background-position: 0% 50%;
     }
+}
+.supperWrapper {
+    overflow-y: auto;
+    width: 100%;
+    overflow-x: hidden;
+    // padding: 0 5px;
+    background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
 }
 
 .card {
@@ -205,9 +214,10 @@ body {
 .content {
     display: flex;
     // background-color: #f1f1f4;
-    background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
     padding-top: 3em;
-    height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     &-leftside {
         flex: 2;
         margin-top: $borderWidth;
@@ -563,17 +573,24 @@ body {
     .wrapItem {
         grid-template-columns: repeat(2, 200px);
     }
+    .wrapBackground {
+        height: 270px;
+    }
 }
 @media (max-width: 900px) {
     .wrapItem {
         grid-template-columns: repeat(1, 200px);
     }
 }
-@media (max-width: 700px) {
+@media (max-width: 730px) {
     .content {
         flex-direction: column;
         padding: 3em;
+        &-leftside {
+            flex: 1;
+        }
     }
+
     .wrapItem {
         grid-template-columns: repeat(2, 200px);
     }
@@ -581,9 +598,16 @@ body {
         height: 200px;
     }
 }
-@media (max-width: 500px) {
+@media (max-width: 570px) {
     .content {
         flex-direction: column;
+        &-rightside {
+            overflow: auto;
+            min-width: auto;
+        }
+    }
+    .supperWrapper {
+        min-height: 900px;
     }
     .wrapItem {
         grid-template-columns: repeat(1, 200px);

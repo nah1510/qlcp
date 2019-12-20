@@ -1,11 +1,10 @@
 html {
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 body {
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 @-webkit-keyframes animatedgradient {
@@ -30,6 +29,16 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.supperWrapper {
+  overflow-y: auto;
+  width: 100%;
+  overflow-x: hidden;
+  background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
 }
 
 .card {
@@ -250,9 +259,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
   padding-top: 3em;
-  height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .content-leftside {
@@ -699,6 +709,9 @@ body {
     -ms-grid-columns: (200px)[2];
         grid-template-columns: repeat(2, 200px);
   }
+  .wrapBackground {
+    height: 270px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -708,13 +721,18 @@ body {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 730px) {
   .content {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
     padding: 3em;
+  }
+  .content-leftside {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
   }
   .wrapItem {
     -ms-grid-columns: (200px)[2];
@@ -725,12 +743,19 @@ body {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 570px) {
   .content {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  .content-rightside {
+    overflow: auto;
+    min-width: auto;
+  }
+  .supperWrapper {
+    min-height: 900px;
   }
   .wrapItem {
     -ms-grid-columns: (200px)[1];
