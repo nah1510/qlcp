@@ -1,4 +1,3 @@
-
 list_san_pham(0);
 $(function() {
     $(".client-leftside").click(function() {
@@ -9,12 +8,15 @@ $(function() {
         $(".right").show();
         $(".left").hide();
     });
+    $(".User").click(function() {
+        $(".menu").slideToggle();
+        // $(".menu").hide();
+    });
 });
 
 function isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
+    var charCode = evt.which ? evt.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
     return true;
     total_bill();
 }
@@ -23,15 +25,24 @@ function change0(id) {
     var row = $(".table-body").find("#" + id);
     if (Number(row.find(".number-input").val()) == 0) {
         row.remove();
-    };
+    }
     total_bill();
 }
 
 function total_bill() {
     var total_bill = 0;
-    $('.tr').each(function() {
-        total_bill += Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
-
+    $(".tr").each(function() {
+        total_bill +=
+            Number(
+                $(this)
+                    .find(".number-input")
+                    .val()
+            ) *
+            Number(
+                $(this)
+                    .find(".price")
+                    .val()
+            );
     });
     $("#total_bill").val(total_bill);
 }
@@ -42,22 +53,39 @@ function save_db() {
         return;
     }
     var HoaDon = [];
-    $('.tr').each(function() {
-        var total = Number($(this).find('.number-input').val()) * Number($(this).find('.price').val());
-        var CT_HoaDon = [$(this).attr('id'), $(this).find('.price').val(), $(this).find('.number-input').val(),
+    $(".tr").each(function() {
+        var total =
+            Number(
+                $(this)
+                    .find(".number-input")
+                    .val()
+            ) *
+            Number(
+                $(this)
+                    .find(".price")
+                    .val()
+            );
+        var CT_HoaDon = [
+            $(this).attr("id"),
+            $(this)
+                .find(".price")
+                .val(),
+            $(this)
+                .find(".number-input")
+                .val(),
             total
         ];
         HoaDon.push(CT_HoaDon);
     });
     alert($("#customer_id").val());
     $.ajax({
-        type: 'POST',
-        url: 'ajax_save_bill',
+        type: "POST",
+        url: "ajax_save_bill",
         data: {
             _token: $("#_token").val(),
             total_bill: $("#total_bill").val(),
             bill: HoaDon,
-            customer_id: $("#customer_id").val(),
+            customer_id: $("#customer_id").val()
         },
         success: function(msg) {
             alert("Đã thêm thành công " + msg);
@@ -71,60 +99,97 @@ function save_db() {
 function list_san_pham(id) {
     $(".wrapItem >article").remove();
     $.ajax({
-        type: 'POST',
-        url: 'ajax_list_san_pham',
+        type: "POST",
+        url: "ajax_list_san_pham",
         data: {
             _token: $("#_token").val(),
-            id: id,
+            id: id
         },
         success: function(data) {
             data = JSON.parse(data);
             $.each(data, function(key, value) {
-                var html = '<article class="card menu-cafe">' +
-                    '<input class="id-product" type="hidden" value="' + value['id'] + '">' +
-                    '<input class="price-product" type="hidden" value="' + value['price'] + '">' +
+                var html =
+                    '<article class="card menu-cafe">' +
+                    '<input class="id-product" type="hidden" value="' +
+                    value["id"] +
+                    '">' +
+                    '<input class="price-product" type="hidden" value="' +
+                    value["price"] +
+                    '">' +
                     '<div class= "card-media">' +
-                    '<img src="/upload/' + value['image'] + '" class="size" >' +
-                    '<p class="card-media-price">' + value['price'].toLocaleString().replace(
-                        /\d(?=(\d{3})+\.)/g, '$&,') + ' VND</p>' +
-                    '</div >' +
+                    '<img src="/upload/' +
+                    value["image"] +
+                    '" class="size" >' +
+                    '<p class="card-media-price">' +
+                    value["price"]
+                        .toLocaleString()
+                        .replace(/\d(?=(\d{3})+\.)/g, "$&,") +
+                    " VND</p>" +
+                    "</div >" +
                     '<div class="card-content">' +
-                    '<h2 class="card-content-header">' + value['name'] + '</h2>' +
-                    '</div>' +
-                    '</article>';
+                    '<h2 class="card-content-header">' +
+                    value["name"] +
+                    "</h2>" +
+                    "</div>" +
+                    "</article>";
                 $(".wrapItem").append(html);
             });
             $(".menu-cafe").on("click", function() {
-                var id = $(this).find(".id-product").val();
+                var id = $(this)
+                    .find(".id-product")
+                    .val();
                 var row = $(".table").find("#" + id);
                 if (row.length) {
-                    row.find(".number-input").val(Number(row.find(".number-input").val()) + 1);
+                    row.find(".number-input").val(
+                        Number(row.find(".number-input").val()) + 1
+                    );
                     total_bill();
                     return;
                 }
-                var html = '<tr class="tr rowItem" id="' + id + '"><td>' + $(this).find("h2")
-                    .text() + '</td>' +
-                    '<td ><div class="dataInput"><div><input value="1" onchange="change0(' + id +
+                var html =
+                    '<tr class="tr rowItem" id="' +
+                    id +
+                    '"><td>' +
+                    $(this)
+                        .find("h2")
+                        .text() +
+                    "</td>" +
+                    '<td ><div class="dataInput"><div><input value="1" onchange="change0(' +
+                    id +
                     ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></div></td>' +
-                    '<td class="center">' + $(this).find(".price-product").val() +
-                    '<input type="hidden" class="price" value="' + $(this).find(".price-product")
-                    .val() + '"></td>' +
+                    '<td class="center">' +
+                    $(this)
+                        .find(".price-product")
+                        .val() +
+                    '<input type="hidden" class="price" value="' +
+                    $(this)
+                        .find(".price-product")
+                        .val() +
+                    '"></td>' +
                     '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
                 $(".table-body").append(html);
                 $(".btn-delete").on("click", function() {
-                    $(this).parent().parent().remove();
+                    $(this)
+                        .parent()
+                        .parent()
+                        .remove();
                     total_bill();
                 });
                 $(".plus,.sub").off("click");
                 $(".plus").on("click", function() {
-                    var number = $(this).parent().parent().find('.number-input');
-                    if (Number(number.val()) == 99)
-                        return;
+                    var number = $(this)
+                        .parent()
+                        .parent()
+                        .find(".number-input");
+                    if (Number(number.val()) == 99) return;
                     number.val(Number(number.val()) + 1);
                     total_bill();
                 });
                 $(".sub").on("click", function() {
-                    var number = $(this).parent().parent().find('.number-input');
+                    var number = $(this)
+                        .parent()
+                        .parent()
+                        .find(".number-input");
                     if (Number(number.val()) == 1) {
                         // $(this).parent().parent().parent().remove();
                         return;
@@ -138,16 +203,27 @@ function list_san_pham(id) {
     });
 }
 
-
+function formatTime(time) {
+    const date = new Date(time);
+    let day = date.getDay(),
+        month = date.getMonth();
+    return (
+        `${day < 10 ? `0${day}` : day}` +
+        "." +
+        `${month < 10 ? `0${month}` : month}` +
+        "." +
+        date.getFullYear() +
+        "."
+    );
+}
 function khachhang() {
-    if ($('#info-customer').val() == "")
-        return;
+    if ($("#info-customer").val() == "") return;
     $.ajax({
-        type: 'POST',
-        url: 'ajax_find_customer',
+        type: "POST",
+        url: "ajax_find_customer",
         data: {
             _token: $("#_token").val(),
-            phone: $("#info-customer").val(),
+            phone: $("#info-customer").val()
         },
         success: function(data) {
             $("#show-info-customer > div").remove();
@@ -159,21 +235,30 @@ function khachhang() {
                 $("#show-info-customer").append(html);
             } else {
                 data = JSON.parse(data);
-                var html1 = '<div class="inform"><h6>' + data["name"] + '</h6><h6>' + data["phone"] +
-                    '</h6><h6>' + data["email"] + '</h6><h6>' + data["created_at"] +
-                    '</h6><div>';
-                var html = '<div class="clientInfo"><div class="clientInfo-name"><h1>' + data["name"] +
+                var html1 =
+                    '<div class="inform"><h6>' +
+                    data["name"] +
+                    "</h6><h6>" +
+                    data["phone"] +
+                    "</h6><h6>" +
+                    data["email"] +
+                    "</h6><h6>" +
+                    data["created_at"] +
+                    "</h6><div>";
+                var html =
+                    '<div class="clientInfo"><div class="clientInfo-name"><h1>' +
+                    data["name"] +
                     '</h1></div><div class="clientInfo-contact"><div class="clientInfo-contact-phone">' +
                     data["phone"] +
                     '<span><img src="/upload/icon/phone-contact.svg" alt="phone-icon" class="contact-icon" /></span></div><div class="clientInfo-contact-mail">' +
                     data["email"] +
                     '<span><img src="/upload/icon/gmail.svg" alt="phone-icon" class="contact-icon" /></span></div><span class="clientInfo-title clientInfo-title-contact">Liên hệ</span></div><div class="clientInfo-time"><div class="clientInfo-time-createAt"><i class="fas fa-user-plus" style="margin-right:5px"></i>' +
-                    data["created_at"] +
+                    formatTime(data["created_at"]) +
                     '</div><div class="clientInfo-time-Age">' +
                     21 +
                     '<i class="fas fa-birthday-cake" style="margin-left:5px"></i></div><span class="clientInfo-title clientInfo-title-time ">Dòng thời gian</span></div><div class="clientInfo-points"><span class="clientInfo-points-icon"><img src="/upload/icon/gifts-1.svg" alt="icon gift" /></span><i style="margin-right: 10px" class="fas fa-coins"></i>' +
                     6969 +
-                    '</div></div>'
+                    "</div></div>";
                 $("#show-info-customer").append(html);
                 $("#customer_id").val(data["id"]);
             }

@@ -572,6 +572,7 @@ body {
 @media (max-width: 700px) {
     .content {
         flex-direction: column;
+        padding: 3em;
     }
     .wrapItem {
         grid-template-columns: repeat(2, 200px);

@@ -714,6 +714,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    padding: 3em;
   }
   .wrapItem {
     -ms-grid-columns: (200px)[2];
