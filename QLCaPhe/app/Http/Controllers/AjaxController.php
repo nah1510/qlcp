@@ -77,6 +77,7 @@ class AjaxController extends Controller
                 "phone"=>$value['phone'], 
                 "name"=>$value['name'], 
                 "email"=>$value['email'],
+                "point"=>$value['point'],
                 "updated_at"=>$value['updated_at'],  
                 "created_at"=>$value['created_at'],
             );
