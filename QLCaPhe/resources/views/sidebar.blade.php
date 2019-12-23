@@ -8,13 +8,13 @@
                     <p>Nhân viên</p>
                     <input type="hidden" value="{{ url('/nhanvien')}}">
                 </a>
-                <div style="display:none">
+                <div style="display:none" class="nav-child">
                     <a class="nav-link" href="{{ url('/nhanvien/list')}}">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-list"></i>
                         <p>Danh sách</p>
                         <input type="hidden" value="{{ url('/nhanvien/list')}}">
                     </a><a class="nav-link" href="{{ url('/nhanvien/add')}}">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-plus-circle"></i>
                         <p>Thêm</p>
                         <input type="hidden" value="{{ url('/nhanvien/add')}}">
                     </a>
@@ -26,14 +26,14 @@
                     <i class="fas fa-users"></i>
                     <p>Khách hàng</p>
                 </a>
-                <div style="display:none">
+                <div style="display:none" class="nav-child">
                     <a class="nav-link" href="{{ url('/khachhang')}}">
                         <input type="hidden" value="{{ url('/khachhang')}}">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-list"></i>
                         <p>Danh sách</p>
                     </a><a class="nav-link" href="{{ url('/khachhang/add')}}">
                         <input type="hidden" value="{{ url('/khachhang/add')}}">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-plus-circle"></i>
                         <p>Thêm</p>
                     </a>
                 </div>
@@ -53,19 +53,19 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link menu" >
+                <a class="nav-link menu">
                     <i class='fas fa-coffee'></i>
                     <p>Sản phẩm</p>
                     <input type="hidden" value="{{ url('/sanpham')}}">
                 </a>
-                <div style="display:none">
+                <div style="display:none" class="nav-child">
                     <a class="nav-link" href="{{ url('/sanpham')}}">
                         <input type="hidden" value="{{ url('/sanpham')}}">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-list"></i>
                         <p>Danh sách</p>
                     </a>
                     <a class="nav-link" href="{{ url('/sanpham/add')}}">
-                        <i class="far fa-copy"></i>
+                        <i class="fas fa-plus-circle"></i>
                         <p>Thêm</p>
                         <input type="hidden" value="{{ url('/sanpham/add')}}">
                     </a>
