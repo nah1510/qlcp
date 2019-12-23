@@ -148,4 +148,14 @@ class AjaxController extends Controller
         }
         echo json_encode($array);
     }
+
+    public function ajax_bonus(Request $request)
+    {
+        $bonus = ThuongPhat::where([
+            ['staff', '=', $request->id],
+            ['month', '=', $request->month],
+            ['bonus', '=', 1],
+        ])->get();
+        echo json_encode($bonus);
+    }
 }

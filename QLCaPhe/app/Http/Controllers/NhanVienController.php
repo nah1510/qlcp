@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\NhanVien;
 use App\NgayNghi;
+use App\ThuongPhat;
 use Auth;
 use Illuminate\Support\Str;
 
@@ -117,5 +118,21 @@ class NhanVienController extends Controller
         }
         
         return redirect('nhanvien/list')->with('message','Thêm ngày nghỉ cho nhân viên '.$request->name.' thành công !');
+    }
+
+    public function LuongThuong(){
+        return view('admin.luongthuong.index');
+    }
+
+    public function postAddBonus(Request $request)
+    {
+        $bonus = new ThuongPhat;
+        $bonus->money = $request->money;
+        $bonus->info = $request->info;
+        $bonus->bonus = $request->bonus;
+        $bonus->staff = $request->staff;
+        $bonus->month = $request->month;
+        $bonus->save();
+        return redirect('luong-thuong')->with('message','Thêm thành công!');
     }
 }

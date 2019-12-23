@@ -13,10 +13,11 @@
                         {{session('message')}}
                     </div>
                     @endif
-                    <legend>Ngày Nghỉ</legend>
+                    <legend>Lương và thưởng</legend>
                     <div class="form-group">
                         <label for="">Thời gian:</label>
-                        <input type="text" id="datepicker" name="for" class="form-control " autocomplete="off" value="<?php if(isset($_GET["month"])) echo $_GET["month"]; else echo  date('m-Y', mktime(0, 0, 0, date('m'), date('d'),   date('Y')))?>">
+                        <input type="text" id="datepicker" name="for" class="form-control " autocomplete="off"
+                            value="<?php if(isset($_GET["month"])) echo $_GET["month"]; else echo  date('m-Y', mktime(0, 0, 0, date('m'), date('d'),   date('Y')))?>">
                     </div>
                     <a onclick="loadbytime()" type="submit" class="btn btn-primary">Xem</a>
 
@@ -30,12 +31,13 @@
                                 <th scope="col">Số ngày nghỉ</th>
                                 <th scope="col">Tiền phạt</th>
                                 <th scope="col">Tiền thưởng</th>
+                                <th scope="col">Lương Dự kiến</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-main">
                         </tbody>
                     </table>
-                    <table style="display:none" id="hidden">
+                    <!-- <table style="display:none" id="hidden">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
@@ -48,7 +50,7 @@
                         </thead>
                         <tbody>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
             </div>
         </div>
@@ -86,24 +88,38 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Thưởng phạt</h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <form action="bonus" method="POST" role="form">
+                    <form action="luong-thuong/addBonus" method="POST" role="form">
                         <legend></legend>
                         <div class="form-group">
                             <label for="">Số tiền</label>
-                            <input type="text" name="money" class="form-control" autocomplete="off" >
+                            <input type="text" name="money" class="form-control" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="">Nội dung</label>
-                            <input type="text" name="info" class="form-control" autocomplete="off" >
+                            <input type="text" name="info" class="form-control" autocomplete="off">
                         </div>
                         <input type="hidden" class="bonus" name="bonus">
                         <input type="hidden" class="staff" name="staff">
+                        <input type="hidden" name="month"
+                            value="<?php if(isset($_GET["month"])) echo $_GET["month"]; else echo  date('m-Y', mktime(0, 0, 0, date('m'), date('d'),   date('Y')))?>">
                         {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary">Lưu</button>
                     </form>
+                    <table class="table table-striped table-bordered" id="modal-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Số tiền</th>
+                                <th scope="col">Nội dung</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-bonus">
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -119,16 +135,54 @@ load();
 $('#datepicker').datepicker({
     dateFormat: 'mm-yy',
 });
+
 function bonus(elmnt) {
-        $('.bonus').val(1);
-        $('.staff').val($('#nhanvien_'+elmnt).val());
-        $('#Modal-Bonus').modal('show');
+    renderBonus(1,elmnt);
+    $('.bonus').val(1);
+    $('.staff').val($('#nhanvien_' + elmnt).val());
+    $('#Modal-Bonus').modal('show');
+    $('#Modal-Bonus .modal-title').text("Thưởng");
 }
 
 function subs(elmnt) {
-        $('.bonus').val(0);
-        $('.staff').val($('#nhanvien_'+elmnt).val());
-        $('#Modal-Bonus').modal('show');
+    renderBonus(0,elmnt);
+    $('.bonus').val(0);
+    $('.staff').val($('#nhanvien_' + elmnt).val());
+    $('#Modal-Bonus').modal('show');
+    $('#Modal-Bonus .modal-title').text("Phạt");
+}
+
+function renderBonus(bonus,id) {
+    $.ajax({
+        type: 'POST',
+        url: 'ajax_bonus',
+        data: {
+            _token: "{{ csrf_token() }}",
+            bonus: bonus,
+            id : id,
+            month: $("#datepicker").val(),
+        },
+        success: function(data) {
+            var i = 1;
+            data = JSON.parse(data);
+            $.each(data, function(key, value) {
+                var html = '<tr>' +
+                    '<input type="hidden" id="nhanvien_' + value['data']['id'] + '" value="' +
+                    value['data']['id'] + '">' +
+                    '<th scope="row">' + i + '</th>' +
+                    '<td>' + value['data']['name'] + '<br/>' + value['data']['email'] + '</td>' +
+                    '<td>' + value['data']['salary'] + '<br/>' +
+                    '<td>' + value['DayOffTotal'] + '</td>' +
+                    '<td  onclick="subs(' + value['data']['id'] + ')">' + value['subs'] + '</td>' +
+                    '<td  onclick="bonus(' + value['data']['id'] + ')">' + value['bonus'] +
+                    '</td>' +
+                    '<td>' + value['expected_salary'] + '</td>' +
+                    '</tr>';
+                i++;
+                $(".table-bonus").append(html);
+            });
+        }
+    });
 }
 
 function loadbytime() {
@@ -183,34 +237,37 @@ function load() {
             data = JSON.parse(data);
             $.each(data, function(key, value) {
                 var html = '<tr>' +
-                    '<input type="hidden" id="nhanvien_'+value['data']['id']+'" value="'+value['data']['id']+'">'+
+                    '<input type="hidden" id="nhanvien_' + value['data']['id'] + '" value="' +
+                    value['data']['id'] + '">' +
                     '<th scope="row">' + i + '</th>' +
-                    '<td>'+value['data']['name']+'<br/>'+value['data']['email']+'</td>' +
-                    '<td>'+value['data']['salary']+'<br/>'+
-                    '<td>'+value['DayOffTotal']+'</td>' +
-                    '<td  onclick="subs('+value['data']['id']+')">'+value['data']['price']+'</td>' +
-                    '<td onclick="bonus('+value['data']['id']+')">'+value['data']['created_at']+'</td>' +
+                    '<td>' + value['data']['name'] + '<br/>' + value['data']['email'] + '</td>' +
+                    '<td>' + value['data']['salary'] + '<br/>' +
+                    '<td>' + value['DayOffTotal'] + '</td>' +
+                    '<td  onclick="subs(' + value['data']['id'] + ')">' + value['subs'] + '</td>' +
+                    '<td  onclick="bonus(' + value['data']['id'] + ')">' + value['bonus'] +
+                    '</td>' +
+                    '<td>' + value['expected_salary'] + '</td>' +
                     '</tr>';
                 i++;
-                $("tbody").append(html);
+                $(".table-main").append(html);
             });
 
-            $('#DataTable').DataTable( {
+            $('#DataTable').DataTable({
                 "language": {
-            "lengthMenu": "Hiện _MENU_ cột",
-            "zeroRecords": "Không có dữ liệu trùng khớp",
-            "info": "Trang _PAGE_ trên _PAGES_ trang",
-            "infoEmpty": "Không có dữ liệu",
-            "infoFiltered": "(Tìm từ _MAX_ cột)",
-            "search":"Tìm kiếm:",
-            "paginate": {
-                "first":      "Đầu",
-                "last":       "Cuối",
-                "next":       "Sau",
-                "previous":   "Trước"
-            },
-        }
-            } );
+                    "lengthMenu": "Hiện _MENU_ cột",
+                    "zeroRecords": "Không có dữ liệu trùng khớp",
+                    "info": "Trang _PAGE_ trên _PAGES_ trang",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(Tìm từ _MAX_ cột)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                }
+            });
         }
     });
 }
