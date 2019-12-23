@@ -61,7 +61,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped table-bordered" id="modal-table" style="width:100%">
@@ -69,10 +69,10 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Ngày</th>
-                                <th scope="col">Xóa</th>
+                                <th scope="col">Hành động</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-dayoff">
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +114,7 @@
                                 <th scope="col">STT</th>
                                 <th scope="col">Số tiền</th>
                                 <th scope="col">Nội dung</th>
-                                <th scope="col"></th>
+                                <th scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody class="table-bonus">
@@ -165,24 +165,48 @@ function renderBonus(bonus,id) {
         success: function(data) {
             var i = 1;
             data = JSON.parse(data);
+            $(".table-bonus >tr").remove();
             $.each(data, function(key, value) {
                 var html = '<tr>' +
-                    '<input type="hidden" id="nhanvien_' + value['data']['id'] + '" value="' +
-                    value['data']['id'] + '">' +
                     '<th scope="row">' + i + '</th>' +
-                    '<td>' + value['data']['name'] + '<br/>' + value['data']['email'] + '</td>' +
-                    '<td>' + value['data']['salary'] + '<br/>' +
-                    '<td>' + value['DayOffTotal'] + '</td>' +
-                    '<td  onclick="subs(' + value['data']['id'] + ')">' + value['subs'] + '</td>' +
-                    '<td  onclick="bonus(' + value['data']['id'] + ')">' + value['bonus'] +
-                    '</td>' +
-                    '<td>' + value['expected_salary'] + '</td>' +
-                    '</tr>';
+                    '<td>' + value['money'] + '</td>' +
+                    '<td>' + value['info'] + '</td>' +
+                    '<td><a class="btn btn-danger" href="luong-thuong/deleteBonus/' + value['id'] + '">Xóa</a></td>' +
+                    '</tr>';    
                 i++;
                 $(".table-bonus").append(html);
             });
         }
     });
+}
+
+function DayOff(id) {
+
+    $.ajax({
+        type: 'POST',
+        url: 'ajax_day_off_one',
+        data: {
+            _token: "{{ csrf_token() }}",
+            id : id,
+            month: $("#datepicker").val(),
+        },
+        success: function(data) {
+            var i = 1;
+            data = JSON.parse(data);
+            $(".table-dayoff >tr").remove();
+            $.each(data, function(key, value) {
+                var html = '<tr>' +
+                    '<th scope="row">' + i + '</th>' +
+                    '<td>' + value['date'] + '</td>' +
+                    '<td><a class="btn btn-danger" href="luong-thuong/deleteDayOff/' + value['id'] + '">Xóa</a></td>' +
+                    '</tr>';    
+                i++;
+                $(".table-dayoff").append(html);
+            });
+        }
+    });
+    $('#Modal-Dayoff').modal('show');
+    $('#Modal-Dayoff .modal-title').text("Thưởng");
 }
 
 function loadbytime() {
@@ -242,7 +266,7 @@ function load() {
                     '<th scope="row">' + i + '</th>' +
                     '<td>' + value['data']['name'] + '<br/>' + value['data']['email'] + '</td>' +
                     '<td>' + value['data']['salary'] + '<br/>' +
-                    '<td>' + value['DayOffTotal'] + '</td>' +
+                    '<td onclick="DayOff(' + value['data']['id'] + ')">' + value['DayOffTotal'] + '</td>' +
                     '<td  onclick="subs(' + value['data']['id'] + ')">' + value['subs'] + '</td>' +
                     '<td  onclick="bonus(' + value['data']['id'] + ')">' + value['bonus'] +
                     '</td>' +

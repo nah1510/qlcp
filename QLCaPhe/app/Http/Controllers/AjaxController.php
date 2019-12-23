@@ -150,12 +150,21 @@ class AjaxController extends Controller
         echo json_encode($array);
     }
 
+    public function day_off_one(Request $request)
+    {
+        $NgayNghi = NgayNghi::where([
+            ['nhanvien', '=', $request->id],
+            ['month', '=', $request->month],          
+        ])->get();
+        echo json_encode($NgayNghi);
+    }
+
     public function ajax_bonus(Request $request)
     {
         $bonus = ThuongPhat::where([
             ['staff', '=', $request->id],
             ['month', '=', $request->month],
-            ['bonus', '=', 1],
+            ['bonus', '=', $request->bonus],
         ])->get();
         echo json_encode($bonus);
     }

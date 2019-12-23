@@ -25,6 +25,7 @@ Route::post('set-pass', 'DangNhapController@postSetPassWord');
 Route::get('luong-thuong','NhanVienController@LuongThuong');
 Route::group(['prefix'=>'luong-thuong','middleware'=>'CaPheLogin'],function(){
     Route::get('deleteDayOff/{id}','NhanVienController@DeleteDayOff');
+    Route::get('deleteBonus/{id}','NhanVienController@DeleteBonus');
     Route::post('addBonus','NhanVienController@postAddBonus');
     
 });
@@ -102,3 +103,4 @@ Route::post('ajax_thong_ke','AjaxController@thong_ke');
 Route::post('ajax_CT_hoa_don','AjaxController@CT_hoa_don');
 Route::post('ajax_day_off','AjaxController@day_off');
 Route::post('ajax_bonus','AjaxController@ajax_bonus');
+Route::post('ajax_day_off_one','AjaxController@day_off_one');

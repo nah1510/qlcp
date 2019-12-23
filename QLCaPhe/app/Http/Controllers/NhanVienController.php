@@ -135,4 +135,18 @@ class NhanVienController extends Controller
         $bonus->save();
         return redirect('luong-thuong')->with('message','Thêm thành công!');
     }
+
+    public function DeleteBonus($id)
+    {   
+        $ThuongPhat = ThuongPhat::find($id);
+        $ThuongPhat->delete();
+        return redirect("luong-thuong")->with('message','Xóa thành công!');
+    }
+
+    public function DeleteDayOff($id)
+    {   
+        $NgayNghi = NgayNghi::find($id);
+        $NgayNghi->delete();
+        return redirect("luong-thuong")->with('message','Xóa ngày nghỉ thành công!');
+    }
 }
