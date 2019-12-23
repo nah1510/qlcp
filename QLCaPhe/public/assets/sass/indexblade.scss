@@ -265,6 +265,7 @@ body {
     font-weight: bold;
     background-color: #ffa534;
     border-radius: 999px;
+    width: 110px;
     &:hover {
         background-color: #e2963a;
     }
@@ -272,6 +273,18 @@ body {
 //  in hoa don:
 .Print {
     align-self: center;
+}
+// btn kiểm tra code:
+.CodeChecking {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    background-color: #fbff04;
+    width: 110px;
+    border-radius: 999px;
+    &:hover {
+        background-color: #cccf06;
+    }
 }
 .style-1::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);

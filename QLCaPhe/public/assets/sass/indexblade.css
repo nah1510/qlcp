@@ -334,6 +334,7 @@ body {
   font-weight: bold;
   background-color: #ffa534;
   border-radius: 999px;
+  width: 110px;
 }
 
 .Invoice:hover {
@@ -344,6 +345,19 @@ body {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+}
+
+.CodeChecking {
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  background-color: #fbff04;
+  width: 110px;
+  border-radius: 999px;
+}
+
+.CodeChecking:hover {
+  background-color: #cccf06;
 }
 
 .style-1::-webkit-scrollbar-track {
