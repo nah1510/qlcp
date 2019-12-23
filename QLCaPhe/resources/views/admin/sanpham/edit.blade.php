@@ -31,7 +31,7 @@
                         <label for="=Select">Loại sản phẩm</label>
                         <select name="loaisanpham" class="form-control" id="Select">
                             @foreach($loaisanpham as $list)
-                            <option {{$list->id == $sanpham->loaisanpham ? 'Selected' : ''}} value="{{$list->id}}">
+                            <option {{$list->id == $sanpham->category ? 'Selected' : ''}} value="{{$list->id}}">
                                 {{$list->name}}</option>
                             @endforeach
                         </select>

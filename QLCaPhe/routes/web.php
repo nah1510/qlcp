@@ -46,9 +46,11 @@ Route::group(['prefix'=>'nhanvien','middleware'=>'CaPheLogin'],function(){
     Route::get('list','NhanVienController@getList');
     Route::get('edit','NhanVienController@Edit');
     Route::post('edit','NhanVienController@postEdit');
+    Route::post('dayoff','NhanVienController@postDayOff');
     Route::get('add','NhanVienController@Add');
     Route::post('add','NhanVienController@postAdd');
     Route::get('delete/{id}','NhanVienController@Delete');
+    
 });
 Route::get('/loaisanpham', function () {
     return redirect('loaisanpham/list');
@@ -93,3 +95,4 @@ Route::get('logout','DangNhapController@getLogout');
 Route::get('lost-pass','DangNhapController@getLostPass');
 Route::post('ajax_thong_ke','AjaxController@thong_ke');
 Route::post('ajax_CT_hoa_don','AjaxController@CT_hoa_don');
+Route::post('ajax_day_off','AjaxController@day_off');

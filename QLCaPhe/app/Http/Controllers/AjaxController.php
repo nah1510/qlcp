@@ -8,6 +8,7 @@ use App\HoaDon;
 use App\SanPham;
 use App\KhachHang;
 use App\NhanVien;
+use App\NgayNghi;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -47,7 +48,7 @@ class AjaxController extends Controller
         if($request->id==0)
             $sanpham = SanPham::all();
         else
-            $sanpham = SanPham::where('loaisanpham','=',$request->id )->get();      
+            $sanpham = SanPham::where('category','=',$request->id )->get();      
         foreach ($sanpham as $key => $value) {
             $array_onece=array(
                 "id"=>$value['id'],
@@ -112,6 +113,21 @@ class AjaxController extends Controller
             $array_onece=array(
                 "data"=>$value,
                 "sanpham"=>SanPham::find($value['sanpham'])->name     
+            );
+            array_push($array,$array_onece);
+        }
+        echo json_encode($array);
+    }
+
+    public function day_off(Request $request) {
+        $array=array();
+        $nhanvien = NhanVien::where('role','!=','admin' )->get();  
+        foreach ($nhanvien as $key => $value) {
+            $array_onece=array(
+                "data"=>$value,
+                "DayOffTotal"=>NgayNghi::where([
+                    ['nhanvien', '=', $value->id],
+                ])->count(),   
             );
             array_push($array,$array_onece);
         }

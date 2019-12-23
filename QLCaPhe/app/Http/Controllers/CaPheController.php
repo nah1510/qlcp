@@ -17,10 +17,14 @@ class CaPheController extends Controller
     	return view('taikhoan.login');
     }
     
-     public function test(){
+     public function test1(){
         $id = Auth::user()->id;
         $nhanvien = NhanVien::find($id);
         return view('nhanvien.index',['user'=>$nhanvien]);
+    }
+
+    public function test(){
+        return view('admin.ngaynghi.index');
     }
 
     public function ThongKeIndex(){

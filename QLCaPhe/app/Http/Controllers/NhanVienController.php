@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\NhanVien;
+use App\NgayNghi;
 use Auth;
 use Illuminate\Support\Str;
 
@@ -97,5 +98,24 @@ class NhanVienController extends Controller
                 return redirect("test")->with('message','Đã cập nhập thành công!');
         }
         return redirect("test")->with('fail','Đã cập nhập thành công!');
+    }
+    public function postDayOff(Request $request)
+    {
+        $ngaynghi = new NgayNghi;
+        $ngaynghi->date =date("Y-m-d", strtotime($request->day)) ;
+        $ngaynghi->month =date("m-Y", strtotime($request->day)) ;
+        $ngaynghi->nhanvien = $request->id;
+        $ngaynghi->save();
+        if($request->total>1){
+            for ($i=1; $i < $request->total; $i++) { 
+                $ngaynghi = new NgayNghi;
+                $ngaynghi->nhanvien = $request->id;
+                $ngaynghi->date =date("Y-m-d", strtotime($request->day. "+$i days")) ;
+                $ngaynghi->month =date("m-Y", strtotime($request->day. "+$i days")) ;
+                $ngaynghi->save();
+            }
+        }
+        
+        return redirect('nhanvien/list')->with('message','Thêm ngày nghỉ cho nhân viên '.$request->name.' thành công !');
     }
 }

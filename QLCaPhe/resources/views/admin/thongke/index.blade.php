@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     @include('header')
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <body>
         @include('masterhead')
         <div class="wrapper">

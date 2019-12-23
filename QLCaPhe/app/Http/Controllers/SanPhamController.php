@@ -45,7 +45,7 @@ class SanPhamController extends Controller
         $sanpham->name = $request->name;
         $sanpham->price = $request->price;
         $sanpham->status = 1;
-        $sanpham->loaisanpham = $request->loaisanpham;
+        $sanpham->category = $request->loaisanpham;
 
         if($request->hasFile('image'))
         {
@@ -70,7 +70,7 @@ class SanPhamController extends Controller
         $sanpham->name = $request->name;
         $sanpham->price = $request->price;
         $sanpham->status = $request->status;
-        $sanpham->loaisanpham = $request->loaisanpham;
+        $sanpham->category = $request->loaisanpham;
         if($request->hasFile('image'))
         {
             $file=$request->file('image');
