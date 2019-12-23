@@ -9,6 +9,7 @@ use App\SanPham;
 use App\KhachHang;
 use App\NhanVien;
 use App\NgayNghi;
+use App\ThuongPhat;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -123,11 +124,25 @@ class AjaxController extends Controller
         $array=array();
         $nhanvien = NhanVien::where('role','!=','admin' )->get();  
         foreach ($nhanvien as $key => $value) {
+            $subs = ThuongPhat::where([
+                ['staff', '=', $value->id],
+                ['month', '=', $request->month],
+                ['bonus', '=', 0],
+            ])->sum('money');
+            $bonus = ThuongPhat::where([
+                ['staff', '=', $value->id],
+                ['month', '=', $request->month],
+                ['bonus', '=', 1],
+            ])->sum('money');
             $array_onece=array(
                 "data"=>$value,
+                "expected_salary"=>$bonus-$subs+$value->salary,
                 "DayOffTotal"=>NgayNghi::where([
                     ['nhanvien', '=', $value->id],
+                    ['month', '=', $request->month],          
                 ])->count(),   
+                "subs"=>$subs,
+                "bonus"=> $bonus,
             );
             array_push($array,$array_onece);
         }
