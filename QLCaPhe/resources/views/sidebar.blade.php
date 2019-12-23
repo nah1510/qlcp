@@ -21,6 +21,29 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link menu" href="#">
+                    <i class="fas fa-users-cog"></i>
+                    <p>Nguyên liệu</p>
+                    <input type="hidden" value="{{ url('/nguyenlieu')}}">
+                </a>
+                <div style="display:none" class="nav-child">
+                    <a class="nav-link" href="{{ url('/nguyenlieu/list')}}">
+                        <i class="fas fa-list"></i>
+                        <p>Danh sách</p>
+                        <input type="hidden" value="{{ url('/nguyenlieu/list')}}">
+                    </a><a class="nav-link" href="{{ url('/nguyenlieu/add')}}">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Thêm</p>
+                        <input type="hidden" value="{{ url('/nguyenlieu/add')}}">
+                    </a>
+                    <a class="nav-link" href="{{ url('/nguyenlieu/donvitinh')}}">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Dơn vị</p>
+                        <input type="hidden" value="{{ url('/nguyenlieu/donvitinh')}}">
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu">
                     <input type="hidden" value="{{ url('/khachhang')}}">
                     <i class="fas fa-users"></i>
@@ -48,8 +71,15 @@
             <li class="nav-item ">
                 <a class="nav-link menu" href="{{ url('/thongke')}}">
                     <i class="fas fa-chart-bar"></i>
-                    <p>Thống kê</p>
+                    <p>Thống kê doanh thu</p>
                     <input type="hidden" value="{{ url('/thongke')}}">
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link menu" href="{{ url('/thongkenl')}}">
+                    <i class="fas fa-chart-bar"></i>
+                    <p>Thống kê nguyên liệu</p>
+                    <input type="hidden" value="{{ url('/thongkenl')}}">
                 </a>
             </li>
             <li class="nav-item ">
@@ -79,9 +109,10 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu" href="./notifications.html">
+                <a class="nav-link menu" href="{{ url('/luong-thuong')}}">
                     <i class="nc-icon nc-bell-55"></i>
-                    <p>Notifications</p>
+                    <p>Lương Thưởng </p>
+                    <input type="hidden" value="{{ url('/luong-thuong')}}">
                 </a>
             </li>
         </ul>

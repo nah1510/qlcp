@@ -60,3 +60,21 @@
     </body>
 
 </html>
+<script language='javascript'>
+$('.table').DataTable({
+                "language": {
+                    "lengthMenu": "Hiện _MENU_ cột",
+                    "zeroRecords": "Không có dữ liệu trùng khớp",
+                    "info": "Trang _PAGE_ trên _PAGES_ trang",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(Tìm từ _MAX_ cột)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                }
+            });
+</script>

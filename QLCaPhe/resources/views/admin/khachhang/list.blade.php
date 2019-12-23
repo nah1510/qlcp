@@ -21,17 +21,18 @@
                                     {{session('message')}}
                                 </div>
                                 @endif
-                                <h4 class="card-title">Sản phẩm</h4>
+                                <h4 class="card-title">Khách hàng</h4>
                                 <a class="btn btn-primary" href="add">Thêm Khách Hàng</a>
-                                <p class="card-category">Danh sách sản phẩm</p>
+                                <p class="card-category">Danh sách khách hàng</p>
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <th>ID</th>
                                         <th>Tên</th>
                                         <th>Điện thoai</th>
+                                        <th>Điểm tích lũy</th>
                                         <th>Email</th>
-                                        <th>Action</th>
-                                        <th>Action</th>
+                                        <th></th>
+                                        <th></th>
                                     </thead>
                                     <tbody>
 
@@ -40,6 +41,7 @@
                                             <td>{{$list->id}}</td>
                                             <td>{{$list->name}}</td>
                                             <td>{{$list->phone}}</td>
+                                            <td>{{$list->point}}</td>
                                             <td>{{$list->email}}</td>
                                             <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                             </td>
@@ -60,3 +62,21 @@
     </body>
 
 </html>
+<script language='javascript'>
+$('.table').DataTable({
+                "language": {
+                    "lengthMenu": "Hiện _MENU_ cột",
+                    "zeroRecords": "Không có dữ liệu trùng khớp",
+                    "info": "Trang _PAGE_ trên _PAGES_ trang",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(Tìm từ _MAX_ cột)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                }
+            });
+</script>

@@ -18,12 +18,16 @@
                     <div class="form-group">
                         <label for="">Từ:</label>
                         <input class="form-control" type="datetime-local"
-                            value="<?php if(isset($_GET["from"])) echo $_GET["from"]; else echo  date('Y-m-d\Th:i:s', mktime(0, 0, 0, date('m')-1, date('d'),   date('Y')))?>"
+                            value="<?php if(isset($_GET["from"])) echo $_GET["from"]; else echo  date('Y-m-d\Th:i:s', mktime(0, 0, 0, date('m'), date('d')-1,   date('Y')))?>"
                             id="from">
                     </div>
                     <div class="form-group">
                         <label for="">Đến:</label>
                         <input class="form-control" type="datetime-local" value="<?php if(isset($_GET["to"])) echo $_GET["to"]; else echo date('Y-m-d\Th:i')?>" id="to">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Doanh thu</label>
+                        <input class="form-control" id="total-money" type="text" value="" readonly>
                     </div>
                     <a onclick="loadbytime()" type="submit" class="btn btn-primary">Xem</a>
                     
@@ -33,8 +37,10 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Nhân viên</th>
-                                <th scope="col">Khách Hàng</th>
-                                <th scope="col">Tổng tiền</th>
+                                <th scope="col">Khách hàng</th>
+                                <th scope="col">Giá ban đầu</th>
+                                <th scope="col">Giảm giá</th>
+                                <th scope="col">Thành tiền</th>
                                 <th scope="col">Thời gian</th>
                                 <th scope="col"></th>
                             </tr>
@@ -45,12 +51,10 @@
                     <table style="display:none"  id="hidden" >
                         <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">Nhân viên</th>
-                                <th scope="col">Khách Hàng</th>
-                                <th scope="col">Tổng tiền</th>
-                                <th scope="col">Thời gian</th>
-                                <th scope="col"></th>
+                                <th scope="col">Initial price</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Time</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,6 +78,7 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên Món</th>
+                                <th scope="col">Đơn giá</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Thành tiền</th>
                             </tr>
@@ -109,6 +114,7 @@ function showModal(id){
                 var html = '<tr>' +
                     '<th scope="row">' + i + '</th>' +
                     '<td>'+value['sanpham']+'</td>' +
+                    '<td>'+value['data']['unit_price']+'</td>' +
                     '<td>'+value['data']['amount']+'</td>' +
                     '<td>'+value['data']['price']+'</td>' +
                     '</tr>';
@@ -128,7 +134,8 @@ function loadbytime() {
 }
 
 function thongke() {
-    $("tbody > tr").remove();
+    $("#DataTable tbody > tr").remove();
+    $("#hidden tbody > tr").remove();
     $.ajax({
         type: 'POST',
         url: 'ajax_thong_ke',
@@ -139,20 +146,31 @@ function thongke() {
         },
         success: function(data) {
             var i = 1;
+            var total = 0;
             data = JSON.parse(data);
             $.each(data, function(key, value) {
                 var html = '<tr>' +
                     '<th scope="row">' + i + '</th>' +
                     '<td>'+value['nhanvien']+'<br/>'+value['email']+'</td>' +
                     '<td>'+value['khachhang']+'</td>' +
+                    '<td>'+value['data']['initial_price']+'</td>' +
+                    '<td>'+value['data']['discount']+'</td>' +
                     '<td>'+value['data']['price']+'</td>' +
                     '<td>'+value['data']['created_at']+'</td>' +
                     '<td><button onclick="showModal('+value['data']['id']+')" type="button" class="btn btn-info " >Chi tiết</button></td>' +
                     '</tr>';
                 i++;
-                $("tbody").append(html);
+                var html_hidden = '<tr>' +
+                    '<td>'+value['data']['initial_price']+'</td>' +
+                    '<td>'+value['data']['discount']+'</td>' +
+                    '<td>'+value['data']['price']+'</td>' +
+                    '<td>'+value['data']['created_at']+'</td>' +
+                    '</tr>';
+                total+=value['data']['price'];
+                $("#DataTable tbody").append(html);
+                $("#hidden tbody").append(html_hidden);
             });
-
+            $("#total-money").val(total);
             $('#DataTable').DataTable( {
                 "language": {
             "lengthMenu": "Hiện _MENU_ cột",
@@ -181,13 +199,17 @@ function exportTableToCSV() {
             cols = rows[i].querySelectorAll(" td,th");
         for (var j = 0; j < cols.length; j++)
             row.push(cols[j].innerText);
-        row = row.join(";") + ";";
+        row = row.join(";") ;
         csv.push(row);
     }
-    var filename = $("#datepicker").val() + '.csv';
-    if ($("#datepicker").val() == "") {
-        filename = 'accounting.csv';
-    };
+    var row = [];
+    for (var j = 0; j < rows[0].querySelectorAll(" td,th").length-2; j++)
+        row.push("");
+    row.push("Total Revenue");
+    row.push(document.getElementById("total-money").value);
+    row = row.join(";") ;
+    csv.push(row);
+    filename = 'doanhthu.csv';
     downloadCSV(csv.join("\n"), filename);
 }
 
