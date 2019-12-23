@@ -17,3 +17,4 @@ class OderController extends Controller
         return view('admin.banhang.index',['loaisanpham'=>$loaisanpham,'sanpham'=>$sanpham]);
     }
 }
+

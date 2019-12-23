@@ -20,7 +20,13 @@ class AjaxController extends Controller
     public function save_bill(Request $request) {
         $hoadon = new HoaDon;
         $hoadon->price = $request->total_bill;
-        $hoadon->khachhang = $request->customer_id;
+        
+        if($request->customer_id){
+            $hoadon->khachhang = $request->customer_id;
+            $khachang = KhachHang::find($request->customer_id);
+            $khachang->point = $khachang->point +  $request->total_bill /100;
+            $khachang->save();
+        }
         $hoadon->nhanvien = Auth::user()->id;
         $hoadon->save();
         foreach ($request->bill as $key => $value) {
@@ -91,6 +97,7 @@ class AjaxController extends Controller
                 "data"=>$value,
                 "khachhang"=>$name,    
                 "nhanvien"=>NhanVien::find($value['nhanvien'])->name,
+                "email"=>NhanVien::find($value['nhanvien'])->email,
             );
             array_push($array,$array_onece);
         }

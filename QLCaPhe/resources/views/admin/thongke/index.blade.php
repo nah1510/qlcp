@@ -28,10 +28,11 @@
                     <a onclick="loadbytime()" type="submit" class="btn btn-primary">Xem</a>
                     
                     <a  onclick="exportTableToCSV()" class="btn btn-primary">Xuất</a>
-                    <table class="table table-striped table-bordered" id="example" style="width:100%">
+                    <table class="table table-striped table-bordered" id="DataTable" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
+                                <th scope="col">Nhân viên</th>
                                 <th scope="col">Khách Hàng</th>
                                 <th scope="col">Tổng tiền</th>
                                 <th scope="col">Thời gian</th>
@@ -45,6 +46,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
+                                <th scope="col">Nhân viên</th>
                                 <th scope="col">Khách Hàng</th>
                                 <th scope="col">Tổng tiền</th>
                                 <th scope="col">Thời gian</th>
@@ -141,6 +143,7 @@ function thongke() {
             $.each(data, function(key, value) {
                 var html = '<tr>' +
                     '<th scope="row">' + i + '</th>' +
+                    '<td>'+value['nhanvien']+'<br/>'+value['email']+'</td>' +
                     '<td>'+value['khachhang']+'</td>' +
                     '<td>'+value['data']['price']+'</td>' +
                     '<td>'+value['data']['created_at']+'</td>' +
@@ -150,7 +153,7 @@ function thongke() {
                 $("tbody").append(html);
             });
 
-            $('#example').DataTable( {
+            $('#DataTable').DataTable( {
                 "language": {
             "lengthMenu": "Hiện _MENU_ cột",
             "zeroRecords": "Không có dữ liệu trùng khớp",

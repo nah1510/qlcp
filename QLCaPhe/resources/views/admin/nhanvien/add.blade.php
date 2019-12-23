@@ -28,7 +28,20 @@
                         <input type="number " class="form-control" placeholder="Chứng minh nhân dân"
                             name="identity_card_number" value="">
                     </div>
-
+                    <div class="form-group">
+                        <label for="">Số điện thoại:</label>
+                        <input type="number " class="form-control" placeholder="Số điện thoại"
+                            name="phone" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Lương cơ bản:</label>
+                        <input type="number " class="form-control" placeholder="Lương cơ bản"
+                            name="salary" value="">
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="role" value="cashier"  class="custom-control-input" >
+                                <label class="custom-control-label" >Chức năng bán hàng</label>
+                            </div>
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary">Lưu</button>
                 </form>

@@ -23,13 +23,15 @@ Route::post('set-pass', 'DangNhapController@postSetPassWord');
 
 
 Route::get('test','CaPheController@test');
+Route::post('test','NhanVienController@EditImage');
+Route::post('password','NhanVienController@ChangePass');
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 Route::get('/sanpham', function () {
     return redirect('sanpham/list');
 });
-Route::group(['prefix'=>'sanpham'],function(){
+Route::group(['prefix'=>'sanpham','middleware'=>'CaPheLogin'],function(){
     Route::get('list','SanPhamController@getList');
     Route::get('edit','SanPhamController@Edit');
     Route::post('edit','SanPhamController@postEdit');
@@ -40,7 +42,7 @@ Route::group(['prefix'=>'sanpham'],function(){
 Route::get('/nhanvien', function () {
     return redirect('nhanvien/list');
 });
-Route::group(['prefix'=>'nhanvien'],function(){
+Route::group(['prefix'=>'nhanvien','middleware'=>'CaPheLogin'],function(){
     Route::get('list','NhanVienController@getList');
     Route::get('edit','NhanVienController@Edit');
     Route::post('edit','NhanVienController@postEdit');
@@ -51,7 +53,7 @@ Route::group(['prefix'=>'nhanvien'],function(){
 Route::get('/loaisanpham', function () {
     return redirect('loaisanpham/list');
 });
-Route::group(['prefix'=>'loaisanpham'],function(){
+Route::group(['prefix'=>'loaisanpham','middleware'=>'CaPheLogin'],function(){
     Route::get('list','LoaiSanPhamController@getList');
     Route::get('edit','LoaiSanPhamController@Edit');
     Route::post('edit','LoaiSanPhamController@postEdit');
@@ -69,6 +71,17 @@ Route::group(['prefix'=>'khachhang','middleware'=>'CaPheLogin'],function(){
     Route::get('add','KhachHangController@Add');
     Route::post('add','KhachHangController@postAdd');
     Route::get('delete/{id}','KhachHangController@Delete');
+});
+Route::get('/giamgia', function () {
+    return redirect('giamgia/list');
+});
+Route::group(['prefix'=>'giamgia','middleware'=>'CaPheLogin'],function(){
+    Route::get('list','GiamGiaController@getList');
+    Route::get('edit','GiamGiaController@Edit');
+    Route::post('edit','GiamGiaController@postEdit');
+    Route::get('add','GiamGiaController@Add');
+    Route::post('add','GiamGiaController@postAdd');
+    Route::get('delete/{id}','GiamGiaController@Delete');
 });
 Route::get('banhang','OderController@getIndex')->middleware('CaPheLogin');
 Route::post('ajax_save_bill','AjaxController@save_bill');

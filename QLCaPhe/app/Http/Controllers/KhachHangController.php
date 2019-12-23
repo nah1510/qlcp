@@ -57,8 +57,8 @@ class KhachHangController extends Controller
     public function Delete($id)
     {   
 
-        $sanpham = KhachHang::find($id);
-        $sanpham->delete();
+        $khachhang = KhachHang::find($id);
+        $khachhang->delete();
         return redirect("khachhang/list")->with('message','Xóa thành công!');
     }
 }

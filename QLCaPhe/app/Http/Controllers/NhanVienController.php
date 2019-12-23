@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\NhanVien;
+use Auth;
+use Illuminate\Support\Str;
 
 class NhanVienController extends Controller
 {
@@ -35,6 +37,9 @@ class NhanVienController extends Controller
         $nhanvien->name = $request->name;
         $nhanvien->email = $request->email;
         $nhanvien->identity_card_number = $request->identity_card_number;
+        $nhanvien->salary = $request->salary;
+        $nhanvien->role = $request->role;
+        $nhanvien->phone = $request->phone;
         $nhanvien->save();
         return redirect('nhanvien/add')->with('message','Thêm thành công!');
     }
@@ -46,6 +51,9 @@ class NhanVienController extends Controller
         $nhanvien->name = $request->name;
         $nhanvien->email = $request->email;
         $nhanvien->identity_card_number = $request->identity_card_number;
+        $nhanvien->salary = $request->salary;
+        $nhanvien->role = $request->role;
+        $nhanvien->phone = $request->phone;
         $nhanvien->save();
         $url = "nhanvien/edit?id=".$request->id;
         return redirect($url)->with('message','Sửa thành công!');
@@ -57,5 +65,37 @@ class NhanVienController extends Controller
         $nhanvien = NhanVien::find($id);
         $nhanvien->delete();
         return redirect("nhanvien")->with('message','Xóa thành công!');
+    }
+
+    public function EditImage(Request $request)
+    {   
+        $id = Auth::user()->id;
+        $nhanvien = NhanVien::find($id);
+        if($request->hasFile('image'))
+        {
+            $file=$request->file('image');
+            
+            $file_name = Str::random(4)."_".$nhanvien->name.".".$file->getClientOriginalExtension();
+            while(file_exists("upload/".$file_name)){
+                $file_name = Str::random(4)."_".$nhanvien->name.".".$file->getClientOriginalExtension();
+            }
+            $nhanvien->image=$file_name;
+            $file->move('upload', $file_name);
+
+        }
+        $nhanvien->save();
+        $url = "nhanvien/list";
+        return redirect($url)->with('message','Đã cập nhập ảnh thành công!');
+    }
+    public function ChangePass(Request $request)
+    {
+        $id = Auth::user()->id;
+        $nhanvien = NhanVien::find($id);
+            if($request->new_pass == $request->confirm_pass){
+                $nhanvien->password = bcrypt($request->new_pass);
+                $nhanvien->save();
+                return redirect("test")->with('message','Đã cập nhập thành công!');
+        }
+        return redirect("test")->with('fail','Đã cập nhập thành công!');
     }
 }

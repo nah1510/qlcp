@@ -1,10 +1,11 @@
+<script src="{{asset('js/masterhead.js')}}"></script>
 <div class="header">
     <div class="header-left"><a href="/"><img src='/upload/logo/coffeeLogo.svg' alt="logo" class="applogo"></a></div>
     <div class="header-right">
         <!-- <div class="Notification">
             <div class="Notification-icon"><img src="/upload/icon/notification.svg"></div>
         </div> -->
-        <div class="User">
+        <div class="User masterhead-User">
             <span class="User-logo"><img src="/upload/icon/man-user.svg" alt="user" /></span>
             <span class="User-name">Chào {{Auth::user()->name}} !</span>
             <!-- <a class="btn btn-primary" href="/{{ url('/logout') }}">Đăng xuất</a> -->

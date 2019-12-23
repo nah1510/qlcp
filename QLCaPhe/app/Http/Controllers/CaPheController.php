@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use App\NhanVien;
 use Illuminate\Support\MessageBag;
 class CaPheController extends Controller
 {
@@ -15,10 +16,11 @@ class CaPheController extends Controller
     	
     	return view('taikhoan.login');
     }
-
+    
      public function test(){
-        
-        return view('test',$user);
+        $id = Auth::user()->id;
+        $nhanvien = NhanVien::find($id);
+        return view('nhanvien.index',['user'=>$nhanvien]);
     }
 
     public function ThongKeIndex(){

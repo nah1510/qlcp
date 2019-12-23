@@ -44,6 +44,20 @@
                                 <input type="number" class="form-control" placeholder="Chứng minh nhân dân"
                                     name="identity_card_number" value="{{$nhanvien->identity_card_number}}">
                             </div>
+                            <div class="form-group">
+                                <label for="">Số điện thoại:</label>
+                                <input type="number " class="form-control" placeholder="Số điện thoại"
+                                    name="phone" value="{{$nhanvien->number}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Lương cơ bản:</label>
+                                <input type="number " class="form-control" placeholder="Lương cơ bản"
+                                    name="salary" value="{{$nhanvien->salary}}">
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="role" value="cashier" {{ $nhanvien->role == 'cashier' ? 'checked' : '' }}  class="custom-control-input" >
+                                <label class="custom-control-label" >Chức năng bán hàng</label>
+                            </div>
                             <input type="hidden" name="id" value="{{$nhanvien->id}}">
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Lưu</button>

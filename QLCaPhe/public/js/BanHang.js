@@ -1,16 +1,12 @@
 list_san_pham(0);
-$(function() {
-    $(".client-leftside").click(function() {
+$(function () {
+    $(".client-leftside").click(function () {
         $(".left").show();
         $(".right").hide();
     });
-    $(".client-rightside").click(function() {
+    $(".client-rightside").click(function () {
         $(".right").show();
         $(".left").hide();
-    });
-    $(".User").click(function() {
-        $(".menu").slideToggle();
-        // $(".menu").hide();
     });
 });
 
@@ -31,7 +27,7 @@ function change0(id) {
 
 function total_bill() {
     var total_bill = 0;
-    $(".tr").each(function() {
+    $(".tr").each(function () {
         total_bill +=
             Number(
                 $(this)
@@ -53,7 +49,7 @@ function save_db() {
         return;
     }
     var HoaDon = [];
-    $(".tr").each(function() {
+    $(".tr").each(function () {
         var total =
             Number(
                 $(this)
@@ -87,7 +83,7 @@ function save_db() {
             bill: HoaDon,
             customer_id: $("#customer_id").val()
         },
-        success: function(msg) {
+        success: function (msg) {
             alert("Đã thêm thành công " + msg);
             $(".table-body >tr").remove();
             total_bill();
@@ -105,9 +101,9 @@ function list_san_pham(id) {
             _token: $("#_token").val(),
             id: id
         },
-        success: function(data) {
+        success: function (data) {
             data = JSON.parse(data);
-            $.each(data, function(key, value) {
+            $.each(data, function (key, value) {
                 var html =
                     '<article class="card menu-cafe">' +
                     '<input class="id-product" type="hidden" value="' +
@@ -134,7 +130,7 @@ function list_san_pham(id) {
                     "</article>";
                 $(".wrapItem").append(html);
             });
-            $(".menu-cafe").on("click", function() {
+            $(".menu-cafe").on("click", function () {
                 var id = $(this)
                     .find(".id-product")
                     .val();
@@ -168,7 +164,7 @@ function list_san_pham(id) {
                     '"></td>' +
                     '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
                 $(".table-body").append(html);
-                $(".btn-delete").on("click", function() {
+                $(".btn-delete").on("click", function () {
                     $(this)
                         .parent()
                         .parent()
@@ -176,7 +172,7 @@ function list_san_pham(id) {
                     total_bill();
                 });
                 $(".plus,.sub").off("click");
-                $(".plus").on("click", function() {
+                $(".plus").on("click", function () {
                     var number = $(this)
                         .parent()
                         .parent()
@@ -185,7 +181,7 @@ function list_san_pham(id) {
                     number.val(Number(number.val()) + 1);
                     total_bill();
                 });
-                $(".sub").on("click", function() {
+                $(".sub").on("click", function () {
                     var number = $(this)
                         .parent()
                         .parent()
@@ -225,7 +221,7 @@ function khachhang() {
             _token: $("#_token").val(),
             phone: $("#info-customer").val()
         },
-        success: function(data) {
+        success: function (data) {
             $("#show-info-customer > div").remove();
             //$("#show-info-customer >div").remove();  nếu là div
             if (data == "false") {
