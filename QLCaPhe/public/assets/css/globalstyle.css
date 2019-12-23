@@ -29,3 +29,7 @@ a {
     text-decoration: none;
     color: unset;
 }
+
+.main-panel {
+    padding: 20px;
+}
