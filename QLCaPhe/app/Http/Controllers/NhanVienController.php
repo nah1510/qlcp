@@ -74,7 +74,7 @@ class NhanVienController extends Controller
 
         $nhanvien = NhanVien::find($id);
         $nhanvien->delete();
-        return redirect("nhanvien")->with('message','Xóa thành công!');
+        return redirect("nhanvien/list")->with('message','Xóa thành công!');
     }
 
     public function EditImage(Request $request)

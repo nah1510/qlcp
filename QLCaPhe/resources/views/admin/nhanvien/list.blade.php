@@ -43,7 +43,7 @@
                                             </td>
                                             <td><a class="btn btn-info" href="edit?id={{$list->id}}">Sửa</a>
                                             </td>
-                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Xóa</a>
+                                            <td><button class="btn btn-danger" onclick='checkdelete("delete/{{$list->id}}")'>Xóa</button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -93,6 +93,24 @@
 
         </div>
     </div>
+    <div id="delete_check" class="modal fade"  tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn xóa nhân viên này không</p>
+      </div>
+      <div class="modal-footer">
+        <a id="url-delete" class="btn btn-danger" href="delete/{{$list->id}}">Xóa</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>
 <script language='javascript'>
@@ -101,6 +119,10 @@ function showModal(id) {
     $("#nhanvien-name").val($("#" + id).find(".name").text());
     $("form").find("legend").text("Nhân viên " + $("#" + id).find(".name").text());
     $('#Modal').modal('show');
+}
+function checkdelete(url) {
+    $('#url-delete').attr("href", url);
+    $('#delete_check').modal('show');
 }
 $('#datepicker').datepicker({
     dateFormat: 'dd-mm-yy',
