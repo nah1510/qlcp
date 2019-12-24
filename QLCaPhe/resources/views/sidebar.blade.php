@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link menu" href="#">
-                    <i class="fas fa-users-cog"></i>
+                    <i class="fas fa-glass-cheers"></i>
                     <p>Nguyên liệu</p>
                     <input type="hidden" value="{{ url('/nguyenlieu')}}">
                 </a>
@@ -72,7 +72,7 @@
             </li>
             <li class="nav-item ">
                 <a class="nav-link menu" href="{{ url('/thongkenl')}}">
-                    <i class="fas fa-chart-bar"></i>
+                    <i class="fas fa-chart-pie"></i>
                     <p>Thống kê nguyên liệu</p>
                     <input type="hidden" value="{{ url('/thongkenl')}}">
                 </a>

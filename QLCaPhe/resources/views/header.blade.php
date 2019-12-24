@@ -25,6 +25,6 @@
     <link href="{{asset('assets/css/fontawesome-free-5.12.0-web/css/all.css')}}" rel="stylesheet" />
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/jquery-ui.js')}}"></script>jquery-ui.css
+    <script src="{{asset('js/jquery-ui.js')}}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>

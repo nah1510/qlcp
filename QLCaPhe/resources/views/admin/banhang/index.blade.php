@@ -81,15 +81,15 @@
                 <div class="wrapSum">
                     <div class="Sum">
                         <div class="Sum-item"><input type="text" id="code" autocomplete='off'
-                                class="form-controll form-controll-sum " 
-                                placeholder="Nhập mã giảm giá"><img src='/upload/icon/discount.svg' alt='icon'
-                                class="moneyIcon"></div>
+                                class="form-controll form-controll-sum " placeholder="Nhập mã giảm giá"><img
+                                src='/upload/icon/discount.svg' alt='icon' class="moneyIcon"></div>
                     </div>
                     <div class="Print"><button onclick="check_code()" class="CodeChecking">Kiểm tra</button></div>
-                   
+
                 </div>
                 <span class="code_check" style="color:red;margin-left: 54px;display: none;">Không áp dụng</span>
-                <span class="code_check_true" style="color:green;margin-left: 54px;display: none;">Mã giảm giá áp dụng</span>
+                <span class="code_check_true" style="color:green;margin-left: 54px;display: none;">Mã giảm giá áp
+                    dụng</span>
                 <div class="wrapSum">
                     <div class="Sum">
                         <div class="Sum-item"><input type="text" id="total_bill" autocomplete='off'
