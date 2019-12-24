@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Điểm tích lũy</label>
-                        <input type="text" class="form-control" placeholder="Email" name="email"
+                        <input type="text" class="form-control" placeholder="Email" 
                             value="{{$khachhang->point}}" readonly>
                     </div>
                     <input type="hidden" name="id" value="{{$khachhang->id}}">
