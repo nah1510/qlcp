@@ -12,10 +12,7 @@ class CaPheController extends Controller
     public function getIndex(){
     	return view('welcome');
     }
-    public function login(){
-    	
-    	return view('taikhoan.login');
-    }
+
     
      public function test1(){
         $id = Auth::user()->id;

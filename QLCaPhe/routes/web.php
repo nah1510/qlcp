@@ -15,10 +15,11 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('index','CaPheController@getIndex');
-Route::get('login','CaPheController@login');
+Route::get('login','DangNhapController@login');
 Route::post('login-form', 'DangNhapController@postLogin');
 Route::post('set-pass', 'DangNhapController@postSetPassWord');
+Route::get('logout','DangNhapController@getLogout');
+Route::get('lost-pass','DangNhapController@getLostPass');
 
 
 Route::get('luong-thuong','NhanVienController@LuongThuong');
@@ -29,10 +30,6 @@ Route::group(['prefix'=>'luong-thuong','middleware'=>'CaPheLogin'],function(){
     
 });
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 Route::get('/nguyenlieu', function () {
     return redirect('nguyenlieu/list');
 });
@@ -111,8 +108,7 @@ Route::post('ajax_list_san_pham','AjaxController@list_san_pham');
 Route::post('ajax_find_customer','AjaxController@find_customer');
 Route::post('ajax_check_email','DangNhapController@CheckEmail');
 Route::get('thongke','CaPheController@ThongKeIndex')->middleware('CaPheLogin');
-Route::get('logout','DangNhapController@getLogout');
-Route::get('lost-pass','DangNhapController@getLostPass');
+
 Route::post('ajax_thong_ke','AjaxController@thong_ke');
 Route::post('ajax_CT_hoa_don','AjaxController@CT_hoa_don');
 Route::post('ajax_day_off','AjaxController@day_off');

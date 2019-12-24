@@ -11,8 +11,18 @@ use App\User;
 use App\NhanVien;
 use Illuminate\Support\Str;
 class DangNhapController extends Controller
-{
-        public function postLogin(Request $request) {
+{       
+
+    public function login(){
+    	if (Auth::check()) {
+            if (Auth::user()->role === "admin")
+                return redirect()->intended('/thongke');
+                return redirect()->intended('/banhang');
+        }
+    	return view('taikhoan.login');
+    }
+
+    public function postLogin(Request $request) {
  
         $rules = [
             'email' =>'required|email',
@@ -30,8 +40,9 @@ class DangNhapController extends Controller
         } else {
             if( Auth::attempt(['email' => $request->email, 'password' =>$request->password])) {
 
-                
-                return redirect()->intended('/login');
+                if (Auth::user()->role === "admin")
+                    return redirect()->intended('/thongke');
+                    return redirect()->intended('/banhang');
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Thông tin đăng nhập không đúng']);
                 return redirect()->back()->withInput()->withErrors($errors);
