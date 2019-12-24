@@ -116,7 +116,6 @@ class AjaxController extends Controller
         foreach ($ct_hoadon as $key => $value) {
             $array_onece=array(
                 "data"=>$value,
-                "sanpham"=>SanPham::find($value['sanpham'])->name     
             );
             array_push($array,$array_onece);
         }

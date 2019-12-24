@@ -59,7 +59,7 @@ function save_db() {
     $(".tr").each(function() {
         var total =Number($(this).find(".number-input").val()) *Number($(this).find(".price").val());
         var CT_HoaDon = [
-            $(this).attr("id"),
+            $(this).attr("nameText"),
             $(this).find(".price").val(),
             $(this).find(".number-input").val(),
             total
@@ -136,7 +136,7 @@ function list_san_pham(id) {
                     total_bill();
                     return;
                 }
-                var html ='<tr class="tr rowItem" id="' +id +'"><td>' +$(this).find("h2").text() +"</td>" +
+                var html ='<tr class="tr rowItem" nameText="' +$(this).find("h2").text() +'" id="' +id +'"><td>' +$(this).find("h2").text() +"</td>" +
                     '<td ><div class="dataInput"><div><input value="1" onchange="change0(' +id +')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></div></td>' +
                     '<td class="center">' +$(this).find(".price-product").val() +
                     '<input type="hidden" class="price" value="' +$(this).find(".price-product").val() +'"></td>' +

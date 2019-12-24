@@ -32,7 +32,6 @@
                                         <th>Điểm tích lũy</th>
                                         <th>Email</th>
                                         <th></th>
-                                        <th></th>
                                     </thead>
                                     <tbody>
 
@@ -43,9 +42,7 @@
                                             <td>{{$list->phone}}</td>
                                             <td>{{$list->point}}</td>
                                             <td>{{$list->email}}</td>
-                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
-                                            </td>
-                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
+                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Sửa</a>
                                             </td>
                                         </tr>
                                         @endforeach

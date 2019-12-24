@@ -42,7 +42,7 @@
                                             <td>{{$list->name}}</td>
                                             <td>{{$list->amount}}</td>
                                             <td>{{$list->calculation_unit}}</td>
-                                            <td><button type="button" class="btn btn-secondary">Secondary</button></td>
+                                            <td><button onclick="showModal({{$list->id}})" type="button" class="btn btn-secondary">Kiểm kê</button></td>
                                             <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                             </td>
                                             <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
@@ -62,7 +62,33 @@
     </body>
 
 </html>
+<div id="Modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Kiểm kê nguyên liệu</h4>
+      </div>
+      <div class="modal-body">
+        <form action="kiemke" method="POST" role="form">
+                        <div class="form-group">
+                            <label for="">Tên món:</label>
+                            <input type="text" class="form-control" placeholder="Tên món" name="name">
+                        </div>
+                        <input type="hidden" name="id_nguyen_lieu" >
+                        {!! csrf_field() !!}
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script language='javascript'>
+
 $('.table').DataTable({
                 "language": {
                     "lengthMenu": "Hiện _MENU_ cột",
@@ -79,4 +105,8 @@ $('.table').DataTable({
                     },
                 }
             });
+function showModal(id){
+    $("#id_nguyen_lieu")val(id);
+    $('#Modal').modal('show');
+}
 </script>

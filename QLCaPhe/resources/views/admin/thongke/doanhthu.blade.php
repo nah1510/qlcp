@@ -113,7 +113,7 @@ function showModal(id){
             $.each(data, function(key, value) {
                 var html = '<tr>' +
                     '<th scope="row">' + i + '</th>' +
-                    '<td>'+value['sanpham']+'</td>' +
+                    '<td>'+value['data']['sanpham']+'</td>' +
                     '<td>'+value['data']['unit_price']+'</td>' +
                     '<td>'+value['data']['amount']+'</td>' +
                     '<td>'+value['data']['price']+'</td>' +
