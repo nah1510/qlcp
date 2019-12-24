@@ -49,9 +49,9 @@ class AjaxController extends Controller
     public function list_san_pham(Request $request) {
         $array=array();
         if($request->id==0)
-            $sanpham = SanPham::all();
+            $sanpham = SanPham::where('status','=',1 )->get();
         else
-            $sanpham = SanPham::where('category','=',$request->id )->get();      
+            $sanpham = SanPham::where('category','=',$request->id )->where('status','=',1 )->get();      
         foreach ($sanpham as $key => $value) {
             $array_onece=array(
                 "id"=>$value['id'],

@@ -21,6 +21,11 @@
                                     {{session('message')}}
                                 </div>
                                 @endif
+                                @if(session('fail'))
+                                <div class="alert alert-danger">
+                                    {{session('fail')}}
+                                </div>
+                                @endif
                                 <h4 class="card-title">Nguyên liệu</h4>
                                 <a class="btn btn-primary" href="add">Thêm Nguyên Liệu</a>
                                 <p class="card-category">Danh sách Nguyên Liệu</p>
@@ -30,7 +35,7 @@
                                         <th>Tên</th>
                                         <th>Số lượng tồn</th>
                                         <th>Đơn vị tính</th>
-                                        <th>Email</th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </thead>
@@ -42,10 +47,10 @@
                                             <td>{{$list->name}}</td>
                                             <td>{{$list->amount}}</td>
                                             <td>{{$list->calculation_unit}}</td>
-                                            <td><button onclick="showModal({{$list->id}})" type="button" class="btn btn-secondary">Kiểm kê</button></td>
-                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
+                                            <td><button onclick="showModal({{$list->id}})"  class="btn btn-secondary">Kiểm kê</button></td>
+                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Sửa</a>
                                             </td>
-                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
+                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Xóa</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -72,10 +77,17 @@
       <div class="modal-body">
         <form action="kiemke" method="POST" role="form">
                         <div class="form-group">
-                            <label for="">Tên món:</label>
-                            <input type="text" class="form-control" placeholder="Tên món" name="name">
+                            <label>Hành động:</label>
+                            <select class="form-control" name="type">
+                                <option value="1">Kiểm kê</option>
+                                <option value="0">Nhập hàng</option>
+                            </select>
                         </div>
-                        <input type="hidden" name="id_nguyen_lieu" >
+                        <div class="form-group">
+                            <label for="">Số lượng</label>
+                            <input type="number" class="form-control" placeholder="Số lượng" name="change" min="0" required>
+                        </div>
+                        <input type="hidden" id="id_nguyen_lieu" name="id" >
                         {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
@@ -106,7 +118,7 @@ $('.table').DataTable({
                 }
             });
 function showModal(id){
-    $("#id_nguyen_lieu")val(id);
+    $("#id_nguyen_lieu").val(id);
     $('#Modal').modal('show');
 }
 </script>

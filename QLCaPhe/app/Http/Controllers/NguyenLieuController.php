@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\NguyenLieu;
+use App\NKNguyenLieu;
 use Illuminate\Http\Request;
 
 class NguyenLieuController extends Controller
@@ -53,6 +54,29 @@ class NguyenLieuController extends Controller
     {   
         $nguyenlieu = NguyenLieu::find($id);
         $nguyenlieu->delete();
-        return redirect("nguyenlieu")->with('message','Xóa thành công!');
+        return redirect("nguyenlieu/list")->with('message','Xóa thành công!');
+    }
+
+    public function postKiemKe(Request $request){
+        
+        $nguyenlieu = NguyenLieu::find($request->id);
+        $NKNguyenLieu = new NKNguyenLieu;
+        if($request->type == 0)
+        {
+            $nguyenlieu->amount = $nguyenlieu->amount + $request->change;
+            $NKNguyenLieu->change_amount = $request->change;       
+        }
+        else{
+            if($nguyenlieu->amount < $request->change)
+                return redirect()->back()->with('fail','Số lượng tồn sau khi kiểm kê không được lớn hơn số lượng tồn trước đó!');
+            $NKNguyenLieu->change_amount =$nguyenlieu->amount - $request->change;
+            $nguyenlieu->amount = $request->change;
+        }
+        $nguyenlieu->save();
+        $NKNguyenLieu->type = $request->type;
+        $NKNguyenLieu->amount = $nguyenlieu->amount;
+        $NKNguyenLieu->nguyenlieu = $nguyenlieu->id;
+        $NKNguyenLieu->save();
+        return redirect()->back()->with('message','Thêm thành công!');
     }
 }

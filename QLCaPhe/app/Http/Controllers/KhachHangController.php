@@ -40,7 +40,7 @@ class KhachHangController extends Controller
         $khachhang->phone = $request->phone;
         $khachhang->point = 0;
         $khachhang->save();
-        return redirect('khachhang/add')->with('message','Thêm thành công!');
+        return redirect()->back()->with('message','Thêm thành công!');
     }
 
     public function postEdit(Request $request)

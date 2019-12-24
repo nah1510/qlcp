@@ -11,6 +11,7 @@
             <!-- <a class="btn btn-primary" href="/{{ url('/logout') }}">Đăng xuất</a> -->
             <div class="menu">
                 <div class="menu-virtual"></div>
+                @if (Auth::user()->role === "cashier")
                 <a href="/nhanvien/profile">
                     <div class="menu-item firstchild">
                         <div class="menu-item-icon">
@@ -31,6 +32,8 @@
                         </div>
                     </div>
                 </a>
+                @endif
+
                 <a href="/logout" style="color: inherit; text-decoration: none;">
                     <div class="menu-item">
 

@@ -29,6 +29,8 @@ class DangNhapController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
             if( Auth::attempt(['email' => $request->email, 'password' =>$request->password])) {
+
+                
                 return redirect()->intended('/login');
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Thông tin đăng nhập không đúng']);

@@ -4,4 +4,4 @@ $(function() {
         // $(".menu").hide();
     });
 });
-nameuser = document.getElementsByClassName('.User-name').innerText();
+

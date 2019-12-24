@@ -34,7 +34,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 Route::get('/nguyenlieu', function () {
-    return redirect('sanpham/list');
+    return redirect('nguyenlieu/list');
 });
 Route::group(['prefix'=>'nguyenlieu','middleware'=>'CaPheLogin'],function(){
     Route::get('list','NguyenLieuController@getList');
@@ -42,6 +42,7 @@ Route::group(['prefix'=>'nguyenlieu','middleware'=>'CaPheLogin'],function(){
     Route::post('edit','NguyenLieuController@postEdit');
     Route::get('add','NguyenLieuController@Add');
     Route::post('add','NguyenLieuController@postAdd');
+    Route::post('kiemke','NguyenLieuController@postKiemKe');
     Route::get('delete/{id}','NguyenLieuController@Delete');
 });
 Route::get('/sanpham', function () {
