@@ -26,7 +26,7 @@
                                 <legend>Loại sản phẩm</legend>
                                 <div class="form-group">
                                     <label for="">Loại Sản Phẩm</label>
-                                    <input type="text" class="form-control" placeholder="" name="name" value="">
+                                    <input type="text" class="form-control" placeholder="" name="name" value="" required >
                                 </div>
 
                                 {!! csrf_field() !!}

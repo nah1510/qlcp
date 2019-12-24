@@ -17,12 +17,12 @@
                         <legend>Nguyên liệu</legend>
                         <div class="form-group">
                             <label for="">Tên nguyên liệu:</label>
-                            <input type="text" class="form-control" placeholder="Tên nguyên liệu" name="name" value="">
+                            <input type="text" class="form-control" placeholder="Tên nguyên liệu" name="name" value="" required >
                         </div>
                         <div class="form-group">
                             <label for="">Đơn vị tính:</label>
                             <input type="number " class="form-control" placeholder="Đơn vị tính"
-                                name="calculation_unit" value="">
+                                name="calculation_unit" value="" required >
                         </div>
                         {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary">Lưu</button>

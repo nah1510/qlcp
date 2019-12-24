@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="">Tên món:</label>
                             <input type="text" class="form-control" placeholder="Tên món" name="name"
-                                value="{{$loaisanpham->name}}">
+                                value="{{$loaisanpham->name}}" required >
                         </div>
                         <input type="hidden" name="id" value="{{$loaisanpham->id}}">
                         {!! csrf_field() !!}

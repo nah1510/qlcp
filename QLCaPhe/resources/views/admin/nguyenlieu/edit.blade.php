@@ -15,12 +15,12 @@
                         <legend>Nguyên liệu</legend>
                         <div class="form-group">
                             <label for="">Tên nguyên liệu:</label>
-                            <input type="text" class="form-control" placeholder="Tên nguyên liệu" name="name" value="{{$nguyenlieu->name}}">
+                            <input type="text" class="form-control" placeholder="Tên nguyên liệu" name="name" value="{{$nguyenlieu->name}}"required >
                         </div>
                         <div class="form-group">
                             <label for="">Đơn vị tính:</label>
                             <input type="number " class="form-control" placeholder="Đơn vị tính"
-                                name="calculation_unit" value="{{$nguyenlieu->calculation_unit}}">
+                                name="calculation_unit" value="{{$nguyenlieu->calculation_unit}}"required >
                         </div>
                             <input type="hidden" name="id" value="{{$nguyenlieu->id}}">
                             {!! csrf_field() !!}

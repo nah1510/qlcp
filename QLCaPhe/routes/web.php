@@ -41,7 +41,7 @@ Route::group(['prefix'=>'nguyenlieu','middleware'=>'CaPheLogin'],function(){
     Route::post('add','NguyenLieuController@postAdd');
     Route::post('kiemke','NguyenLieuController@postKiemKe');
     Route::get('delete/{id}','NguyenLieuController@Delete');
-    Route::get('thongke','NguyenLieuController@getThongKe');
+    Route::post('ajax_thong_ke_nl','NguyenLieuController@postThongKe');
 });
 Route::get('/sanpham', function () {
     return redirect('sanpham/list');
@@ -108,7 +108,12 @@ Route::post('ajax_save_bill','AjaxController@save_bill');
 Route::post('ajax_list_san_pham','AjaxController@list_san_pham');
 Route::post('ajax_find_customer','AjaxController@find_customer');
 Route::post('ajax_check_email','DangNhapController@CheckEmail');
-Route::get('thongke','CaPheController@ThongKeIndex')->middleware('CaPheLogin');
+Route::get('thongkedt',function(){
+    return view('admin.thongke.doanhthu');
+})->middleware('CaPheLogin');
+Route::get('thongkenl',function(){
+    return view('admin.thongke.nguyenlieu');
+})->middleware('CaPheLogin');
 
 Route::post('ajax_thong_ke','AjaxController@thong_ke');
 Route::post('ajax_CT_hoa_don','AjaxController@CT_hoa_don');

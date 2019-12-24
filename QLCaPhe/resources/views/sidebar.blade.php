@@ -40,7 +40,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link menu" href="#">
-                    <i class="fas fa-donate"></i>
+                    <i class="fas fa-glass-cheers"></i>
                     <p>Giảm giá</p>
                     <input type="hidden" value="{{ url('/giamgia')}}">
                 </a>
@@ -75,10 +75,10 @@
                 </div>
             </li>
             <li class="nav-item ">
-                <a class="nav-link menu" href="{{ url('/thongke')}}">
+                <a class="nav-link menu" href="{{ url('/thongkedt')}}">
                     <i class="fas fa-chart-bar"></i>
                     <p>Thống kê doanh thu</p>
-                    <input type="hidden" value="{{ url('/thongke')}}">
+                    <input type="hidden" value="{{ url('/thongkedt')}}">
                 </a>
             </li>
             <li class="nav-item ">

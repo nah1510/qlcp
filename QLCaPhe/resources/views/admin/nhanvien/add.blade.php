@@ -21,26 +21,26 @@
                     <legend>Nhân viên</legend>
                     <div class="form-group">
                         <label for="">Họ và tên:</label>
-                        <input type="text" class="form-control" placeholder="Họ và tên" name="name" value="">
+                        <input type="text" class="form-control" placeholder="Họ và tên" name="name" value=""required >
                     </div>
                     <div class="form-group">
                         <label for="">Email:</label>
-                        <input type="text" class="form-control" placeholder="Email" name="email" value="">
+                        <input type="text" class="form-control" placeholder="Email" name="email" value=""required >
                     </div>
                     <div class="form-group">
                         <label for="">CMND:</label>
                         <input type="number " class="form-control" placeholder="Chứng minh nhân dân"
-                            name="identity_card_number" value="">
+                            name="identity_card_number" value=""required >
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại:</label>
                         <input type="number " class="form-control" placeholder="Số điện thoại"
-                            name="phone" value="">
+                            name="phone" value=""required >
                     </div>
                     <div class="form-group">
                         <label for="">Lương cơ bản:</label>
                         <input type="number " class="form-control" placeholder="Lương cơ bản"
-                            name="salary" value="">
+                            name="salary" value=""required >
                     </div>
                         <input type="hidden" name="role" value="cashier"  class="custom-control-input" >
                     {!! csrf_field() !!}

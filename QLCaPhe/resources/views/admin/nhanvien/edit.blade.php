@@ -26,30 +26,30 @@
                             <div class="form-group">
                                 <label for="">Họ và tên:</label>
                                 <input type="text" class="form-control" placeholder="Họ và tên" name="name"
-                                    value="{{$nhanvien->name}}">
+                                    value="{{$nhanvien->name}}"required >
                             </div>
                             <div class="form-group">
                                 <label for="">Email:</label>
                                 <input type="text" class="form-control" placeholder="Email" name="email"
-                                    value="{{$nhanvien->email}}">
+                                    value="{{$nhanvien->email}}"required >
                             </div>
                             <div class="form-group">
                                 <label for="">CMND:</label>
                                 <input type="number" class="form-control" placeholder="Chứng minh nhân dân"
-                                    name="identity_card_number" value="{{$nhanvien->identity_card_number}}">
+                                    name="identity_card_number" value="{{$nhanvien->identity_card_number}}"required >
                             </div>
                             <div class="form-group">
                                 <label for="">Số điện thoại:</label>
                                 <input type="number " class="form-control" placeholder="Số điện thoại"
-                                    name="phone" value="{{$nhanvien->phone}}">
+                                    name="phone" value="{{$nhanvien->phone}}"required >
                             </div>
                             <div class="form-group">
                                 <label for="">Lương cơ bản:</label>
                                 <input type="number " class="form-control" placeholder="Lương cơ bản"
-                                    name="salary" value="{{$nhanvien->salary}}">
+                                    name="salary" value="{{$nhanvien->salary}}"required >
                             </div>
                                 <input type="hidden" name="role" value="cashier"   class="custom-control-input" >
-                            <input type="hidden" name="id" value="{{$nhanvien->id}}">
+                            <input type="hidden" name="id" value="{{$nhanvien->id}}"required >
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-primary">Lưu</button>
                         </form>

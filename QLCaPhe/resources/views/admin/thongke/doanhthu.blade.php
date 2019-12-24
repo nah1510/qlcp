@@ -129,7 +129,7 @@ function showModal(id){
 function loadbytime() {
     from = $("#from").val();
     to = $("#to").val();
-    url = "{{ url('/thongke')}}/?from="+from+"&to="+to;
+    url = "{{ url('/thongkedt')}}/?from="+from+"&to="+to;
     window.location.replace(url);
 }
 

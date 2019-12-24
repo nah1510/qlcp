@@ -79,4 +79,27 @@ class NguyenLieuController extends Controller
         $NKNguyenLieu->save();
         return redirect()->back()->with('message','Thêm thành công!');
     }
+
+    public function postThongKe(Request $request)
+    {
+        $array=array();
+        $from = $request->from;
+        $to = $request->to;
+        $nguyenlieu = NguyenLieu::all();  
+        
+        foreach ($nguyenlieu as $key => $value) {
+            $import = NKNguyenLieu::where('nguyenlieu', '=', $value->id)
+                    ->where('type', '=', 0)->whereBetween('created_at',[$from, $to] )->sum('amount');
+            $sub = NKNguyenLieu::where('nguyenlieu', '=', $value->id)
+                    ->where('type', '=', 1)->whereBetween('created_at',[$from, $to] )->sum('amount');
+            $array_onece=array(
+                "data"=>$value,
+                "import"=>$import,    
+                "sub"=>$sub,
+            );
+            array_push($array,$array_onece);
+        }
+        echo json_encode($array);
+    }
+    
 }
