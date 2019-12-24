@@ -38,10 +38,7 @@
                         <input type="number " class="form-control" placeholder="Lương cơ bản"
                             name="salary" value="">
                     </div>
-                    <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="role" value="cashier"  class="custom-control-input" >
-                                <label class="custom-control-label" >Chức năng bán hàng</label>
-                            </div>
+                                <input type="hidden" name="role" value="cashier"  class="custom-control-input" >
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary">Lưu</button>
                 </form>

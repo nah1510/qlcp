@@ -73,4 +73,20 @@ class GiamGiaController extends Controller
         $giamgia->delete();
         return redirect("giamgia/list")->with('message','Xóa thành công!');
     }
+
+    public function CheckCode(Request $request)
+    {
+        $giamgia = GiamGia::where('code','=',$request->code )->get();  
+        if(count($giamgia)==0)    
+        {
+            echo "false";
+            exit;
+        }
+        $giamgia = GiamGia::where('code','=',$request->code )->first();  
+        if($giamgia->status ==0){
+            echo "false";
+            exit;
+        }
+        echo json_encode($giamgia);
+    }
 }

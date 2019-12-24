@@ -36,11 +36,6 @@
                         <p>Thêm</p>
                         <input type="hidden" value="{{ url('/nguyenlieu/add')}}">
                     </a>
-                    <a class="nav-link" href="{{ url('/nguyenlieu/donvitinh')}}">
-                        <i class="fas fa-plus-circle"></i>
-                        <p>Dơn vị</p>
-                        <input type="hidden" value="{{ url('/nguyenlieu/donvitinh')}}">
-                    </a>
                 </div>
             </li>
             <li class="nav-item">

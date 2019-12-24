@@ -28,52 +28,44 @@ function change0(id) {
 function total_bill() {
     var total_bill = 0;
     $(".tr").each(function() {
-        total_bill +=
-            Number(
-                $(this)
-                    .find(".number-input")
-                    .val()
-            ) *
-            Number(
-                $(this)
-                    .find(".price")
-                    .val()
-            );
+        total_bill +=Number($(this).find(".number-input").val()) *Number($(this).find(".price").val());
     });
+    $("#initial_price").val(total_bill);
+    var discount = 0;
+    if( $("#code_status").val()!=""&& $("#code_min_bill").val()<total_bill){
+        if($("#code_type").val()==1)
+            {
+                discount = total_bill * $("#code_discount").val() /100;
+                if($("#code_max_discount").val() <discount)
+                    discount =$("#code_max_discount").val();
+            }
+        else{
+            discount = $("#code_discount").val();
+            if(discount > total_bill)
+                discount = total_bill;
+        }
+        $("#discount").val(discount);
+        total_bill = total_bill - discount;
+    }
     $("#total_bill").val(total_bill);
 }
 
 function save_db() {
-    if ($("#total_bill").val() == 0) {
+    if ($("#initial_price").val() == 0) {
         alert("Not create bill");
         return;
     }
     var HoaDon = [];
     $(".tr").each(function() {
-        var total =
-            Number(
-                $(this)
-                    .find(".number-input")
-                    .val()
-            ) *
-            Number(
-                $(this)
-                    .find(".price")
-                    .val()
-            );
+        var total =Number($(this).find(".number-input").val()) *Number($(this).find(".price").val());
         var CT_HoaDon = [
             $(this).attr("id"),
-            $(this)
-                .find(".price")
-                .val(),
-            $(this)
-                .find(".number-input")
-                .val(),
+            $(this).find(".price").val(),
+            $(this).find(".number-input").val(),
             total
         ];
         HoaDon.push(CT_HoaDon);
     });
-    alert($("#customer_id").val());
     $.ajax({
         type: "POST",
         url: "ajax_save_bill",
@@ -81,7 +73,9 @@ function save_db() {
             _token: $("#_token").val(),
             total_bill: $("#total_bill").val(),
             bill: HoaDon,
-            customer_id: $("#customer_id").val()
+            customer_id: $("#customer_id").val(),
+            initial_price :$("#initial_price").val(),
+            discount :$("#discount").val(),
         },
         success: function(msg) {
             alert("Đã thêm thành công " + msg);
@@ -142,26 +136,10 @@ function list_san_pham(id) {
                     total_bill();
                     return;
                 }
-                var html =
-                    '<tr class="tr rowItem" id="' +
-                    id +
-                    '"><td>' +
-                    $(this)
-                        .find("h2")
-                        .text() +
-                    "</td>" +
-                    '<td ><div class="dataInput"><div><input value="1" onchange="change0(' +
-                    id +
-                    ')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></div></td>' +
-                    '<td class="center">' +
-                    $(this)
-                        .find(".price-product")
-                        .val() +
-                    '<input type="hidden" class="price" value="' +
-                    $(this)
-                        .find(".price-product")
-                        .val() +
-                    '"></td>' +
+                var html ='<tr class="tr rowItem" id="' +id +'"><td>' +$(this).find("h2").text() +"</td>" +
+                    '<td ><div class="dataInput"><div><input value="1" onchange="change0(' +id +')" onKeyPress="return isNumberKey(event)" class="number-input numberInput form-controll" type="text" min="1" max="99" maxlength="2"></div><div><button class="plus btn btn-Plus">+</button><button class="sub btn btn-Sub">-</button></div></div></td>' +
+                    '<td class="center">' +$(this).find(".price-product").val() +
+                    '<input type="hidden" class="price" value="' +$(this).find(".price-product").val() +'"></td>' +
                     '<td><button class="btnD btn-delete">Hủy</button></td></tr>';
                 $(".table-body").append(html);
                 $(".btn-delete").on("click", function() {
@@ -263,5 +241,34 @@ function khachhang() {
                 $("#customer_id").val(data["id"]);
             }
         }
+    });
+}
+function check_code() {
+    if ($("#code").val() == "") return;
+    $.ajax({
+        type: "POST",
+        url: "giamgia/check",
+        data: {
+            _token: $("#_token").val(),
+            code: $("#code").val()
+        },
+        success: function(data) {
+            if (data == "false") {
+                $("#code_status").val("");
+                $(".code_check").show();
+                $(".code_check_true").hide();
+            } else {
+                $(".code_check").hide();
+                $(".code_check_true").show();
+                $("#code_status").val("true");
+                data = JSON.parse(data);
+                $("#code_min_bill").val(data["min_bill"]);
+                $("#code_type").val(data["type"]);
+                $("#code_max_discount").val(data["max_discount"]);
+                $("#code_discount").val(data["discount"]);
+            }
+            total_bill();
+        }
+        
     });
 }

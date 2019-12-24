@@ -78,7 +78,18 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="wrapSum">
+                    <div class="Sum">
+                        <div class="Sum-item"><input type="text" id="code" autocomplete='off'
+                                class="form-controll form-controll-sum " 
+                                placeholder="Nhập mã giảm giá"><img src='/upload/icon/discount.svg' alt='icon'
+                                class="moneyIcon"></div>
+                    </div>
+                    <div class="Print"><button onclick="check_code()" class="CodeChecking">Kiểm tra</button></div>
+                   
+                </div>
+                <span class="code_check" style="color:red;margin-left: 54px;display: none;">Không áp dụng</span>
+                <span class="code_check_true" style="color:green;margin-left: 54px;display: none;">Mã giảm giá áp dụng</span>
                 <div class="wrapSum">
                     <div class="Sum">
                         <div class="Sum-item"><input type="text" id="total_bill" autocomplete='off'
@@ -93,7 +104,14 @@
 
     </section>
     </div>
+    <input type="hidden" id="code_status">
     <input type="hidden" id="customer_id">
+    <input type="hidden" id="code_min_bill">
+    <input type="hidden" id="code_type">
+    <input type="hidden" id="code_max_discount">
+    <input type="hidden" id="code_discount">
+    <input type="hidden" id="discount" value="0">
+    <input type="hidden" id="initial_price">
 </body>
 
 </html>

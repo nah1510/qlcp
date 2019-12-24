@@ -21,28 +21,28 @@
                                     {{session('message')}}
                                 </div>
                                 @endif
-                                <h4 class="card-title">Khách hàng</h4>
-                                <a class="btn btn-primary" href="add">Thêm Khách Hàng</a>
-                                <p class="card-category">Danh sách khách hàng</p>
+                                <h4 class="card-title">Nguyên liệu</h4>
+                                <a class="btn btn-primary" href="add">Thêm Nguyên Liệu</a>
+                                <p class="card-category">Danh sách Nguyên Liệu</p>
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <th>ID</th>
                                         <th>Tên</th>
-                                        <th>Điện thoai</th>
-                                        <th>Điểm tích lũy</th>
+                                        <th>Số lượng tồn</th>
+                                        <th>Đơn vị tính</th>
                                         <th>Email</th>
                                         <th></th>
                                         <th></th>
                                     </thead>
                                     <tbody>
 
-                                        @foreach($khachhang as $list)
+                                        @foreach($nguyenlieu as $list)
                                         <tr>
                                             <td>{{$list->id}}</td>
                                             <td>{{$list->name}}</td>
-                                            <td>{{$list->phone}}</td>
-                                            <td>{{$list->point}}</td>
-                                            <td>{{$list->email}}</td>
+                                            <td>{{$list->amount}}</td>
+                                            <td>{{$list->calculation_unit}}</td>
+                                            
                                             <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                             </td>
                                             <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
