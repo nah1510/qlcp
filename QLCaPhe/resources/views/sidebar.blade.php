@@ -40,7 +40,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link menu" href="#">
-                    <i class="fas fa-glass-cheers"></i>
+                    <i class="fas fa-donate"></i>
                     <p>Giảm giá</p>
                     <input type="hidden" value="{{ url('/giamgia')}}">
                 </a>

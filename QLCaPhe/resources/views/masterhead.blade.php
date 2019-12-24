@@ -4,7 +4,7 @@
     <div class="header-right">
         <!-- <div class="Notification">
             <div class="Notification-icon"><img src="/upload/icon/notification.svg"></div>
-        </div> -->  
+        </div> -->
         <div class="User masterhead-User">
             <span class="User-logo"><img src="/upload/icon/man-user.svg" alt="user" /></span>
             <span class="User-name">Chào {{Auth::user()->name}} !</span>
@@ -24,7 +24,7 @@
                 <a href="/banhang">
                     <div class="menu-item firstchild">
                         <div class="menu-item-icon">
-                            <img src="/upload/icon/target.svg" alt="thông tin">
+                            <img src="/upload/icon/sellproduct.svg" alt="thông tin">
                         </div>
                         <div class="menu-item-content">
                             Bán hàng
