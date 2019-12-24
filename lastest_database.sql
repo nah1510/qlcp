@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th12 24, 2019 lúc 06:46 PM
--- Phiên bản máy phục vụ: 5.7.26
--- Phiên bản PHP: 7.2.18
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 24, 2019 lúc 08:00 PM
+-- Phiên bản máy phục vụ: 10.1.38-MariaDB
+-- Phiên bản PHP: 7.2.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `cp_db`
+-- Cơ sở dữ liệu: `caphe_db`
 --
 
 -- --------------------------------------------------------
@@ -28,18 +28,15 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `bonus`
 --
 
-DROP TABLE IF EXISTS `bonus`;
-CREATE TABLE IF NOT EXISTS `bonus` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bonus` (
+  `id` int(11) NOT NULL,
   `money` int(11) NOT NULL,
   `info` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `bonus` int(1) NOT NULL,
   `staff` int(11) NOT NULL,
   `month` varchar(7) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `TP_NV` (`staff`)
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -48,26 +45,16 @@ CREATE TABLE IF NOT EXISTS `bonus` (
 -- Cấu trúc bảng cho bảng `ct_hoadon`
 --
 
-DROP TABLE IF EXISTS `ct_hoadon`;
-CREATE TABLE IF NOT EXISTS `ct_hoadon` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ct_hoadon` (
+  `id` int(11) NOT NULL,
   `hoadon` int(11) NOT NULL,
-  `sanpham` int(50) NOT NULL,
+  `sanpham` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `unit_price` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `hoadon` (`hoadon`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `ct_hoadon`
---
-
-INSERT INTO `ct_hoadon` (`id`, `hoadon`, `sanpham`, `unit_price`, `amount`, `price`, `updated_at`, `created_at`) VALUES
-(71, 76, 12312, 123213, 5, 616065, '2019-12-24 11:05:37', '2019-12-24 11:05:37');
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -75,27 +62,16 @@ INSERT INTO `ct_hoadon` (`id`, `hoadon`, `sanpham`, `unit_price`, `amount`, `pri
 -- Cấu trúc bảng cho bảng `hoadon`
 --
 
-DROP TABLE IF EXISTS `hoadon`;
-CREATE TABLE IF NOT EXISTS `hoadon` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hoadon` (
+  `id` int(11) NOT NULL,
   `khachhang` int(11) DEFAULT NULL,
   `nhanvien` int(11) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `initial_price` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `HD_KH` (`khachhang`),
-  KEY `HD_NV` (`nhanvien`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `hoadon`
---
-
-INSERT INTO `hoadon` (`id`, `khachhang`, `nhanvien`, `price`, `initial_price`, `discount`, `updated_at`, `created_at`) VALUES
-(76, NULL, 3, 616065, 616065, 0, '2019-12-24 11:05:37', '2019-12-24 11:05:37');
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -103,17 +79,15 @@ INSERT INTO `hoadon` (`id`, `khachhang`, `nhanvien`, `price`, `initial_price`, `
 -- Cấu trúc bảng cho bảng `khachhang`
 --
 
-DROP TABLE IF EXISTS `khachhang`;
-CREATE TABLE IF NOT EXISTS `khachhang` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `khachhang` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `phone` varchar(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `point` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachhang`
@@ -132,14 +106,12 @@ INSERT INTO `khachhang` (`id`, `name`, `phone`, `email`, `point`, `updated_at`, 
 -- Cấu trúc bảng cho bảng `loaisanpham`
 --
 
-DROP TABLE IF EXISTS `loaisanpham`;
-CREATE TABLE IF NOT EXISTS `loaisanpham` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `loaisanpham` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET utf16 COLLATE utf16_vietnamese_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaisanpham`
@@ -158,9 +130,8 @@ INSERT INTO `loaisanpham` (`id`, `name`, `updated_at`, `created_at`) VALUES
 -- Cấu trúc bảng cho bảng `magiamgia`
 --
 
-DROP TABLE IF EXISTS `magiamgia`;
-CREATE TABLE IF NOT EXISTS `magiamgia` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `magiamgia` (
+  `id` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
   `type` varchar(100) NOT NULL,
   `min_bill` int(11) DEFAULT NULL,
@@ -168,10 +139,8 @@ CREATE TABLE IF NOT EXISTS `magiamgia` (
   `discount` int(11) NOT NULL,
   `status` int(1) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `magiamgia`
@@ -189,17 +158,14 @@ INSERT INTO `magiamgia` (`id`, `code`, `type`, `min_bill`, `max_discount`, `disc
 -- Cấu trúc bảng cho bảng `ngaynghi`
 --
 
-DROP TABLE IF EXISTS `ngaynghi`;
-CREATE TABLE IF NOT EXISTS `ngaynghi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ngaynghi` (
+  `id` int(11) NOT NULL,
   `date` date NOT NULL,
   `month` varchar(7) NOT NULL,
   `nhanvien` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `NN_NV` (`nhanvien`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `ngaynghi`
@@ -230,16 +196,14 @@ INSERT INTO `ngaynghi` (`id`, `date`, `month`, `nhanvien`, `updated_at`, `create
 -- Cấu trúc bảng cho bảng `nguyenlieu`
 --
 
-DROP TABLE IF EXISTS `nguyenlieu`;
-CREATE TABLE IF NOT EXISTS `nguyenlieu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nguyenlieu` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `amount` int(11) NOT NULL,
   `calculation_unit` varchar(20) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguyenlieu`
@@ -267,9 +231,8 @@ INSERT INTO `nguyenlieu` (`id`, `name`, `amount`, `calculation_unit`, `updated_a
 -- Cấu trúc bảng cho bảng `nhanvien`
 --
 
-DROP TABLE IF EXISTS `nhanvien`;
-CREATE TABLE IF NOT EXISTS `nhanvien` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nhanvien` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `email` varchar(100) NOT NULL,
   `phone` varchar(11) NOT NULL,
@@ -280,10 +243,8 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   `role` varchar(20) DEFAULT NULL,
   `salary` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `nhanvien`
@@ -302,25 +263,15 @@ INSERT INTO `nhanvien` (`id`, `name`, `email`, `phone`, `image`, `password`, `id
 -- Cấu trúc bảng cho bảng `nk_nguyenlieu`
 --
 
-DROP TABLE IF EXISTS `nk_nguyenlieu`;
-CREATE TABLE IF NOT EXISTS `nk_nguyenlieu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nk_nguyenlieu` (
+  `id` int(11) NOT NULL,
   `type` int(1) NOT NULL,
   `nguyenlieu` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `change_amount` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `NK_NL` (`nguyenlieu`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `nk_nguyenlieu`
---
-
-INSERT INTO `nk_nguyenlieu` (`id`, `type`, `nguyenlieu`, `amount`, `change_amount`, `updated_at`, `created_at`) VALUES
-(2, 0, 1, 10, 10, '2019-12-24 13:42:23', '2019-12-24 13:42:23');
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -328,19 +279,16 @@ INSERT INTO `nk_nguyenlieu` (`id`, `type`, `nguyenlieu`, `amount`, `change_amoun
 -- Cấu trúc bảng cho bảng `sanpham`
 --
 
-DROP TABLE IF EXISTS `sanpham`;
-CREATE TABLE IF NOT EXISTS `sanpham` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sanpham` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `price` int(11) NOT NULL,
   `status` int(1) NOT NULL,
   `category` int(11) NOT NULL,
   `image` varchar(256) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `loaisanpham_id` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
@@ -381,15 +329,13 @@ INSERT INTO `sanpham` (`id`, `name`, `price`, `status`, `category`, `image`, `up
 -- Cấu trúc bảng cho bảng `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` int(1) NOT NULL,
-  `activation_key` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `activation_key` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
@@ -397,6 +343,167 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `activation_key`) VALUES
 (1, 'nah151098@gmail.com', '123', 1, '');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `bonus`
+--
+ALTER TABLE `bonus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `TP_NV` (`staff`);
+
+--
+-- Chỉ mục cho bảng `ct_hoadon`
+--
+ALTER TABLE `ct_hoadon`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hoadon` (`hoadon`);
+
+--
+-- Chỉ mục cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `HD_KH` (`khachhang`),
+  ADD KEY `HD_NV` (`nhanvien`);
+
+--
+-- Chỉ mục cho bảng `khachhang`
+--
+ALTER TABLE `khachhang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `loaisanpham`
+--
+ALTER TABLE `loaisanpham`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `magiamgia`
+--
+ALTER TABLE `magiamgia`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Chỉ mục cho bảng `ngaynghi`
+--
+ALTER TABLE `ngaynghi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `NN_NV` (`nhanvien`);
+
+--
+-- Chỉ mục cho bảng `nguyenlieu`
+--
+ALTER TABLE `nguyenlieu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Chỉ mục cho bảng `nk_nguyenlieu`
+--
+ALTER TABLE `nk_nguyenlieu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `NK_NL` (`nguyenlieu`);
+
+--
+-- Chỉ mục cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `loaisanpham_id` (`category`);
+
+--
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `bonus`
+--
+ALTER TABLE `bonus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `ct_hoadon`
+--
+ALTER TABLE `ct_hoadon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
+-- AUTO_INCREMENT cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT cho bảng `khachhang`
+--
+ALTER TABLE `khachhang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `loaisanpham`
+--
+ALTER TABLE `loaisanpham`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `magiamgia`
+--
+ALTER TABLE `magiamgia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `ngaynghi`
+--
+ALTER TABLE `ngaynghi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+
+--
+-- AUTO_INCREMENT cho bảng `nguyenlieu`
+--
+ALTER TABLE `nguyenlieu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT cho bảng `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `nk_nguyenlieu`
+--
+ALTER TABLE `nk_nguyenlieu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

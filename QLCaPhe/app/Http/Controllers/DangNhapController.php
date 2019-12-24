@@ -16,7 +16,7 @@ class DangNhapController extends Controller
     public function login(){
     	if (Auth::check()) {
             if (Auth::user()->role === "admin")
-                return redirect()->intended('/thongke');
+                return redirect()->intended('/thongkedt');
                 return redirect()->intended('/banhang');
         }
     	return view('taikhoan.login');
@@ -41,7 +41,7 @@ class DangNhapController extends Controller
             if( Auth::attempt(['email' => $request->email, 'password' =>$request->password])) {
 
                 if (Auth::user()->role === "admin")
-                    return redirect()->intended('/thongke');
+                    return redirect()->intended('/thongkedt');
                     return redirect()->intended('/banhang');
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Thông tin đăng nhập không đúng']);

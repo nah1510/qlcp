@@ -14,7 +14,7 @@
                         {{session('message')}}
                     </div>
                     @endif
-                    <legend>Thống kê</legend>
+                    <legend>Doanh thu</legend>
                     <div class="form-group">
                         <label for="">Từ:</label>
                         <input class="form-control" type="datetime-local"
