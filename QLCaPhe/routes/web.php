@@ -41,6 +41,7 @@ Route::group(['prefix'=>'nguyenlieu','middleware'=>'CaPheLogin'],function(){
     Route::post('add','NguyenLieuController@postAdd');
     Route::post('kiemke','NguyenLieuController@postKiemKe');
     Route::get('delete/{id}','NguyenLieuController@Delete');
+    Route::get('thongke','NguyenLieuController@getThongKe');
 });
 Route::get('/sanpham', function () {
     return redirect('sanpham/list');
