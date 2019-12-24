@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('header')
-
 <body>
     @include('masterhead')
     <div class="wrapper">
@@ -11,6 +10,11 @@
                 @if(session('message'))
                 <div class="alert alert-success">
                     {{session('message')}}
+                </div>
+                @endif
+                @if(session('fail'))
+                <div class="alert alert-danger">
+                    {{session('fail')}}
                 </div>
                 @endif
                 <form action="add" method="POST" role="form">
@@ -38,7 +42,7 @@
                         <input type="number " class="form-control" placeholder="Lương cơ bản"
                             name="salary" value="">
                     </div>
-                                <input type="hidden" name="role" value="cashier"  class="custom-control-input" >
+                        <input type="hidden" name="role" value="cashier"  class="custom-control-input" >
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-primary">Lưu</button>
                 </form>

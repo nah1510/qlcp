@@ -37,18 +37,26 @@ class NhanVienController extends Controller
     {
         $nhanvien = new NhanVien;
         $nhanvien->name = $request->name;
+        $check =  NhanVien::where('email', $request->email)->count();
+        if($check!=0){
+            return redirect()->back()->with('fail','Đã tồn tại email!');;
+        }
         $nhanvien->email = $request->email;
         $nhanvien->identity_card_number = $request->identity_card_number;
         $nhanvien->salary = $request->salary;
         $nhanvien->role = $request->role;
         $nhanvien->phone = $request->phone;
+        $nhanvien->password  = bcrypt(123);
         $nhanvien->save();
         return redirect('nhanvien/add')->with('message','Thêm thành công!');
     }
 
     public function postEdit(Request $request)
     {   
-
+        $check =  NhanVien::where('email', $request->email)->count();
+        if($check!=0){
+            return redirect()->back()->with('fail','Đã tồn tại email!');;
+        }
         $nhanvien = NhanVien::find($request->id);
         $nhanvien->name = $request->name;
         $nhanvien->email = $request->email;

@@ -19,17 +19,17 @@
                     <div class="form-group">
                         <label for="">Tên khách hàng:</label>
                         <input type="text" class="form-control" placeholder="Tên khách hàng" name="name"
-                            value="{{$khachhang->name}}">
+                            value="{{$khachhang->name}}" required>
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại khách hàng:</label>
                         <input type="text" class="form-control" placeholder="Số điện thoại" name="phone"
-                            value="{{$khachhang->phone}}">
+                            value="{{$khachhang->phone}}"minlength="10" maxlength="10" required>
                     </div>
                     <div class="form-group">
                         <label for="">Email khách hàng</label>
                         <input type="email" class="form-control" placeholder="Email" name="email"
-                            value="{{$khachhang->email}}">
+                            value="{{$khachhang->email}}" required>
                     </div>
                     <div class="form-group">
                         <label for="">Điểm tích lũy</label>

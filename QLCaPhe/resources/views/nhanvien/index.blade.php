@@ -118,6 +118,26 @@
                     </form>
 
                 </div>
+                <div class="tab-pane" id="khachhang">
+                <form class="form" action="password" method="post" >
+                    {!! csrf_field() !!}
+                    <div class="form-group">
+                        <label for="">Tên khách hàng:</label>
+                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Số điện thoại khách hàng:</label>
+                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email khách hàng</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" value="">
+                    </div>
+                        <div class="col-xs-12" style="margin-top:20px;">
+                        <button class="btn btn-success" type="submit">Lưu</button>
+                        </div>
+                    </form>
+                </div>
                 <!--/tab-pane-->
                 <div class="tab-pane" id="salary">
 

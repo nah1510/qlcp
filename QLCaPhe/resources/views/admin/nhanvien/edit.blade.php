@@ -18,6 +18,11 @@
                                 {{session('message')}}
                             </div>
                             @endif
+                            @if(session('fail'))
+                            <div class="alert alert-danger">
+                                {{session('fail')}}
+                            </div>
+                            @endif
                             <div class="form-group">
                                 <label for="">Họ và tên:</label>
                                 <input type="text" class="form-control" placeholder="Họ và tên" name="name"
@@ -36,7 +41,7 @@
                             <div class="form-group">
                                 <label for="">Số điện thoại:</label>
                                 <input type="number " class="form-control" placeholder="Số điện thoại"
-                                    name="phone" value="{{$nhanvien->number}}">
+                                    name="phone" value="{{$nhanvien->phone}}">
                             </div>
                             <div class="form-group">
                                 <label for="">Lương cơ bản:</label>

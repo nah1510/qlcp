@@ -37,9 +37,9 @@
                                             <td>{{$list->name}}</td>
                                             <td>{{$list->price}} VND</td>
                                             <td>{{$list->status == '1' ? 'Sẵn sàng' : 'Hết'}}</td>
-                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
+                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Sửa</a>
                                             </td>
-                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
+                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Xóa</a>
                                             </td>
                                         </tr>
                                         @endforeach

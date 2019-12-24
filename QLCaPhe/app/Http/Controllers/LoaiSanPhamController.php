@@ -55,7 +55,7 @@ class LoaiSanPhamController extends Controller
     {   
 
         $loaisanpham = LoaiSanPham::find($id);
-        $sp=SanPham::where('loaisanpham', $id)->count();
+        $sp=SanPham::where('category', $id)->count();
         if($sp!=0)
         return redirect("loaisanpham/list")->with('error','Không thể xóa! Đã có sản phẩm có loại sản phẩm này.');
         else  {

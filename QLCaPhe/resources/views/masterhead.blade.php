@@ -11,13 +11,23 @@
             <!-- <a class="btn btn-primary" href="/{{ url('/logout') }}">Đăng xuất</a> -->
             <div class="menu">
                 <div class="menu-virtual"></div>
-                <a>
+                <a href="/nhanvien/profile">
                     <div class="menu-item firstchild">
                         <div class="menu-item-icon">
                             <img src="/upload/icon/target.svg" alt="thông tin">
                         </div>
                         <div class="menu-item-content">
                             Thông tin
+                        </div>
+                    </div>
+                </a>
+                <a href="/banhang">
+                    <div class="menu-item firstchild">
+                        <div class="menu-item-icon">
+                            <img src="/upload/icon/target.svg" alt="thông tin">
+                        </div>
+                        <div class="menu-item-content">
+                            Bán hàng
                         </div>
                     </div>
                 </a>

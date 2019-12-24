@@ -17,15 +17,15 @@
                     <legend>Sản phẩm</legend>
                     <div class="form-group">
                         <label for="">Tên khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="">
+                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="" required>
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="">
+                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="" minlength="10" maxlength="10" required >
                     </div>
                     <div class="form-group">
                         <label for="">Email khách hàng</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" value="">
+                        <input type="email" class="form-control" placeholder="Email" name="email" value="" required>
                     </div>
 
 
