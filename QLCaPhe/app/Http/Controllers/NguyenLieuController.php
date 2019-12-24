@@ -89,9 +89,9 @@ class NguyenLieuController extends Controller
         
         foreach ($nguyenlieu as $key => $value) {
             $import = NKNguyenLieu::where('nguyenlieu', '=', $value->id)
-                    ->where('type', '=', 0)->whereBetween('created_at',[$from, $to] )->sum('amount');
+                    ->where('type', '=', 0)->whereBetween('created_at',[$from, $to] )->sum('change_amount');
             $sub = NKNguyenLieu::where('nguyenlieu', '=', $value->id)
-                    ->where('type', '=', 1)->whereBetween('created_at',[$from, $to] )->sum('amount');
+                    ->where('type', '=', 1)->whereBetween('created_at',[$from, $to] )->sum('change_amount');
             $array_onece=array(
                 "data"=>$value,
                 "import"=>$import,    
@@ -100,6 +100,15 @@ class NguyenLieuController extends Controller
             array_push($array,$array_onece);
         }
         echo json_encode($array);
+    }
+    
+    public function postNK_Nguyen_Lieu(Request $request) {
+        $array=array();
+        $id = $request->id;
+        $from = $request->from;
+        $to = $request->to;
+        $NKNguyenLieu = NKNguyenLieu::where('nguyenlieu',$id )->whereBetween('created_at',[$from, $to] )->get();  
+        echo json_encode($NKNguyenLieu);
     }
     
 }

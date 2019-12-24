@@ -64,17 +64,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Nhật ký nguyên liệu</h4>
       </div>
       <div class="modal-body">
       <table class="table table-striped table-bordered" id="modal-table" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">Tên Món</th>
-                                <th scope="col">Đơn giá</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Hành động</th>
+                                <th scope="col">Lượng thay đổi</th>
+                                <th scope="col">Số lượng còn lại</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,19 +99,21 @@ function showModal(id){
         data: {
             _token: "{{ csrf_token() }}",
             id: id,
+            from: $("#from").val(),
+            to: $("#to").val(),
         },
         success: function(data) {
-            var i = 1;
             data = JSON.parse(data);
             $.each(data, function(key, value) {
+                var text = "Mua nguyên liệu";
+                if(value['type']==1)
+                    text ="Kiểm kê";
                 var html = '<tr>' +
-                    '<th scope="row">' + i + '</th>' +
-                    '<td>'+value['data']['sanpham']+'</td>' +
-                    '<td>'+value['data']['unit_price']+'</td>' +
-                    '<td>'+value['data']['amount']+'</td>' +
-                    '<td>'+value['data']['price']+'</td>' +
+                    '<td>'+value['created_at']+'</td>' +
+                    '<td>'+text+'</td>' +
+                    '<td>'+value['change_amount']+'</td>' +
+                    '<td>'+value['amount']+'</td>' +
                     '</tr>';
-                i++;
                 $("#modal-table tbody").append(html);
             });
         }
