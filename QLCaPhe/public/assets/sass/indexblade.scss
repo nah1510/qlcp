@@ -220,12 +220,15 @@ body {
     overflow-x: hidden;
     &-leftside {
         flex: 2;
+        margin: 0 auto;
         margin-top: $borderWidth;
+        max-width: 1000px;
     }
     &-rightside {
         flex: 1;
         margin: 0 10px;
         min-width: 370px;
+        max-width: 700px;
     }
 }
 // tổng tiền + xuất hóa đơn:

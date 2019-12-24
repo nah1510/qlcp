@@ -269,7 +269,9 @@ body {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
+  margin: 0 auto;
   margin-top: 5px;
+  max-width: 1000px;
 }
 
 .content-rightside {
@@ -278,6 +280,7 @@ body {
           flex: 1;
   margin: 0 10px;
   min-width: 370px;
+  max-width: 700px;
 }
 
 .wrapSum {
