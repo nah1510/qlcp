@@ -39,6 +39,24 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link menu" href="#">
+                    <i class="fas fa-glass-cheers"></i>
+                    <p>Giảm giá</p>
+                    <input type="hidden" value="{{ url('/giamgia')}}">
+                </a>
+                <div style="display:none" class="nav-child">
+                    <a class="nav-link" href="{{ url('/giamgia/list')}}">
+                        <i class="fas fa-list"></i>
+                        <p>Danh sách</p>
+                        <input type="hidden" value="{{ url('/giamgia/list')}}">
+                    </a><a class="nav-link" href="{{ url('/giamgia/add')}}">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Thêm</p>
+                        <input type="hidden" value="{{ url('/giamgia/add')}}">
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link menu">
                     <input type="hidden" value="{{ url('/khachhang')}}">
                     <i class="fas fa-users"></i>
@@ -55,13 +73,6 @@
                         <p>Thêm</p>
                     </a>
                 </div>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link menu" href="{{ url('/banhang')}}">
-                    <input type="hidden" value="{{ url('/banhang')}}">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <p>Bán hàng</p>
-                </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link menu" href="{{ url('/thongke')}}">
