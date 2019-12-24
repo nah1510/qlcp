@@ -80,7 +80,7 @@
                 </div>
                 <div class="wrapSum">
                     <div class="Sum">
-                        <div class="Sum-item"><input type="text" id="total_bill" autocomplete='off'
+                        <div class="Sum-item"><input type="text" id="check_code" autocomplete='off'
                                 class="form-controll form-controll-sum " name="total_bill"
                                 placeholder="Nhập mã giảm giá"><img src='/upload/icon/discount.svg' alt='icon'
                                 class="moneyIcon"></div>

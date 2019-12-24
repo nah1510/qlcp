@@ -49,7 +49,8 @@ $gradient-background: #9368e9;
             cursor: pointer;
             position: relative;
             top: 50%;
-            padding: 5px 16px;
+            height: fit-content;
+            padding: 4px 16px;
             border: 1.5px solid $hover-color;
             background-color: $normal-color;
             border-radius: 15px;
@@ -79,14 +80,14 @@ $gradient-background: #9368e9;
             //     }
             // }
             &-logo {
-                padding: 8px;
+                padding: 4px;
                 border: 1.5px solid $hover-color;
                 background-color: #ffffff;
                 border-radius: 50%;
 
                 img {
-                    width: 30px;
-                    height: 30px;
+                    width: 25px;
+                    height: 25px;
                 }
             }
             &-name {
@@ -99,6 +100,7 @@ $gradient-background: #9368e9;
                 font-size: 1.8em;
                 transition: color 0.3 ease;
                 height: fit-content;
+                font-size: 1.5em;
                 &:after {
                     content: "";
                     position: absolute;
