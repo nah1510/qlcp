@@ -42,7 +42,7 @@
                                             <td>{{$list->name}}</td>
                                             <td>{{$list->amount}}</td>
                                             <td>{{$list->calculation_unit}}</td>
-                                            
+                                            <td><button type="button" class="btn btn-secondary">Secondary</button></td>
                                             <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
                                             </td>
                                             <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>

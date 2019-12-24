@@ -31,12 +31,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Mật Khẩu</label>
-                                <input type="text" class="form-control" id="pass" placeholder="Mật Khẩu" name="pass"
+                                <input type="password" class="form-control" id="pass" placeholder="Mật Khẩu" name="pass"
                                     value="{{old('pass')}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Nhập lại mật khẩu</label>
-                                <input type="text" class="form-control" id="re_pass" placeholder="Nhập lại mật khẩu"
+                                <input type="password" class="form-control" id="re_pass" placeholder="Nhập lại mật khẩu"
                                     name="re_pass" value="{{old('re_pass')}}" required>
                             </div>
                         </div>

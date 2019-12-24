@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 23, 2019 lúc 01:05 PM
+-- Thời gian đã tạo: Th12 24, 2019 lúc 08:17 AM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.2.16
 
@@ -31,9 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `bonus` (
   `id` int(11) NOT NULL,
   `money` int(11) NOT NULL,
-  `info` varchar(100) NOT NULL,
+  `info` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
   `bonus` int(1) NOT NULL,
   `staff` int(11) NOT NULL,
+  `month` varchar(7) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,7 +122,13 @@ INSERT INTO `ct_hoadon` (`id`, `hoadon`, `sanpham`, `unit_price`, `amount`, `pri
 (61, 67, 4, 123213, 2, 246426, '2019-12-21 18:27:29', '2019-12-21 18:27:29'),
 (62, 67, 7, 500000, 1, 500000, '2019-12-21 18:27:29', '2019-12-21 18:27:29'),
 (63, 67, 6, 123123, 1, 123123, '2019-12-21 18:27:29', '2019-12-21 18:27:29'),
-(64, 67, 8, 500000, 2, 1000000, '2019-12-21 18:27:29', '2019-12-21 18:27:29');
+(64, 67, 8, 500000, 2, 1000000, '2019-12-21 18:27:29', '2019-12-21 18:27:29'),
+(65, 73, 4, 123213, 3, 369639, '2019-12-23 19:23:59', '2019-12-23 19:23:59'),
+(66, 74, 4, 123213, 3, 369639, '2019-12-23 19:27:04', '2019-12-23 19:27:04'),
+(67, 75, 8, 500000, 1, 500000, '2019-12-23 20:28:28', '2019-12-23 20:28:28'),
+(68, 75, 7, 500000, 1, 500000, '2019-12-23 20:28:28', '2019-12-23 20:28:28'),
+(69, 75, 4, 123213, 1, 123213, '2019-12-23 20:28:28', '2019-12-23 20:28:28'),
+(70, 75, 3, 10000, 2, 20000, '2019-12-23 20:28:28', '2019-12-23 20:28:28');
 
 -- --------------------------------------------------------
 
@@ -134,6 +141,8 @@ CREATE TABLE `hoadon` (
   `khachhang` int(11) DEFAULT NULL,
   `nhanvien` int(11) DEFAULT NULL,
   `price` int(11) NOT NULL,
+  `initial_price` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -142,40 +151,48 @@ CREATE TABLE `hoadon` (
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`id`, `khachhang`, `nhanvien`, `price`, `updated_at`, `created_at`) VALUES
-(35, NULL, 2, 246426, '2019-12-19 20:22:13', '2019-12-12 13:48:18'),
-(36, NULL, 2, 492852, '2019-12-19 20:22:13', '2019-12-12 13:48:21'),
-(37, NULL, 2, 1000000, '2019-12-19 20:22:13', '2019-12-12 13:49:04'),
-(38, NULL, 2, 623336, '2019-12-19 20:22:13', '2019-12-12 15:16:25'),
-(39, NULL, 2, 3369639, '2019-12-19 20:22:13', '2019-12-12 15:17:25'),
-(40, NULL, 2, 1000000, '2019-12-19 20:22:13', '2019-12-12 15:19:45'),
-(41, NULL, 2, 1500000, '2019-12-19 20:22:13', '2019-12-12 15:19:57'),
-(42, NULL, 2, 2500123, '2019-12-19 20:22:13', '2019-12-12 15:23:29'),
-(43, NULL, 2, 123123, '2019-12-19 20:22:13', '2019-12-12 15:26:34'),
-(44, NULL, 2, 369369, '2019-12-19 20:22:13', '2019-12-12 15:27:50'),
-(45, NULL, 2, 1500000, '2019-12-19 20:22:13', '2019-12-12 15:28:31'),
-(46, NULL, 2, 1746426, '2019-12-19 20:22:13', '2019-12-12 15:38:19'),
-(47, NULL, 2, 123336, '2019-12-19 20:22:13', '2019-12-12 15:38:23'),
-(48, NULL, 2, 1246459, '2019-12-19 20:22:13', '2019-12-12 15:47:06'),
-(49, NULL, 2, 492885, '2019-12-19 20:22:13', '2019-12-12 15:47:12'),
-(50, NULL, 2, 246, '2019-12-19 20:22:13', '2019-12-12 15:54:22'),
-(51, NULL, 2, 246426, '2019-12-19 20:22:13', '2019-12-12 15:55:08'),
-(52, NULL, 2, 369639, '2019-12-19 20:22:13', '2019-12-12 15:56:20'),
-(53, NULL, 2, 1076385, '2019-12-19 20:22:13', '2019-12-13 02:49:48'),
-(54, NULL, 2, 370008, '2019-12-19 20:22:13', '2019-12-13 08:27:12'),
-(55, 1, 2, 1000000, '2019-12-19 20:22:13', '2019-12-13 09:40:57'),
-(56, NULL, 2, 2000000, '2019-12-19 20:22:13', '2019-12-13 09:41:14'),
-(57, NULL, 2, 3123336, '2019-12-19 20:22:13', '2019-12-13 09:42:29'),
-(58, NULL, 2, 1000000, '2019-12-19 20:22:13', '2019-12-13 09:43:10'),
-(59, NULL, 2, 1500000, '2019-12-19 20:22:13', '2019-12-13 09:43:44'),
-(60, 1, 2, 1000000, '2019-12-19 20:22:13', '2019-12-13 09:44:04'),
-(61, NULL, 2, 369885, '2019-12-19 20:22:13', '2019-12-18 06:59:47'),
-(62, NULL, 2, 739524, '2019-12-19 20:22:13', '2019-12-18 06:59:47'),
-(63, NULL, 2, 739278, '2019-12-19 20:22:13', '2019-12-18 06:59:57'),
-(64, NULL, 2, 492852, '2019-12-19 20:22:13', '2019-12-19 20:11:43'),
-(65, NULL, 3, 1623459, '2019-12-19 20:33:32', '2019-12-19 20:33:32'),
-(66, 1, 3, 993221, '2019-12-21 18:26:55', '2019-12-21 18:26:55'),
-(67, 1, 3, 1869795, '2019-12-21 18:27:28', '2019-12-21 18:27:28');
+INSERT INTO `hoadon` (`id`, `khachhang`, `nhanvien`, `price`, `initial_price`, `discount`, `updated_at`, `created_at`) VALUES
+(35, NULL, 2, 246426, 0, 0, '2019-12-23 18:23:22', '2019-12-23 17:48:18'),
+(36, NULL, 2, 492852, 0, 0, '2019-12-19 20:22:13', '2019-12-12 13:48:21'),
+(37, NULL, 2, 1000000, 0, 0, '2019-12-19 20:22:13', '2019-12-12 13:49:04'),
+(38, NULL, 2, 623336, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:16:25'),
+(39, NULL, 2, 3369639, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:17:25'),
+(40, NULL, 2, 1000000, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:19:45'),
+(41, NULL, 2, 1500000, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:19:57'),
+(42, NULL, 2, 2500123, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:23:29'),
+(43, NULL, 2, 123123, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:26:34'),
+(44, NULL, 2, 369369, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:27:50'),
+(45, NULL, 2, 1500000, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:28:31'),
+(46, NULL, 2, 1746426, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:38:19'),
+(47, NULL, 2, 123336, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:38:23'),
+(48, NULL, 2, 1246459, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:47:06'),
+(49, NULL, 2, 492885, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:47:12'),
+(50, NULL, 2, 246, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:54:22'),
+(51, NULL, 2, 246426, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:55:08'),
+(52, NULL, 2, 369639, 0, 0, '2019-12-19 20:22:13', '2019-12-12 15:56:20'),
+(53, NULL, 2, 1076385, 0, 0, '2019-12-19 20:22:13', '2019-12-13 02:49:48'),
+(54, NULL, 2, 370008, 0, 0, '2019-12-19 20:22:13', '2019-12-13 08:27:12'),
+(55, 1, 2, 1000000, 0, 0, '2019-12-19 20:22:13', '2019-12-13 09:40:57'),
+(56, NULL, 2, 2000000, 0, 0, '2019-12-19 20:22:13', '2019-12-13 09:41:14'),
+(57, NULL, 2, 3123336, 0, 0, '2019-12-19 20:22:13', '2019-12-13 09:42:29'),
+(58, NULL, 2, 1000000, 0, 0, '2019-12-19 20:22:13', '2019-12-13 09:43:10'),
+(59, NULL, 2, 1500000, 0, 0, '2019-12-19 20:22:13', '2019-12-13 09:43:44'),
+(60, 1, 2, 1000000, 0, 0, '2019-12-19 20:22:13', '2019-12-13 09:44:04'),
+(61, NULL, 2, 369885, 0, 0, '2019-12-19 20:22:13', '2019-12-18 06:59:47'),
+(62, NULL, 2, 739524, 0, 0, '2019-12-19 20:22:13', '2019-12-18 06:59:47'),
+(63, NULL, 2, 739278, 0, 0, '2019-12-19 20:22:13', '2019-12-18 06:59:57'),
+(64, NULL, 2, 492852, 0, 0, '2019-12-19 20:22:13', '2019-12-19 20:11:43'),
+(65, NULL, 3, 1623459, 0, 0, '2019-12-19 20:33:32', '2019-12-19 20:33:32'),
+(66, 1, 3, 993221, 0, 0, '2019-12-21 18:26:55', '2019-12-21 18:26:55'),
+(67, 1, 3, 1869795, 0, 0, '2019-12-21 18:27:28', '2019-12-21 18:27:28'),
+(68, NULL, 3, 492852, 492852, 0, '2019-12-23 19:19:10', '2019-12-23 19:19:10'),
+(69, NULL, 3, 1492852, 1492852, 0, '2019-12-23 19:19:16', '2019-12-23 19:19:16'),
+(70, NULL, 3, 1615975, 1615975, 0, '2019-12-23 19:19:20', '2019-12-23 19:19:20'),
+(71, NULL, 3, 1000000, 1000000, 0, '2019-12-23 19:19:37', '2019-12-23 19:19:37'),
+(72, NULL, 3, 246426, 246426, 0, '2019-12-23 19:20:38', '2019-12-23 19:20:38'),
+(73, NULL, 3, 369639, 369639, 0, '2019-12-23 19:23:59', '2019-12-23 19:23:59'),
+(74, NULL, 3, 369639, 369639, 0, '2019-12-23 19:27:04', '2019-12-23 19:27:04'),
+(75, NULL, 3, 1143212, 1143213, 1, '2019-12-23 20:28:28', '2019-12-23 20:28:28');
 
 -- --------------------------------------------------------
 
@@ -246,7 +263,7 @@ CREATE TABLE `magiamgia` (
 --
 
 INSERT INTO `magiamgia` (`id`, `code`, `type`, `min_bill`, `max_discount`, `discount`, `status`, `updated_at`, `created_at`) VALUES
-(1, '123213', '1', 222, 1, 2323, 1, '2019-12-21 22:30:07', '2019-12-21 21:58:42');
+(1, '1', '1', 222, 1, 2323, 1, '2019-12-23 19:49:30', '2019-12-21 21:58:42');
 
 -- --------------------------------------------------------
 
@@ -263,14 +280,27 @@ CREATE TABLE `ngaynghi` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Đang đổ dữ liệu cho bảng `ngaynghi`
+-- Cấu trúc bảng cho bảng `nguyenlieu`
 --
 
-INSERT INTO `ngaynghi` (`id`, `date`, `month`, `nhanvien`, `updated_at`, `created_at`) VALUES
-(63, '2019-12-17', '12-2019', 2, '2019-12-23 10:26:57', '2019-12-23 10:26:57'),
-(64, '2019-12-18', '12-2019', 3, '2019-12-23 10:37:37', '2019-12-23 10:26:57'),
-(65, '2019-12-19', '12-2019', 2, '2019-12-23 10:26:57', '2019-12-23 10:26:57');
+CREATE TABLE `nguyenlieu` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
+  `amount` int(11) NOT NULL,
+  `calculation_unit` varchar(20) CHARACTER SET ucs2 COLLATE ucs2_vietnamese_ci NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `nguyenlieu`
+--
+
+INSERT INTO `nguyenlieu` (`id`, `name`, `amount`, `calculation_unit`, `updated_at`, `created_at`) VALUES
+(1, '16520337', 0, '12', '2019-12-23 22:53:26', '2019-12-23 22:53:26');
 
 -- --------------------------------------------------------
 
@@ -298,8 +328,22 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`id`, `name`, `email`, `phone`, `image`, `password`, `identity_card_number`, `code_reset`, `role`, `salary`, `updated_at`, `created_at`) VALUES
-(2, 'Hân', 'nah151098@mailinator.com', '', '', '$2y$12$CVBg9NHnzQD71tloQ4i0I.HLFrMJtvOCVL8T4QH0pyfUcFAeTnFxe', '123', 'MZQ9S0xhrDDVVyslkCCn', 'admin', 0, '2019-12-22 21:53:54', '2019-11-12 13:04:00'),
-(3, 'Hân', 'nah1510@mailinator.com', '', 'MBnb_Hân.jpg', '$2y$10$uQirrJgiokoA88tDMcE7kua3.Fx9g9wNsyTg0yjyULhLKbxNTtUFC', '123', 'SOTCaY985dOkUUwNeLCQ', 'cashier', 0, '2019-12-22 23:31:36', '2019-11-12 13:04:03');
+(2, 'Hân', 'nah151098@mailinator.com', '123123', '', '$2y$12$CVBg9NHnzQD71tloQ4i0I.HLFrMJtvOCVL8T4QH0pyfUcFAeTnFxe', '123', 'MZQ9S0xhrDDVVyslkCCn', 'admin', 0, '2019-12-23 20:48:15', '2019-11-12 13:04:00'),
+(3, 'Hân', 'nah1510@mailinator.com', '123213213', 'mBKn_Hân.jpg', '$2y$10$I2KXis0rvBXOxJ3YMRu6J.IXcEwwwtFxTOuU133S9IL8yjo1xxrAW', '123', '4c849e6o4cAL5m3cInFn', 'cashier', 0, '2019-12-24 07:12:10', '2019-11-12 13:04:03');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `nk_nguyenlieu`
+--
+
+CREATE TABLE `nk_nguyenlieu` (
+  `id` int(11) NOT NULL,
+  `type` int(1) NOT NULL,
+  `nguyenlieu` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -323,9 +367,9 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id`, `name`, `price`, `status`, `category`, `image`, `updated_at`, `created_at`) VALUES
-(1, '16520337', 500000, 1, 6, '1380_123.jpg', '2019-12-23 09:12:55', '2019-12-10 16:17:28'),
+(1, '16520337', 123, 1, 6, '1380_123.jpg', '2019-12-23 20:26:04', '2019-12-10 16:17:28'),
 (2, '16520337', 500000, 1, 1, '1380_123.jpg', '2019-12-12 10:34:26', '2019-12-10 16:18:48'),
-(3, '123', 123, 1, 1, '1380_123.jpg', '2019-12-11 08:45:17', '2019-12-10 16:29:33'),
+(3, '123', 10000, 1, 1, '1380_123.jpg', '2019-12-23 20:25:08', '2019-12-10 16:29:33'),
 (4, '12312', 123213, 1, 6, '1380_123.jpg', '2019-12-12 14:10:24', '2019-12-10 16:29:39'),
 (5, '123213', 123123, 1, 1, '1380_123.jpg', '2019-12-12 10:34:26', '2019-12-10 16:29:45'),
 (6, '123213', 123123, 1, 5, '1380_123.jpg', '2019-12-12 14:10:20', '2019-12-10 16:29:52'),
@@ -410,11 +454,24 @@ ALTER TABLE `ngaynghi`
   ADD KEY `NN_NV` (`nhanvien`);
 
 --
+-- Chỉ mục cho bảng `nguyenlieu`
+--
+ALTER TABLE `nguyenlieu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Chỉ mục cho bảng `nk_nguyenlieu`
+--
+ALTER TABLE `nk_nguyenlieu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `NK_NL` (`nguyenlieu`);
 
 --
 -- Chỉ mục cho bảng `sanpham`
@@ -437,19 +494,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `bonus`
 --
 ALTER TABLE `bonus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `ct_hoadon`
 --
 ALTER TABLE `ct_hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
@@ -473,13 +530,25 @@ ALTER TABLE `magiamgia`
 -- AUTO_INCREMENT cho bảng `ngaynghi`
 --
 ALTER TABLE `ngaynghi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+
+--
+-- AUTO_INCREMENT cho bảng `nguyenlieu`
+--
+ALTER TABLE `nguyenlieu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `nk_nguyenlieu`
+--
+ALTER TABLE `nk_nguyenlieu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -522,6 +591,12 @@ ALTER TABLE `hoadon`
 --
 ALTER TABLE `ngaynghi`
   ADD CONSTRAINT `NN_NV` FOREIGN KEY (`nhanvien`) REFERENCES `nhanvien` (`id`);
+
+--
+-- Các ràng buộc cho bảng `nk_nguyenlieu`
+--
+ALTER TABLE `nk_nguyenlieu`
+  ADD CONSTRAINT `NK_NL` FOREIGN KEY (`nguyenlieu`) REFERENCES `nguyenlieu` (`id`);
 
 --
 -- Các ràng buộc cho bảng `sanpham`
