@@ -30,7 +30,7 @@ class CaPheController extends Controller
     public function ThongKeIndex(){
         
 
-        return view('admin.thongke.index');
+        return view('admin.thongke.doanhthu');
     }
 
     

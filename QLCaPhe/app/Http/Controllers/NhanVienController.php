@@ -86,7 +86,7 @@ class NhanVienController extends Controller
 
         }
         $nhanvien->save();
-        $url = "nhanvien/list";
+        $url = "nhanvien/profile";
         return redirect($url)->with('message','Đã cập nhập ảnh thành công!');
     }
     public function ChangePass(Request $request)
@@ -96,9 +96,9 @@ class NhanVienController extends Controller
             if($request->new_pass == $request->confirm_pass){
                 $nhanvien->password = bcrypt($request->new_pass);
                 $nhanvien->save();
-                return redirect("test")->with('message','Đã cập nhập thành công!');
+                return redirect("nhanvien/profile")->with('message','Đã cập nhập thành công!');
         }
-        return redirect("test")->with('fail','Đã cập nhập thành công!');
+        return redirect("nhanvien/profile")->with('fail','Cập nhập thất bại!');
     }
     public function postDayOff(Request $request)
     {
@@ -106,6 +106,10 @@ class NhanVienController extends Controller
         $ngaynghi->date =date("Y-m-d", strtotime($request->day)) ;
         $ngaynghi->month =date("m-Y", strtotime($request->day)) ;
         $ngaynghi->nhanvien = $request->id;
+        if(NgayNghi::where([
+            ['date', '=', date("Y-m-d", strtotime($request->day))],
+            ['month', '=', date("m-Y", strtotime($request->day))],
+        ])->count()==0)
         $ngaynghi->save();
         if($request->total>1){
             for ($i=1; $i < $request->total; $i++) { 
@@ -113,6 +117,10 @@ class NhanVienController extends Controller
                 $ngaynghi->nhanvien = $request->id;
                 $ngaynghi->date =date("Y-m-d", strtotime($request->day. "+$i days")) ;
                 $ngaynghi->month =date("m-Y", strtotime($request->day. "+$i days")) ;
+                if(NgayNghi::where([
+                    ['date', '=', date("Y-m-d", strtotime($request->day. "+$i days"))],
+                    ['month', '=', date("m-Y", strtotime($request->day. "+$i days"))],
+                ])->count()==0)
                 $ngaynghi->save();
             }
         }
@@ -134,5 +142,25 @@ class NhanVienController extends Controller
         $bonus->month = $request->month;
         $bonus->save();
         return redirect('luong-thuong')->with('message','Thêm thành công!');
+    }
+
+    public function DeleteBonus($id)
+    {   
+        $ThuongPhat = ThuongPhat::find($id);
+        $ThuongPhat->delete();
+        return redirect("luong-thuong")->with('message','Xóa thành công!');
+    }
+
+    public function DeleteDayOff($id)
+    {   
+        $NgayNghi = NgayNghi::find($id);
+        $NgayNghi->delete();
+        return redirect("luong-thuong")->with('message','Xóa ngày nghỉ thành công!');
+    }
+
+    public function profile(){
+        $id = Auth::user()->id;
+        $nhanvien = NhanVien::find($id);
+        return view('nhanvien.index',['user'=>$nhanvien]);
     }
 }

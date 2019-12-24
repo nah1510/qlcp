@@ -29,6 +29,8 @@ class AjaxController extends Controller
             $khachang->point = $khachang->point +  $request->total_bill /100;
             $khachang->save();
         }
+        $hoadon->discount = $request->discount;
+        $hoadon->initial_price = $request->initial_price;
         $hoadon->nhanvien = Auth::user()->id;
         $hoadon->save();
         foreach ($request->bill as $key => $value) {
@@ -150,12 +152,21 @@ class AjaxController extends Controller
         echo json_encode($array);
     }
 
+    public function day_off_one(Request $request)
+    {
+        $NgayNghi = NgayNghi::where([
+            ['nhanvien', '=', $request->id],
+            ['month', '=', $request->month],          
+        ])->orderBy('date')->get();
+        echo json_encode($NgayNghi);
+    }
+
     public function ajax_bonus(Request $request)
     {
         $bonus = ThuongPhat::where([
             ['staff', '=', $request->id],
             ['month', '=', $request->month],
-            ['bonus', '=', 1],
+            ['bonus', '=', $request->bonus],
         ])->get();
         echo json_encode($bonus);
     }
