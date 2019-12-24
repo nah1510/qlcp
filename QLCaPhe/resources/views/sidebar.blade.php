@@ -116,7 +116,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link menu" href="{{ url('/luong-thuong')}}">
-                    <i class="nc-icon nc-bell-55"></i>
+                    <i class="fas fa-money-check-alt"></i>
                     <p>Lương Thưởng </p>
                     <input type="hidden" value="{{ url('/luong-thuong')}}">
                 </a>
