@@ -37,20 +37,21 @@
                     <tbody class="table-main">
                     </tbody>
                 </table>
-                <!-- <table style="display:none" id="hidden">
+                <table style="display:none" id="hidden">
                         <thead>
                             <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">Nhân viên</th>
-                                <th scope="col">Khách Hàng</th>
-                                <th scope="col">Tổng tiền</th>
-                                <th scope="col">Thời gian</th>
-                                <th scope="col"></th>
+                                <th scope="col">Nhan Vien</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Luong co ban</th>
+                                <th scope="col">So ngay nghi</th>
+                                <th scope="col">Tien phat</th>
+                                <th scope="col">Tien thuong</th>
+                                <th scope="col">Luong</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-hidden">
                         </tbody>
-                    </table> -->
+                </table>
             </div>
         </div>
     </div>
@@ -230,7 +231,7 @@ function exportTableToCSV() {
     }
     var filename = $("#datepicker").val() + '.csv';
     if ($("#datepicker").val() == "") {
-        filename = 'accounting.csv';
+        filename = 'luong.csv';
     };
     downloadCSV(csv.join("\n"), filename);
 }
@@ -277,8 +278,17 @@ function load() {
                     '</td>' +
                     '<td>' + value['expected_salary'] + '</td>' +
                     '</tr>';
+                var html1 = '<tr>' +
+                    '<td>'+ value['data']['name'] +'</td>' +
+                    '<td>'+ value['data']['email'] +'</td>' +
+                    '<td>'+ value['DayOffTotal'] +'</td>' +
+                    '<td>'+ value['bonus'] +'</td>' +
+                    '<td>'+ value['subs'] +'</td>' +
+                    '<td>' + value['expected_salary'] + '</td>' +
+                    '</tr>';
                 i++;
                 $(".table-main").append(html);
+                $(".table-hidden").append(html1);
             });
 
             $('#DataTable').DataTable({
