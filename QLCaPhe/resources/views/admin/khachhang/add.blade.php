@@ -14,14 +14,16 @@
                 </div>
                 @endif
                 <form action="add" method="POST" role="form">
-                    <legend>Sản phẩm</legend>
+                    <legend>Thêm khách hàng</legend>
                     <div class="form-group">
                         <label for="">Tên khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="" required>
+                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value=""
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="" minlength="10" maxlength="10" required >
+                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value=""
+                            minlength="10" maxlength="10" required>
                     </div>
                     <div class="form-group">
                         <label for="">Email khách hàng</label>

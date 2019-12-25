@@ -8,10 +8,10 @@
         @include('sidebar')
 
         <div class="main-panel">
-            @include('navbar')
+            <!-- @include('navbar') -->
             <div class="container">
                 <form action="edit?id={{$sanpham->id}}" method="POST" role="form" enctype="multipart/form-data">
-                    <legend>San Pham</legend>
+                    <legend>Chỉnh sửa sản phẩm</legend>
                     @if(session('message'))
                     <div class="alert alert-success">
                         {{session('message')}}

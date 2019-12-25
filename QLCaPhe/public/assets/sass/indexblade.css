@@ -479,7 +479,7 @@ body {
 }
 
 .searchClient > div:not(:first-child) {
-  margin-left: 10px;
+  margin-left: 25px;
 }
 
 .searchClient-icon button {

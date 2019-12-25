@@ -10,7 +10,7 @@
             @include('navbar')
             <div class="container">
                 <form action="edit?id={{$khachhang->id}}" method="POST" role="form">
-                    <legend>San Pham</legend>
+                    <legend>chỉnh sửa khách hàng</legend>
                     @if(session('message'))
                     <div class="alert alert-success">
                         {{session('message')}}
@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label for="">Số điện thoại khách hàng:</label>
                         <input type="text" class="form-control" placeholder="Số điện thoại" name="phone"
-                            value="{{$khachhang->phone}}"minlength="10" maxlength="10" required>
+                            value="{{$khachhang->phone}}" minlength="10" maxlength="10" required>
                     </div>
                     <div class="form-group">
                         <label for="">Email khách hàng</label>
@@ -33,8 +33,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Điểm tích lũy</label>
-                        <input type="text" class="form-control" placeholder="Email" 
-                            value="{{$khachhang->point}}" readonly>
+                        <input type="text" class="form-control" placeholder="Email" value="{{$khachhang->point}}"
+                            readonly>
                     </div>
                     <input type="hidden" name="id" value="{{$khachhang->id}}">
                     {!! csrf_field() !!}

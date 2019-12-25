@@ -16,7 +16,7 @@
                 </div>
                 @endif
                 <form action="add" method="POST" role="form" enctype="multipart/form-data">
-                    <legend>Sản phẩm</legend>
+                    <legend>Thêm sản phẩm</legend>
                     <div class="form-group">
                         <label for="">Tên món:</label>
                         <input type="text" class="form-control" placeholder="Tên món" name="name" value="" required>
