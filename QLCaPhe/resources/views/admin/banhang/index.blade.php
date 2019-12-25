@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-rightside">
+            <div class="content-rightside style-1">
                 <div class="client">
                     <div class="client-leftside"><img src="/upload/icon/bill.svg" alt="Hóa Đơn" class="Image" /></div>
                     <div class="client-rightside"><img src="/upload/icon/target.svg" alt="khách hàng" class="Image" />
@@ -78,25 +78,29 @@
                         </div>
                     </div>
                 </div>
+                <button id="myBtn" class="Btton Btton-addclient">Thêm
+                    khách hàng</button>
                 <div class="wrapSum">
                     <div class="Sum">
                         <div class="Sum-item"><input type="text" id="code" autocomplete='off'
                                 class="form-controll form-controll-sum " placeholder="Nhập mã giảm giá"><img
                                 src='/upload/icon/discount.svg' alt='icon' class="moneyIcon"></div>
                     </div>
-                    <div class="Print"><button onclick="check_code()" class="CodeChecking">Kiểm tra</button></div><button id="myBtn" style="margin-left: 10px; background-color: red; border-radius: 18px; font-size: 15px; padding: 0 10px;" >Thêm khách hàng</button>
+                    <div class="Print"><button onclick="check_code()" class="Btton Btton-checking">Kiểm tra</button>
+                    </div>
 
                 </div>
                 <span class="code_check" style="color:red;margin-left: 54px;display: none;">Không áp dụng</span>
                 <span class="code_check_true" style="color:green;margin-left: 54px;display: none;">Mã giảm giá áp
                     dụng</span>
-                <div class="wrapSum">
+                <div class="wrapSum wrapSum-column">
                     <div class="Sum">
                         <div class="Sum-item"><input type="text" id="total_bill" autocomplete='off'
                                 class="form-controll form-controll-sum " name="total_bill" value="0" readonly><img
                                 src='/upload/icon/coins.svg' alt='icon' class="moneyIcon"></div>
                     </div>
-                    <div class="Print"><button onclick="save_db()" class="Invoice">Xuất Hóa Đơn</button></div> 
+                    <div class="Print"><button onclick="save_db()" class="Btton Btton-invoice">Xuất Hóa Đơn</button>
+                    </div>
                 </div>
             </div>
 
@@ -116,22 +120,23 @@
 </body>
 <div id="myModal" class="modal">
 
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Thêm khách hàng</p>
-    <form action="khachhang/add" method="POST" role="form">
-            <input type="text" id="modal_name"  name="name" placeholder="Tên khách hàng" required >
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Thêm khách hàng</p>
+        <form action="khachhang/add" method="POST" role="form">
+            <input type="text" id="modal_name" name="name" placeholder="Tên khách hàng" required>
 
-            <input type="number"  name="phone" placeholder="Số điện thoại" minlength="10" maxlength="10" required >
+            <input type="number" name="phone" placeholder="Số điện thoại" minlength="10" maxlength="10" required>
 
-            <input type="email"  name="email" placeholder="Email" required>
-            
+            <input type="email" name="email" placeholder="Email" required>
+
             <input type="submit" value="Submit">
             {!! csrf_field() !!}
         </form>
-  </div>
+    </div>
 
 </div>
+
 </html>
 <script>
 var modal = document.getElementById("myModal");
@@ -141,83 +146,84 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function() {
-  modal.style.display = "block";
+    modal.style.display = "block";
 }
 
 span.onclick = function() {
-  modal.style.display = "none";
+    modal.style.display = "none";
 }
 
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 </script>
 <style>
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 100; 
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%;
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 500px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
 }
 
 .close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
+
 .modal input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .modal input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .modal input[type=submit]:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .modal div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
 </style>

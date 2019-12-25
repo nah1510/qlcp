@@ -19,9 +19,8 @@ body {
     }
 }
 .supperWrapper {
-    overflow-y: auto;
+    overflow: hidden;
     width: 100%;
-    overflow-x: hidden;
     // padding: 0 5px;
     background-image: linear-gradient(290deg, #fdfbfb 0%, #ebedee 60%, #9368e9);
     background-repeat: no-repeat;
@@ -143,10 +142,11 @@ body {
     outline: none;
     border: 1px solid #ccc;
     border-radius: 999px;
+    width: 100%;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     &-sum {
-        padding: 6px 0 6px 48px;
+        padding: 10px 0 10px 48px;
     }
     &:focus {
         border: 1.5px solid #4091e2;
@@ -157,7 +157,7 @@ body {
     margin-bottom: 50px;
     position: relative;
     // padding: 10px;
-    height: 400px;
+    height: 70%;
     background-color: #ffffff;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -218,11 +218,13 @@ body {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    height: 100%;
     &-leftside {
         flex: 2;
         margin: 0 auto;
         margin-top: $borderWidth;
         max-width: 1000px;
+        overflow-y: hidden;
     }
     &-rightside {
         flex: 1;
@@ -230,13 +232,22 @@ body {
         min-width: 370px;
         max-width: 700px;
     }
+    &-leftside,
+    &-rightside {
+        overflow-x: hidden;
+        height: 70%;
+    }
 }
 // tổng tiền + xuất hóa đơn:
 .wrapSum {
     margin-top: 20px;
     display: flex;
+
     & > div:not(:first-child) {
         margin-left: 5px;
+    }
+    &-column {
+        flex-direction: column;
     }
 }
 .Sum {
@@ -247,6 +258,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex: 1;
     }
     &-item {
         position: relative;
@@ -262,32 +274,35 @@ body {
     height: 80%;
 }
 // btn xuat hoa don
-.Invoice {
-    padding: 10px;
+.Btton {
+    padding: 15px;
     color: white;
     font-weight: bold;
-    background-color: #ffa534;
     border-radius: 999px;
-    width: 110px;
-    &:hover {
-        background-color: #e2963a;
+    margin: 10px auto;
+    width: 150px;
+    &-invoice {
+        background-color: #ffa534;
+        &:hover {
+            background-color: #e2963a;
+        }
+    }
+    &-checking {
+        background-color: #fbff04;
+        &:hover {
+            background-color: #cccf06;
+        }
+    }
+    &-addclient {
+        background-color: #fc727a;
+        &:hover {
+            background-color: #f5454e;
+        }
     }
 }
-//  in hoa don:
+
 .Print {
     align-self: center;
-}
-// btn kiểm tra code:
-.CodeChecking {
-    padding: 10px;
-    color: white;
-    font-weight: bold;
-    background-color: #fbff04;
-    width: 110px;
-    border-radius: 999px;
-    &:hover {
-        background-color: #cccf06;
-    }
 }
 .style-1::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -345,7 +360,7 @@ body {
 }
 .wrapNavlist {
     position: relative;
-    margin: 0 15px 15px 15px;
+    margin: $borderWidth 15px 15px 15px;
     &:after {
         content: "";
         position: absolute;
@@ -580,7 +595,7 @@ body {
     }
 }
 // responsive:
-@media (max-width: 1250px) {
+@media (max-width: 1400px) {
     .wrapItem {
         grid-template-columns: repeat(3, 200px);
     }
@@ -605,8 +620,15 @@ body {
         &-leftside {
             flex: 1;
         }
+        &-rightside {
+            margin-top: 30px;
+            overflow: auto;
+            min-width: auto;
+        }
     }
-
+    .supperWrapper {
+        overflow-y: auto;
+    }
     .wrapItem {
         grid-template-columns: repeat(2, 200px);
     }
@@ -617,13 +639,10 @@ body {
 @media (max-width: 570px) {
     .content {
         flex-direction: column;
-        &-rightside {
-            overflow: auto;
-            min-width: auto;
-        }
     }
     .supperWrapper {
         min-height: 900px;
+        overflow-y: auto;
     }
     .wrapItem {
         grid-template-columns: repeat(1, 200px);

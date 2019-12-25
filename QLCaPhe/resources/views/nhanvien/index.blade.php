@@ -5,11 +5,11 @@
 
 
     <div class="row" style="margin-top:50px;">
-    @if(session('message'))
-                                <div class="alert alert-success">
-                                    {{session('message')}}
-                                </div>
-                                @endif
+        @if(session('message'))
+        <div class="alert alert-success">
+            {{session('message')}}
+        </div>
+        @endif
         <div class="col-sm-3">
             <!--left col-->
             <form action="EditImage" method="POST" role="form" enctype="multipart/form-data">
@@ -30,7 +30,7 @@
             <ul class="nav nav-tabs">
                 <li class="active info"><a>Thông tin</a></li>
                 <li class="pass"><a>Đổi Mật khẩu</a></li>
-                <li class="salary"><a>Ngày nghỉ và lương</a></li>
+                <!-- <li class="salary"><a>Ngày nghỉ và lương</a></li> -->
             </ul>
 
 
@@ -94,8 +94,8 @@
                     <h2>Đổi mật khẩu</h2>
 
                     <hr>
-                    <form class="form" action="password" method="post" >
-                    {!! csrf_field() !!}
+                    <form class="form" action="password" method="post">
+                        {!! csrf_field() !!}
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <label>
@@ -109,32 +109,33 @@
                                 <label>
                                     <h4>Xác nhận mật khẩu</h4>
                                 </label>
-                                <input type="password" class="form-control" name="confirm_pass" placeholder="Xác nhận mật khẩu">
+                                <input type="password" class="form-control" name="confirm_pass"
+                                    placeholder="Xác nhận mật khẩu">
                             </div>
                         </div>
                         <div class="col-xs-12" style="margin-top:20px;">
-                        <button class="btn btn-success" type="submit">Lưu</button>
+                            <button class="btn btn-success" type="submit">Lưu</button>
                         </div>
                     </form>
 
                 </div>
                 <div class="tab-pane" id="khachhang">
-                <form class="form" action="password" method="post" >
-                    {!! csrf_field() !!}
-                    <div class="form-group">
-                        <label for="">Tên khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Số điện thoại khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Email khách hàng</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" value="">
-                    </div>
+                    <form class="form" action="password" method="post">
+                        {!! csrf_field() !!}
+                        <div class="form-group">
+                            <label for="">Tên khách hàng:</label>
+                            <input type="text" class="form-control" placeholder="Tên khách hàng" name="name" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Số điện thoại khách hàng:</label>
+                            <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email khách hàng</label>
+                            <input type="email" class="form-control" placeholder="Email" name="email" value="">
+                        </div>
                         <div class="col-xs-12" style="margin-top:20px;">
-                        <button class="btn btn-success" type="submit">Lưu</button>
+                            <button class="btn btn-success" type="submit">Lưu</button>
                         </div>
                     </form>
                 </div>
