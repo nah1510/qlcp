@@ -38,19 +38,19 @@
                     </tbody>
                 </table>
                 <table style="display:none" id="hidden">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nhan Vien</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Luong co ban</th>
-                                <th scope="col">So ngay nghi</th>
-                                <th scope="col">Tien phat</th>
-                                <th scope="col">Tien thuong</th>
-                                <th scope="col">Luong</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-hidden">
-                        </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col">Nhan Vien</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Luong co ban</th>
+                            <th scope="col">So ngay nghi</th>
+                            <th scope="col">Tien phat</th>
+                            <th scope="col">Tien thuong</th>
+                            <th scope="col">Luong</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hidden">
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -209,7 +209,7 @@ function DayOff(id) {
         }
     });
     $('#Modal-Dayoff').modal('show');
-    $('#Modal-Dayoff .modal-title').text("Thưởng");
+    $('#Modal-Dayoff .modal-title').text("Danh sách ngày nghỉ");
 }
 
 function loadbytime() {
@@ -279,12 +279,12 @@ function load() {
                     '<td>' + value['expected_salary'] + '</td>' +
                     '</tr>';
                 var html1 = '<tr>' +
-                    '<td>'+ value['data']['name'] +'</td>' +
-                    '<td>'+ value['data']['email'] +'</td>' +
-                    '<td>'+ value['data']['salary'] +'</td>' +
-                    '<td>'+ value['DayOffTotal'] +'</td>' +
-                    '<td>'+ value['bonus'] +'</td>' +
-                    '<td>'+ value['subs'] +'</td>' +
+                    '<td>' + value['data']['name'] + '</td>' +
+                    '<td>' + value['data']['email'] + '</td>' +
+                    '<td>' + value['data']['salary'] + '</td>' +
+                    '<td>' + value['DayOffTotal'] + '</td>' +
+                    '<td>' + value['bonus'] + '</td>' +
+                    '<td>' + value['subs'] + '</td>' +
                     '<td>' + value['expected_salary'] + '</td>' +
                     '</tr>';
                 i++;
