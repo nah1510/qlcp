@@ -21,7 +21,7 @@
                 </div>
                 <a onclick="loadbytime()" type="submit" class="btn btn-primary">Xem</a>
 
-                <!-- <a onclick="exportTableToCSV()" class="btn btn-primary">Xuất</a> -->
+                <a onclick="exportTableToCSV()" class="btn btn-primary">Xuất</a>
                 <table class="table table-striped table-bordered" id="DataTable" style="width:100%">
                     <thead>
                         <tr>
