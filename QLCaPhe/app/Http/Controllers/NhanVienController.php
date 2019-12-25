@@ -53,16 +53,18 @@ class NhanVienController extends Controller
 
     public function postEdit(Request $request)
     {   
-        $check =  NhanVien::where('email', $request->email)->count();
-        if($check!=0){
-            return redirect()->back()->with('fail','Đã tồn tại email!');;
-        }
         $nhanvien = NhanVien::find($request->id);
+        if($nhanvien->email!=$request->email)
+        {
+            $check =  NhanVien::where('email', $request->email)->count();
+            if($check!=0){
+                return redirect()->back()->with('fail','Đã tồn tại email!');;
+            }
+        }   
         $nhanvien->name = $request->name;
         $nhanvien->email = $request->email;
         $nhanvien->identity_card_number = $request->identity_card_number;
         $nhanvien->salary = $request->salary;
-        $nhanvien->role = $request->role;
         $nhanvien->phone = $request->phone;
         $nhanvien->save();
         $url = "nhanvien/edit?id=".$request->id;
