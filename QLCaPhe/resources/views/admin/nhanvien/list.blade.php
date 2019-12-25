@@ -129,11 +129,11 @@ $('#datepicker').datepicker({
 });
 $('#DataTable').DataTable({
     "language": {
-        "lengthMenu": "Hiện _MENU_ cột",
+        "lengthMenu": "Hiện _MENU_ hàng",
         "zeroRecords": "Không có dữ liệu trùng khớp",
         "info": "Trang _PAGE_ trên _PAGES_ trang",
         "infoEmpty": "Không có dữ liệu",
-        "infoFiltered": "(Tìm từ _MAX_ cột)",
+        "infoFiltered": "(Tìm từ _MAX_ hàng)",
         "search": "Tìm kiếm:",
         "paginate": {
             "first": "Đầu",
