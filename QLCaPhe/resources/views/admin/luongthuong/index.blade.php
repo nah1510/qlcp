@@ -281,6 +281,7 @@ function load() {
                 var html1 = '<tr>' +
                     '<td>'+ value['data']['name'] +'</td>' +
                     '<td>'+ value['data']['email'] +'</td>' +
+                    '<td>'+ value['data']['salary'] +'</td>' +
                     '<td>'+ value['DayOffTotal'] +'</td>' +
                     '<td>'+ value['bonus'] +'</td>' +
                     '<td>'+ value['subs'] +'</td>' +
