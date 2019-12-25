@@ -214,7 +214,7 @@ function DayOff(id) {
 
 function loadbytime() {
     datepicker = $("#datepicker").val();
-    url = "{{ url('/test')}}/?month=" + datepicker;
+    url = "{{ url('/luong-thuong')}}/?month=" + datepicker;
     window.location.replace(url);
 }
 
