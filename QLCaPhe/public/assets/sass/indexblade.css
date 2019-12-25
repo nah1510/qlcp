@@ -170,7 +170,7 @@ body {
 }
 
 .dataInput > div:not(:first-child) {
-  margin-left: 5px;
+  margin-left: 25px;
 }
 
 .form-controll {
