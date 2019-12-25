@@ -47,9 +47,9 @@
                                             <td> {{ $list->status == '1' ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
                                             <td>{{$list->min_bill ? $list->min_bill : "Không có"}}</td>
                                             <td>{{ $list->type == '1' ? $list->max_discount ? $list->max_discount.' VND': 'Không có' : 'Không có' }}</td>
-                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Edit</a>
+                                            <td><a class="btn btn-info" href="edit?id={{$list->id}}">Sửa</a>
                                             </td>
-                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Delete</a>
+                                            <td><a class="btn btn-danger" href="delete/{{$list->id}}">Xóa</a>
                                             </td>
                                         </tr>
                                         @endforeach
