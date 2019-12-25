@@ -14,7 +14,7 @@ class OderController extends Controller
     {
         $loaisanpham = LoaiSanPham::all();
         $sanpham = SanPham::all();
-        return view('admin.banhang.index',['loaisanpham'=>$loaisanpham,'sanpham'=>$sanpham]);
+        return view('nhanvien.banhang',['loaisanpham'=>$loaisanpham,'sanpham'=>$sanpham]);
     }
 }
 
