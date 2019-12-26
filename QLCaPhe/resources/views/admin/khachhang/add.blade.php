@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại khách hàng:</label>
-                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value=""
+                        <input type="text" class="form-control" placeholder="Số điện thoại" onKeyPress="return isNumberKey(event)" name="phone" value=""
                             minlength="10" maxlength="10" required>
                     </div>
                     <div class="form-group">
@@ -46,3 +46,11 @@
 </body>
 
 </html>
+<script>
+function isNumberKey(evt) {
+    var charCode = evt.which ? evt.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+    total_bill();
+}
+</script>

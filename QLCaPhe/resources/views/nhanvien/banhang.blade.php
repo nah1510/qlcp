@@ -99,7 +99,7 @@
                                 class="form-controll form-controll-sum " name="total_bill" value="0" readonly><img
                                 src='/upload/icon/coins.svg' alt='icon' class="moneyIcon"></div>
                     </div>
-                    <div class="Print"><button onclick="save_db()" class="Btton Btton-invoice">Xuất Hóa Đơn</button>
+                    <div class="Print"><button onclick="save_db()" class="Btton Btton-invoice">Lưu</button>
                     </div>
                 </div>
             </div>

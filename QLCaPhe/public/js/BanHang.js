@@ -32,7 +32,7 @@ function total_bill() {
     });
     $("#initial_price").val(total_bill);
     var discount = 0;
-    if( $("#code_status").val()!=""&& $("#code_min_bill").val()<total_bill){
+    if( $("#code_status").val()!=""&& $("#code_min_bill").val()<=total_bill){
         if($("#code_type").val()==1)
             {
                 discount = total_bill * $("#code_discount").val() /100;
@@ -78,7 +78,7 @@ function save_db() {
             discount :$("#discount").val(),
         },
         success: function(msg) {
-            alert("Đã thêm thành công " + msg);
+            alert("Đã lưu thành công " );
             $(".table-body >tr").remove();
             total_bill();
             list_san_pham(0);
@@ -247,13 +247,14 @@ function check_code() {
     if ($("#code").val() == "") return;
     $.ajax({
         type: "POST",
-        url: "giamgia/check",
+        url: "check",
         data: {
             _token: $("#_token").val(),
             code: $("#code").val()
         },
         success: function(data) {
             if (data == "false") {
+                
                 $("#code_status").val("");
                 $(".code_check").show();
                 $(".code_check_true").hide();

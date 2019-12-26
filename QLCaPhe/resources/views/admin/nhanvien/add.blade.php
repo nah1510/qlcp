@@ -29,12 +29,12 @@
                     </div>
                     <div class="form-group">
                         <label for="">CMND:</label>
-                        <input type="number " class="form-control" placeholder="Chứng minh nhân dân"
-                            name="identity_card_number" value=""required >
+                        <input type="text " class="form-control" placeholder="Chứng minh nhân dân"
+                            name="identity_card_number"  minlength="9" maxlength="10" onKeyPress="return isNumberKey(event)" value=""required >
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại:</label>
-                        <input type="number " class="form-control" placeholder="Số điện thoại"
+                        <input type="text " class="form-control"  minlength="10" maxlength="11" onKeyPress="return isNumberKey(event)" placeholder="Số điện thoại"
                             name="phone" value=""required >
                     </div>
                     <div class="form-group">
@@ -58,3 +58,12 @@
 </body>
 
 </html>
+<script>
+
+function isNumberKey(evt) {
+    var charCode = evt.which ? evt.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+    total_bill();
+}
+</script>

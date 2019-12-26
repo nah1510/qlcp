@@ -104,8 +104,9 @@ Route::group(['prefix'=>'giamgia','middleware'=>'AdminLogin'],function(){
     Route::get('add','GiamGiaController@Add');
     Route::post('add','GiamGiaController@postAdd');
     Route::get('delete/{id}','GiamGiaController@Delete');
-    Route::post('check','GiamGiaController@CheckCode');
+   
 });
+Route::post('check','GiamGiaController@CheckCode')->middleware('NhanVienLogin');;
 Route::get('banhang','OderController@getIndex')->middleware('NhanVienLogin');
 
 Route::get('thongkedt',function(){
