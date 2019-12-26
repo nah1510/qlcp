@@ -59,7 +59,7 @@ function save_db() {
     $(".tr").each(function() {
         var total =Number($(this).find(".number-input").val()) *Number($(this).find(".price").val());
         var CT_HoaDon = [
-            $(this).attr("nameText"),
+            $(this).attr("id"),
             $(this).find(".price").val(),
             $(this).find(".number-input").val(),
             total

@@ -17,6 +17,11 @@
                                     {{session('message')}}
                                 </div>
                                 @endif
+                                @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{session('error')}}
+                                </div>
+                                @endif
                                 <h4 class="card-title">Nhân viên</h4>
                                 <a class="btn btn-primary" href="add">Thêm nhân viên</a>
                                 <p class="card-category">Danh sách nhân viên</p>

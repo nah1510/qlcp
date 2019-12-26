@@ -30,8 +30,8 @@
                         <input class="form-control" id="total-money" type="text" value="" readonly>
                     </div>
                     <a onclick="loadbytime()" type="submit" class="btn btn-primary">Xem</a>
-                    
                     <a  onclick="exportTableToCSV()" class="btn btn-primary">Xuất</a>
+                    <a  onclick="SPBanCHay()" class="btn btn-primary">Sản phầm bán chạy</a>
                     <table class="table table-striped table-bordered" id="DataTable" style="width:100%">
                         <thead>
                             <tr>
@@ -70,7 +70,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Chi tiết hóa đơn</h4>
       </div>
       <div class="modal-body">
       <table class="table table-striped table-bordered" id="modal-table" style="width:100%">
@@ -81,6 +81,36 @@
                                 <th scope="col">Đơn giá</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="sp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Top 5 sản phẩm bán chạy nhất</h4>
+      </div>
+      <div class="modal-body">
+      <table class="table table-striped table-bordered" id="modal-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Hình Ảnh</th>
+                                <th scope="col">Tên Món</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Doanh thu</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -124,6 +154,34 @@ function showModal(id){
         }
     });
     $('#Modal').modal('show');
+}
+
+function SPBanCHay(){
+    $('#modal-table tbody >tr').remove();
+    $.ajax({
+        type: 'POST',
+        url: 'ajax_SPBanCHay',
+        data: {
+            _token: "{{ csrf_token() }}",
+            from: $("#from").val(),
+            to: $("#to").val(),
+        },
+        success: function(data) {
+            data = JSON.parse(data);
+            $.each(data, function(key, value) {
+                var html = '<tr>' +
+                    '<td><img src="/upload/' +
+                    value['sanpham']['image'] +
+                    '" height="50px" ></td>'+
+                    '<td>'+value['sanpham']['name']+'</td>' +
+                    '<td>'+value['soluong']+'</td>' +
+                    '<td>'+value['thanhtien']+'</td>' +
+                    '</tr>';
+                $("#modal-table tbody").append(html);
+            });
+        }
+    });
+    $('#sp').modal('show');
 }
 
 function loadbytime() {

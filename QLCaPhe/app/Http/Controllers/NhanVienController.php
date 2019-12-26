@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\NhanVien;
 use App\NgayNghi;
 use App\ThuongPhat;
+use App\HoaDon;
 use Auth;
 use Illuminate\Support\Str;
 
@@ -73,10 +74,16 @@ class NhanVienController extends Controller
 
     public function Delete($id)
     {   
-
         $nhanvien = NhanVien::find($id);
-        $nhanvien->delete();
-        return redirect("nhanvien/list")->with('message','Xóa thành công!');
+        $HoaDon = HoaDon::where('nhanvien', $id)->count();
+
+        if($HoaDon!=0)
+        return redirect("nhanvien/list")->with('error','Nhân viên này đã bán hàng. Không thể xóa');
+        else  {
+            $nhanvien->delete();
+            return redirect("nhanvien/list")->with('message','Xóa thành công!');
+        }
+
     }
 
     public function EditImage(Request $request)

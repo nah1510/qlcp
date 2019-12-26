@@ -11,6 +11,7 @@ use App\NhanVien;
 use App\NgayNghi;
 use App\ThuongPhat;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -168,5 +169,32 @@ class AjaxController extends Controller
             ['bonus', '=', $request->bonus],
         ])->get();
         echo json_encode($bonus);
+    }
+    
+    public function SPBanCHay(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $array=array();
+        $CT_HoaDon = DB::table('ct_hoadon')
+        ->select(DB::raw('SUM(amount) as soluong, sanpham ,SUM(price) as thanhtien'))
+        ->whereBetween('created_at',[$from, $to] ) 
+        ->groupBy('sanpham')
+        ->orderBy('soluong', 'desc')
+        ->limit(5)
+        ->get();
+        //$sanpham = SanPham::join('ct_hoadon', 'ct_hoadon.sanpham', '=', 'sanpham.id')->get();
+        //$CT_HoaDon = CT_HoaDon::join('sanpham', 'ct_hoadon.sanpham', '=', 'sanpham.id')->get();
+        
+        foreach ($CT_HoaDon as $key => $value) {
+            $sanpham = SanPham::find($value->sanpham);
+            $array_onece=array(
+                "sanpham"=>$sanpham,
+                "soluong"=>$value->soluong,
+                "thanhtien"=>$value->thanhtien,
+            );
+            array_push($array,$array_onece);
+        }
+        echo json_encode($array);
     }
 }

@@ -125,3 +125,4 @@ Route::post('ajax_CT_hoa_don','AjaxController@CT_hoa_don');
 Route::post('ajax_day_off','AjaxController@day_off');
 Route::post('ajax_bonus','AjaxController@ajax_bonus');
 Route::post('ajax_day_off_one','AjaxController@day_off_one');
+Route::post('ajax_SPBanCHay','AjaxController@SPBanCHay');
